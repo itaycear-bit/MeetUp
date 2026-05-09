@@ -377,7 +377,11 @@ style="background:#ff4d6d;">
 let currentCategory = "";
 let currentIndex = 0;
 let currentMood = "";
-let favorites = [];
+
+let favorites =
+JSON.parse(
+  localStorage.getItem("favorites")
+) || [];
 
 const places = {
 
@@ -726,7 +730,22 @@ function saveFavorite(){
   const place =
   places[currentCategory][currentIndex];
 
+  const alreadyExists =
+  favorites.find(f => f.name === place.name);
+
+  if(alreadyExists){
+
+    alert("❤️ כבר שמור");
+
+    return;
+  }
+
   favorites.push(place);
+
+  localStorage.setItem(
+    "favorites",
+    JSON.stringify(favorites)
+  );
 
   alert("❤️ נשמר למועדפים");
 }
