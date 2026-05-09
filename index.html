@@ -15,12 +15,9 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 .section-title{font-size:16px;font-weight:800;margin-bottom:14px;text-align:right}
 .filters,.trending-row{display:flex;overflow:auto;gap:10px}
 .filters button{border:0;background:#f4f4f4;border-radius:999px;padding:12px 16px;font-size:14px;white-space:nowrap;cursor:pointer}
-.filters button.active,.meeting-card.active{background:#111;color:white}
-.dark .filters button,.dark .meeting-card{background:#333;color:white}
-.dark .filters button.active,.dark .meeting-card.active{background:white;color:#111}
-.meeting-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.meeting-card{border:0;border-radius:22px;padding:16px;background:#f7f7f7;text-align:right;box-shadow:0 6px 16px rgba(0,0,0,.08);cursor:pointer}
-.meeting-card b{font-size:17px}.meeting-card span{display:block;font-size:13px;margin-top:6px;opacity:.75}
+.filters button.active{background:#111;color:white}
+.dark .filters button{background:#333;color:white}
+.dark .filters button.active{background:white;color:#111}
 .trend-card{min-width:145px;border:0;border-radius:22px;background:#111;color:white;padding:16px;text-align:right;cursor:pointer}
 .trend-card span{display:block;font-size:12px;opacity:.75;margin-top:6px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
@@ -56,7 +53,7 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 <div id="app">
   <div class="logo">🍒</div>
   <h1 class="title">MeetUp</h1>
-  <p class="subtitle">תבחרו וייב, תקציב וסוג מפגש</p>
+  <p class="subtitle">תבחרו וייב ותקציב — ונמצא מקום</p>
 
   <div class="section">
     <div class="section-title">😌 מצב רוח</div>
@@ -75,16 +72,6 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
       <button onclick="setBudget('רגיל', this)">💰 רגיל</button>
       <button onclick="setBudget('יקר', this)">💎 יקר</button>
       <button class="active" onclick="setBudget('הכל', this)">✨ הכל</button>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">👥 למי המפגש?</div>
-    <div class="meeting-grid">
-      <button class="meeting-card" onclick="setMeeting('דייט', this)"><b>❤️ דייט</b><span>שקט, יפה, עם וייב</span></button>
-      <button class="meeting-card" onclick="setMeeting('חברים', this)"><b>🍻 חברים</b><span>אוכל, ברים ואנרגיה</span></button>
-      <button class="meeting-card" onclick="setMeeting('עבודה', this)"><b>💻 עבודה</b><span>קפה שקט וישיבה רגועה</span></button>
-      <button class="meeting-card" onclick="setMeeting('משפחה', this)"><b>👨‍👩‍👧 משפחה</b><span>נוח, פשוט ומתאים לכולם</span></button>
     </div>
   </div>
 
@@ -124,38 +111,38 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 let currentCategory = "";
 let currentIndex = 0;
 let currentBudget = "הכל";
-let currentMeeting = "הכל";
+let currentMood = "";
 let userLat = null;
 let userLon = null;
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 const places = {
   "פיצה":[
-    {name:"פיצה האט",price:"₪50–₪100",level:"רגיל",rating:"4.2⭐",hours:"פתוח עד 23:00",close:23,desc:"פיצה טובה לקבוצה ולערב קליל.",review:"טעים, מהיר ואווירה טובה.",tags:["פיצה","חברים","לילה"],meeting:["חברים","משפחה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"פיצה בוטיק",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 00:00",close:24,desc:"פיצה איכותית עם תוספות מיוחדות.",review:"מרגיש מושקע וטעים.",tags:["יוקרתי","פיצה","דייט"],meeting:["דייט","חברים"],popular:""},
-    {name:"פיצה שכונתית",price:"₪25–₪55",level:"זול",rating:"4.1⭐",hours:"פתוח עד 22:30",close:22,desc:"פיצה זולה, פשוטה וטעימה.",review:"בול כשבא משהו זול ומהיר.",tags:["זול","מהיר","פיצה"],meeting:["חברים","משפחה"],popular:""}
+    {name:"פיצה האט",price:"₪50–₪100",level:"רגיל",rating:"4.2⭐",hours:"פתוח עד 23:00",close:23,desc:"פיצה טובה לקבוצה ולערב קליל.",review:"טעים, מהיר ואווירה טובה.",tags:["פיצה","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
+    {name:"פיצה בוטיק",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 00:00",close:24,desc:"פיצה איכותית עם תוספות מיוחדות.",review:"מרגיש מושקע וטעים.",tags:["יוקרתי","פיצה","דייט"],popular:""},
+    {name:"פיצה שכונתית",price:"₪25–₪55",level:"זול",rating:"4.1⭐",hours:"פתוח עד 22:30",close:22,desc:"פיצה זולה, פשוטה וטעימה.",review:"בול כשבא משהו זול ומהיר.",tags:["זול","מהיר","פיצה"],popular:""}
   ],
   "קפה":[
-    {name:"לנדוור",price:"₪35–₪70",level:"רגיל",rating:"4.5⭐",hours:"פתוח עד 23:00",close:23,desc:"קפה, בראנץ׳ וישיבה ארוכה.",review:"מקום מושלם לשיחה רגועה.",tags:["קפה","שקט","בראנץ׳"],meeting:["דייט","עבודה","חברים"],popular:"🔥 פופולרי עכשיו"},
-    {name:"ארומה",price:"₪20–₪45",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"קפה קליל ומהיר.",review:"טוב לפגישה קצרה.",tags:["זול","קפה","מהיר"],meeting:["עבודה","חברים"],popular:""},
-    {name:"קפה שקט",price:"₪30–₪70",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 21:00",close:21,desc:"מקום שקט ונעים לדבר או לעבוד.",review:"אווירה רגועה וממש נוחה.",tags:["שקט","עבודה","רגוע"],meeting:["עבודה","דייט"],popular:""}
+    {name:"לנדוור",price:"₪35–₪70",level:"רגיל",rating:"4.5⭐",hours:"פתוח עד 23:00",close:23,desc:"קפה, בראנץ׳ וישיבה ארוכה.",review:"מקום מושלם לשיחה רגועה.",tags:["קפה","שקט","בראנץ׳"],popular:"🔥 פופולרי עכשיו"},
+    {name:"ארומה",price:"₪20–₪45",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"קפה קליל ומהיר.",review:"טוב לפגישה קצרה.",tags:["זול","קפה","מהיר"],popular:""},
+    {name:"קפה שקט",price:"₪30–₪70",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 21:00",close:21,desc:"מקום שקט ונעים לדבר או לעבוד.",review:"אווירה רגועה וממש נוחה.",tags:["שקט","עבודה","רגוע"],popular:""}
   ],
   "בר":[
-    {name:"בר גג",price:"₪70–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 02:00",close:2,desc:"נוף יפה וקוקטיילים.",review:"מרגיש כמו חו״ל.",tags:["לילה","קוקטיילים","נוף"],meeting:["דייט","חברים"],popular:"🔥 פופולרי עכשיו"},
-    {name:"פאב שכונתי",price:"₪40–₪90",level:"רגיל",rating:"4.4⭐",hours:"פתוח עד 01:00",close:1,desc:"בירה ואווירה קלילה.",review:"לא יקר וכיף לשבת.",tags:["בירה","חברים","קליל"],meeting:["חברים"],popular:""}
+    {name:"בר גג",price:"₪70–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 02:00",close:2,desc:"נוף יפה וקוקטיילים.",review:"מרגיש כמו חו״ל.",tags:["לילה","קוקטיילים","נוף"],popular:"🔥 פופולרי עכשיו"},
+    {name:"פאב שכונתי",price:"₪40–₪90",level:"רגיל",rating:"4.4⭐",hours:"פתוח עד 01:00",close:1,desc:"בירה ואווירה קלילה.",review:"לא יקר וכיף לשבת.",tags:["בירה","חברים","קליל"],popular:""}
   ],
   "פארק":[
-    {name:"פארק גדול",price:"חינם",level:"זול",rating:"4.8⭐",hours:"פתוח 24/7",close:24,desc:"טבע, אוויר פתוח ושקט.",review:"אחלה מקום לדבר.",tags:["טבע","שקט","חינם"],meeting:["דייט","חברים","משפחה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"גן שקט",price:"חינם",level:"זול",rating:"4.5⭐",hours:"פתוח עד 22:00",close:22,desc:"מקום רגוע לשבת ולדבר.",review:"שקט ונעים בלי עומס.",tags:["שקט","חינם","רגוע"],meeting:["דייט","עבודה"],popular:""}
+    {name:"פארק גדול",price:"חינם",level:"זול",rating:"4.8⭐",hours:"פתוח 24/7",close:24,desc:"טבע, אוויר פתוח ושקט.",review:"אחלה מקום לדבר.",tags:["טבע","שקט","חינם"],popular:"🔥 פופולרי עכשיו"},
+    {name:"גן שקט",price:"חינם",level:"זול",rating:"4.5⭐",hours:"פתוח עד 22:00",close:22,desc:"מקום רגוע לשבת ולדבר.",review:"שקט ונעים בלי עומס.",tags:["שקט","חינם","רגוע"],popular:""}
   ],
   "ים":[
-    {name:"חוף שקט",price:"חינם",level:"זול",rating:"4.9⭐",hours:"פתוח 24/7",close:24,desc:"ים, שקיעה ושיחה טובה.",review:"וייב מטורף בערב.",tags:["ים","שקיעה","רגוע"],meeting:["דייט","חברים"],popular:"🔥 פופולרי עכשיו"},
-    {name:"טיילת ים",price:"חינם",level:"זול",rating:"4.7⭐",hours:"פתוח 24/7",close:24,desc:"הליכה מול הים.",review:"אווירה רגועה ונעימה.",tags:["ים","הליכה","נוף"],meeting:["דייט","משפחה","חברים"],popular:""}
+    {name:"חוף שקט",price:"חינם",level:"זול",rating:"4.9⭐",hours:"פתוח 24/7",close:24,desc:"ים, שקיעה ושיחה טובה.",review:"וייב מטורף בערב.",tags:["ים","שקיעה","רגוע"],popular:"🔥 פופולרי עכשיו"},
+    {name:"טיילת ים",price:"חינם",level:"זול",rating:"4.7⭐",hours:"פתוח 24/7",close:24,desc:"הליכה מול הים.",review:"אווירה רגועה ונעימה.",tags:["ים","הליכה","נוף"],popular:""}
   ],
   "אוכל":[
-    {name:"BBB",price:"₪60–₪110",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 00:00",close:24,desc:"המבורגרים ואווירה טובה.",review:"טעים ומשביע.",tags:["המבורגר","חברים"],meeting:["חברים","משפחה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"סושי בר",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 23:00",close:23,desc:"סושי איכותי ואווירה יפה.",review:"אוכל טוב ומקום נעים.",tags:["סושי","איכותי","שקט"],meeting:["דייט","חברים"],popular:""},
-    {name:"שווארמה",price:"₪35–₪65",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"מהיר, זול ומשביע.",review:"מעולה כשבא אוכל בלי סיפור.",tags:["זול","מהיר","משביע"],meeting:["חברים"],popular:""}
+    {name:"BBB",price:"₪60–₪110",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 00:00",close:24,desc:"המבורגרים ואווירה טובה.",review:"טעים ומשביע.",tags:["המבורגר","חברים"],popular:"🔥 פופולרי עכשיו"},
+    {name:"סושי בר",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 23:00",close:23,desc:"סושי איכותי ואווירה יפה.",review:"אוכל טוב ומקום נעים.",tags:["סושי","איכותי","שקט"],popular:""},
+    {name:"שווארמה",price:"₪35–₪65",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"מהיר, זול ומשביע.",review:"מעולה כשבא אוכל בלי סיפור.",tags:["זול","מהיר","משביע"],popular:""}
   ]
 };
 
@@ -166,11 +153,14 @@ function markActive(button){
 }
 
 function setMood(mood, button){
+  currentMood = mood;
   markActive(button);
+
   if(mood === "רגוע") currentCategory = "פארק";
   else if(mood === "אנרגטי") currentCategory = "בר";
   else if(mood === "רומנטי") currentCategory = "ים";
   else if(mood === "ספונטני"){ randomPlace(); return; }
+
   currentIndex = 0;
   renderPlace();
 }
@@ -181,17 +171,9 @@ function setBudget(budget, button){
   if(currentCategory){ currentIndex = 0; renderPlace(); }
 }
 
-function setMeeting(type, button){
-  currentMeeting = type;
-  markActive(button);
-  if(currentCategory){ currentIndex = 0; renderPlace(); }
-  else { smartPick(); }
-}
-
 function getFilteredPlaces(category){
   let list = places[category];
   if(currentBudget !== "הכל") list = list.filter(place => place.level === currentBudget);
-  if(currentMeeting !== "הכל") list = list.filter(place => place.meeting.includes(currentMeeting));
   return list.length ? list : places[category];
 }
 
@@ -268,7 +250,6 @@ function renderPlace(){
       <p>🕒 ${place.hours}</p>
       <p>${openText}</p>
       <p>🎯 תקציב: ${place.level}</p>
-      <p>👥 מתאים ל: ${place.meeting.join(", ")}</p>
 
       <div class="tags">
         ${place.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
@@ -307,10 +288,9 @@ function prevPlace(){
 function smartPick(){
   let hour = new Date().getHours();
 
-  if(currentMeeting === "דייט") currentCategory = hour >= 18 ? "ים" : "קפה";
-  else if(currentMeeting === "חברים") currentCategory = hour >= 19 ? "בר" : "אוכל";
-  else if(currentMeeting === "עבודה") currentCategory = "קפה";
-  else if(currentMeeting === "משפחה") currentCategory = hour >= 18 ? "אוכל" : "פארק";
+  if(currentMood === "רגוע") currentCategory = hour >= 18 ? "ים" : "פארק";
+  else if(currentMood === "אנרגטי") currentCategory = hour >= 19 ? "בר" : "אוכל";
+  else if(currentMood === "רומנטי") currentCategory = hour >= 18 ? "ים" : "קפה";
   else currentCategory = hour >= 19 ? "בר" : "קפה";
 
   currentIndex = 0;
