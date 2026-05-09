@@ -10,63 +10,46 @@ body {
   margin: 0;
   font-family: -apple-system, Arial, sans-serif;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #ffffff, #e9e9e9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(180deg, #fafafa, #e9e9e9);
   color: #111;
 }
 
 #app {
+  max-width: 430px;
+  margin: auto;
+  padding: 35px 22px;
   text-align: center;
-  max-width: 390px;
-  width: 100%;
-  padding: 24px;
 }
 
 .logo {
-  font-size: 52px;
-  margin-bottom: 5px;
+  font-size: 55px;
 }
 
 .title {
-  font-size: 48px;
+  font-size: 50px;
   font-weight: 900;
-  margin: 0;
+  margin: 5px 0;
 }
 
 .subtitle {
-  color: #444;
-  margin: 14px 0 28px;
+  color: #555;
   font-size: 17px;
+  margin-bottom: 28px;
 }
 
 .main-btn {
   width: 100%;
-  padding: 17px;
+  padding: 18px;
   background: #111;
   color: white;
   border: none;
   border-radius: 22px;
   font-size: 18px;
-  transition: 0.2s;
-}
-
-.main-btn:active,
-.grid button:active,
-.action-btn:active,
-.whatsapp-btn:active {
-  transform: scale(0.97);
 }
 
 .options {
   display: none;
   margin-top: 28px;
-}
-
-.choose {
-  font-weight: 700;
-  margin-bottom: 14px;
 }
 
 .grid {
@@ -75,68 +58,84 @@ body {
   gap: 14px;
 }
 
-.grid button {
+.grid button, .place-btn {
   background: white;
   border: none;
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 18px;
-  font-size: 17px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-  transition: 0.2s;
+  font-size: 16px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+}
+
+#placesList {
+  margin-top: 25px;
+  display: grid;
+  gap: 12px;
+}
+
+.place-btn {
+  text-align: right;
 }
 
 .card {
-  margin-top: 30px;
+  margin-top: 28px;
   background: white;
-  border-radius: 26px;
-  padding: 24px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
   animation: pop 0.25s ease;
 }
 
 @keyframes pop {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.place-img {
+  width: 100%;
+  height: 170px;
+  border-radius: 22px;
+  object-fit: cover;
+  margin-bottom: 16px;
 }
 
 .card h2 {
-  margin-top: 0;
+  margin: 5px 0 12px;
   font-size: 26px;
 }
 
 .card p {
-  font-size: 17px;
-  margin: 10px 0;
+  font-size: 16px;
+  margin: 9px 0;
+  color: #333;
+}
+
+.action-btn, .whatsapp-btn {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 15px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .action-btn {
   background: #111;
   color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 14px 20px;
-  font-size: 15px;
 }
 
 .whatsapp-btn {
   background: #25D366;
   color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 14px 20px;
-  font-size: 15px;
+}
+
+button {
+  cursor: pointer;
 }
 
 .small {
-  color: #666;
-  font-size: 14px;
-  margin-top: 16px;
+  color: #777;
+  font-size: 13px;
 }
 </style>
 </head>
@@ -146,23 +145,24 @@ body {
 <div id="app">
   <div class="logo">📍</div>
   <h1 class="title">MeetUp</h1>
-  <p class="subtitle">לא יודעים איפה להיפגש? נמצא לכם מקום לפי הווייב</p>
+  <p class="subtitle">בחרו וייב, קבלו 6 מקומות, ואז תפתחו במפות</p>
 
   <button class="main-btn" onclick="start()">מצא לי מקום</button>
 
   <div id="options" class="options">
-    <p class="choose">בחרו וייב</p>
+    <p><b>בחרו וייב</b></p>
 
     <div class="grid">
-      <button onclick="find('קפה')">☕ קפה</button>
-      <button onclick="find('אוכל')">🍔 אוכל</button>
-      <button onclick="find('פארק')">🌳 פארק</button>
-      <button onclick="find('בר')">🍻 בר</button>
-      <button onclick="find('קינוח')">🍰 קינוח</button>
-      <button onclick="find('שקט')">🤫 שקט</button>
+      <button onclick="showPlaces('קפה')">☕ קפה</button>
+      <button onclick="showPlaces('אוכל')">🍔 אוכל</button>
+      <button onclick="showPlaces('פארק')">🌳 פארק</button>
+      <button onclick="showPlaces('בר')">🍻 בר</button>
+      <button onclick="showPlaces('קינוח')">🍰 קינוח</button>
+      <button onclick="showPlaces('שקט')">🤫 שקט</button>
     </div>
   </div>
 
+  <div id="placesList"></div>
   <div id="result"></div>
 </div>
 
@@ -171,68 +171,109 @@ function start() {
   document.getElementById("options").style.display = "block";
 }
 
-function find(type) {
-  const places = {
-    "קפה": [
-      {name: "ארומה", price: "₪20–₪40", rating: "4.2⭐", taste: "קפה ומאפים"},
-      {name: "לנדוור", price: "₪30–₪60", rating: "4.5⭐", taste: "בראנץ וקפה"},
-      {name: "קפה גרג", price: "₪25–₪50", rating: "4.1⭐", taste: "קפה וקינוחים"}
-    ],
-    "אוכל": [
-      {name: "BBB", price: "₪60–₪100", rating: "4.6⭐", taste: "המבורגרים"},
-      {name: "סושי בר", price: "₪80–₪150", rating: "4.7⭐", taste: "סושי"},
-      {name: "פיצה", price: "₪50–₪90", rating: "4.3⭐", taste: "פיצה"}
-    ],
-    "פארק": [
-      {name: "פארק קרוב", price: "חינם", rating: "4.8⭐", taste: "טבע ואוויר פתוח"},
-      {name: "גן ציבורי", price: "חינם", rating: "4.3⭐", taste: "שקט ונעים"}
-    ],
-    "בר": [
-      {name: "פאב שכונתי", price: "₪40–₪80", rating: "4.4⭐", taste: "בירה ואווירה"},
-      {name: "בר קוקטיילים", price: "₪60–₪120", rating: "4.6⭐", taste: "קוקטיילים ומוזיקה"}
-    ],
-    "קינוח": [
-      {name: "גלידרייה", price: "₪20–₪45", rating: "4.6⭐", taste: "גלידה וקינוחים"},
-      {name: "קרפ צרפתי", price: "₪25–₪55", rating: "4.4⭐", taste: "מתוק וכיף"}
-    ],
-    "שקט": [
-      {name: "בית קפה שקט", price: "₪25–₪60", rating: "4.5⭐", taste: "שיחה רגועה"},
-      {name: "פארק שקט", price: "חינם", rating: "4.7⭐", taste: "אוויר ושקט"}
-    ]
-  };
+const places = {
+  "קפה": [
+    {name:"ארומה", price:"₪20–₪45", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"קפה קליל, מאפים, טוב לשיחה קצרה.", img:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800"},
+    {name:"לנדוור", price:"₪35–₪70", rating:"4.5⭐", hours:"פתוח עד 23:00", desc:"מקום נעים לבראנץ׳, קפה וישיבה ארוכה.", img:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800"},
+    {name:"קפה גרג", price:"₪30–₪65", rating:"4.1⭐", hours:"פתוח עד 22:30", desc:"קפה, קינוחים ואווירה נוחה לחברים.", img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800"},
+    {name:"בית קפה שקט", price:"₪25–₪55", rating:"4.6⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים לדבר ולשבת.", img:"https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800"},
+    {name:"קפה שכונתי", price:"₪20–₪50", rating:"4.3⭐", hours:"פתוח עד 20:00", desc:"מקום פשוט, רגוע ולא עמוס.", img:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800"},
+    {name:"קפה קינוחים", price:"₪30–₪75", rating:"4.4⭐", hours:"פתוח עד 00:00", desc:"קפה ומתוקים, מתאים לערב קליל.", img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800"}
+  ],
 
+  "אוכל": [
+    {name:"BBB", price:"₪60–₪110", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"המבורגרים, אווירה טובה וחברים.", img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800"},
+    {name:"סושי בר", price:"₪80–₪150", rating:"4.7⭐", hours:"פתוח עד 23:30", desc:"סושי, ישיבה נעימה ואוכל איכותי.", img:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"},
+    {name:"פיצה", price:"₪45–₪90", rating:"4.3⭐", hours:"פתוח עד 01:00", desc:"קליל, טעים ומתאים לקבוצה.", img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800"},
+    {name:"המבורגר", price:"₪55–₪100", rating:"4.5⭐", hours:"פתוח עד 23:00", desc:"אוכל מהיר אבל איכותי.", img:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=800"},
+    {name:"איטלקי", price:"₪70–₪140", rating:"4.4⭐", hours:"פתוח עד 23:00", desc:"פסטה, פיצה ואווירה רגועה.", img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800"},
+    {name:"שווארמה", price:"₪35–₪70", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"מהיר, זול ומשביע.", img:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800"}
+  ],
+
+  "פארק": [
+    {name:"פארק קרוב", price:"חינם", rating:"4.8⭐", hours:"פתוח 24/7", desc:"טבע, אוויר פתוח ומקום לדבר.", img:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800"},
+    {name:"גן ציבורי", price:"חינם", rating:"4.3⭐", hours:"פתוח עד 23:00", desc:"שקט, ירוק ונעים לשבת.", img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"},
+    {name:"טיילת", price:"חינם", rating:"4.7⭐", hours:"פתוח 24/7", desc:"הליכה, שיחה ונוף יפה.", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"},
+    {name:"פארק גדול", price:"חינם", rating:"4.6⭐", hours:"פתוח עד 22:00", desc:"מתאים לקבוצה גדולה.", img:"https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=800"},
+    {name:"פינת ישיבה ירוקה", price:"חינם", rating:"4.2⭐", hours:"פתוח 24/7", desc:"מקום רגוע לשבת ולדבר.", img:"https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800"},
+    {name:"גן שקט", price:"חינם", rating:"4.5⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים בלי הרבה רעש.", img:"https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800"}
+  ],
+
+  "בר": [
+    {name:"פאב שכונתי", price:"₪40–₪90", rating:"4.4⭐", hours:"פתוח עד 02:00", desc:"בירה, מוזיקה ואווירה קלילה.", img:"https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800"},
+    {name:"בר קוקטיילים", price:"₪60–₪130", rating:"4.6⭐", hours:"פתוח עד 01:30", desc:"קוקטיילים, וייב טוב וישיבה יפה.", img:"https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=800"},
+    {name:"בר שקט", price:"₪45–₪100", rating:"4.5⭐", hours:"פתוח עד 00:30", desc:"מקום רגוע לדבר בלי צעקות.", img:"https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=800"},
+    {name:"בר גג", price:"₪70–₪150", rating:"4.7⭐", hours:"פתוח עד 02:00", desc:"נוף, אווירה ותמונות יפות.", img:"https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=800"},
+    {name:"בר מוזיקה", price:"₪50–₪120", rating:"4.3⭐", hours:"פתוח עד 03:00", desc:"יותר אנרגיה, מוזיקה ואנשים.", img:"https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800"},
+    {name:"בר יין", price:"₪60–₪140", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"קלאסי, רגוע ומתאים לשיחה.", img:"https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800"}
+  ],
+
+  "קינוח": [
+    {name:"גלידרייה", price:"₪20–₪45", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"גלידה, קליל ומתוק.", img:"https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800"},
+    {name:"קרפ", price:"₪25–₪55", rating:"4.4⭐", hours:"פתוח עד 23:00", desc:"מתוק, כיף ומתאים לערב.", img:"https://images.unsplash.com/photo-1519676867240-f03562e64548?w=800"},
+    {name:"וופל בלגי", price:"₪35–₪70", rating:"4.5⭐", hours:"פתוח עד 00:00", desc:"קינוח מושקע לשבת עם חברים.", img:"https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800"},
+    {name:"מאפייה", price:"₪15–₪45", rating:"4.2⭐", hours:"פתוח עד 20:00", desc:"מאפים, קפה ומשהו קטן.", img:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800"},
+    {name:"קונדיטוריה", price:"₪30–₪80", rating:"4.7⭐", hours:"פתוח עד 22:00", desc:"עוגות וקינוחים איכותיים.", img:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"},
+    {name:"יוגורט בר", price:"₪20–₪50", rating:"4.3⭐", hours:"פתוח עד 23:30", desc:"קליל, מתוק ולא כבד.", img:"https://images.unsplash.com/photo-1488477304112-4944851de03d?w=800"}
+  ],
+
+  "שקט": [
+    {name:"בית קפה שקט", price:"₪25–₪60", rating:"4.5⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים לדבר ולשבת.", img:"https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800"},
+    {name:"פארק שקט", price:"חינם", rating:"4.7⭐", hours:"פתוח 24/7", desc:"אוויר, שקט ושיחה טובה.", img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"},
+    {name:"ספרייה", price:"חינם", rating:"4.4⭐", hours:"פתוח עד 19:00", desc:"שקט מאוד, מתאים לדבר רגוע.", img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800"},
+    {name:"טיילת שקטה", price:"חינם", rating:"4.6⭐", hours:"פתוח 24/7", desc:"הליכה רגועה ושיחה.", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"},
+    {name:"גן קטן", price:"חינם", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"מקום פשוט, נעים ולא עמוס.", img:"https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800"},
+    {name:"לאונג׳ שקט", price:"₪50–₪120", rating:"4.5⭐", hours:"פתוח עד 00:00", desc:"ישיבה נוחה, רגוע וקצת יוקרתי.", img:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800"}
+  ]
+};
+
+function showPlaces(type) {
+  document.getElementById("result").innerHTML = "";
   let list = places[type];
-  let random = list[Math.floor(Math.random() * list.length)];
 
-  let mapLink = "https://www.google.com/maps/search/" + encodeURIComponent(random.name);
+  document.getElementById("placesList").innerHTML =
+    "<h3>בחרו מקום</h3>" +
+    list.map((place, index) => `
+      <button class="place-btn" onclick="showDetails('${type}', ${index})">
+        <b>${place.name}</b><br>
+        ${place.taste} · ${place.price} · ${place.rating}
+      </button>
+    `).join("");
+}
+
+function showDetails(type, index) {
+  let place = places[type][index];
+  let mapLink = "https://www.google.com/maps/search/" + encodeURIComponent(place.name);
 
   let whatsappText =
     "בוא ניפגש פה 👇🔥\n" +
-    random.name + "\n" +
-    random.taste + "\n" +
-    random.price + " | " + random.rating + "\n" +
+    place.name + "\n" +
+    place.desc + "\n" +
+    place.price + " | " + place.rating + "\n" +
+    place.hours + "\n" +
     mapLink;
 
   let whatsappLink = "https://wa.me/?text=" + encodeURIComponent(whatsappText);
 
   document.getElementById("result").innerHTML = `
     <div class="card">
-      <h2>📍 ${random.name}</h2>
-      <p>🍽️ ${random.taste}</p>
-      <p>💰 ${random.price}</p>
-      <p>⭐ ${random.rating}</p>
+      <img class="place-img" src="${place.img}">
+      <h2>📍 ${place.name}</h2>
+      <p>✨ ${place.desc}</p>
+      <p>🍽️ ${place.taste}</p>
+      <p>💰 ${place.price}</p>
+      <p>⭐ ${place.rating}</p>
+      <p>🕒 ${place.hours}</p>
 
       <a href="${mapLink}" target="_blank">
         <button class="action-btn">פתח במפות</button>
       </a>
 
-      <br><br>
-
       <a href="${whatsappLink}" target="_blank">
         <button class="whatsapp-btn">שלח לחבר בוואטסאפ</button>
       </a>
 
-      <p class="small">המחירים והדירוגים כרגע לדוגמה</p>
+      <p class="small">המחירים, השעות והדירוגים כרגע לדוגמה</p>
     </div>
   `;
 }
