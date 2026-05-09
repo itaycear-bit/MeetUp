@@ -6,6 +6,7 @@
 <title>MeetUp</title>
 
 <style>
+
 body{
   margin:0;
   font-family:-apple-system,Arial,sans-serif;
@@ -31,7 +32,7 @@ body{
 }
 
 .title{
-  font-size:50px;
+  font-size:52px;
   font-weight:900;
   margin:0;
 }
@@ -70,6 +71,7 @@ body{
   font-size:15px;
   white-space:nowrap;
   box-shadow:0 4px 10px rgba(0,0,0,.1);
+  cursor:pointer;
 }
 
 .grid{
@@ -99,12 +101,19 @@ body{
 }
 
 .dark .card{
-  background:#1c1c1c;
+  background:#1d1d1d;
 }
 
 @keyframes pop{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .card h2{
@@ -203,6 +212,7 @@ body{
   color:#888;
   margin-top:12px;
 }
+
 </style>
 </head>
 
@@ -219,27 +229,61 @@ body{
 </p>
 
 <div class="moods">
-  <button onclick="setMood('רגוע')">😌 רגוע</button>
-  <button onclick="setMood('אנרגטי')">⚡ אנרגטי</button>
-  <button onclick="setMood('רומנטי')">❤️ רומנטי</button>
-  <button onclick="setMood('ספונטני')">🎲 ספונטני</button>
+
+<button onclick="setMood('רגוע')">
+😌 רגוע
+</button>
+
+<button onclick="setMood('אנרגטי')">
+⚡ אנרגטי
+</button>
+
+<button onclick="setMood('רומנטי')">
+❤️ רומנטי
+</button>
+
+<button onclick="setMood('ספונטני')">
+🎲 ספונטני
+</button>
+
 </div>
 
 <button class="main-btn" onclick="randomPlace()">
 🎲 תבחר בשבילי
 </button>
 
-<button class="main-btn" onclick="toggleDark()" style="background:#333;">
+<button class="main-btn"
+onclick="toggleDark()"
+style="background:#333;">
 🌙 מצב לילה
 </button>
 
 <div class="grid">
-  <button onclick="showCategory('פיצה')">🍕 פיצה</button>
-  <button onclick="showCategory('קפה')">☕ קפה</button>
-  <button onclick="showCategory('אוכל')">🍔 אוכל</button>
-  <button onclick="showCategory('בר')">🍻 בר</button>
-  <button onclick="showCategory('פארק')">🌳 פארק</button>
-  <button onclick="showCategory('ים')">🌊 ים</button>
+
+<button onclick="showCategory('פיצה')">
+🍕 פיצה
+</button>
+
+<button onclick="showCategory('קפה')">
+☕ קפה
+</button>
+
+<button onclick="showCategory('אוכל')">
+🍔 אוכל
+</button>
+
+<button onclick="showCategory('בר')">
+🍻 בר
+</button>
+
+<button onclick="showCategory('פארק')">
+🌳 פארק
+</button>
+
+<button onclick="showCategory('ים')">
+🌊 ים
+</button>
+
 </div>
 
 <div id="result"></div>
@@ -255,6 +299,7 @@ let currentMood = "";
 const places = {
 
 "פיצה":[
+
 {
 name:"פיצה האט",
 price:"₪50–₪100",
@@ -287,9 +332,11 @@ review:"מרגיש יותר מושקע ונעים.",
 tags:["איכותי","פיצה","רגוע"],
 popular:""
 }
+
 ],
 
 "קפה":[
+
 {
 name:"לנדוור",
 price:"₪35–₪70",
@@ -322,9 +369,11 @@ review:"מתאים לקבוצה קטנה.",
 tags:["קפה","קינוחים","חברים"],
 popular:""
 }
+
 ],
 
 "בר":[
+
 {
 name:"בר גג",
 price:"₪70–₪150",
@@ -346,9 +395,11 @@ review:"לא יקר וכיף לשבת.",
 tags:["בירה","חברים","קליל"],
 popular:""
 }
+
 ],
 
 "פארק":[
+
 {
 name:"פארק גדול",
 price:"חינם",
@@ -370,9 +421,11 @@ review:"הכי טוב בערב.",
 tags:["נוף","הליכה","חינם"],
 popular:""
 }
+
 ],
 
 "ים":[
+
 {
 name:"חוף שקט",
 price:"חינם",
@@ -394,9 +447,11 @@ review:"אווירה רגועה ונעימה.",
 tags:["ים","הליכה","נוף"],
 popular:""
 }
+
 ],
 
 "אוכל":[
+
 {
 name:"BBB",
 price:"₪60–₪110",
@@ -418,18 +473,23 @@ review:"אוכל טוב ומקום נעים.",
 tags:["סושי","איכותי","שקט"],
 popular:""
 }
+
 ]
+
 };
 
 function showCategory(category){
+
   currentCategory = category;
   currentIndex = 0;
+
   renderPlace();
 }
 
 function renderPlace(){
 
-  const place = places[currentCategory][currentIndex];
+  const place =
+  places[currentCategory][currentIndex];
 
   const mapLink =
   "https://www.google.com/maps/search/" +
@@ -473,8 +533,15 @@ function renderPlace(){
     </div>
 
     <div class="arrows">
-      <button onclick="prevPlace()">➡️ הקודם</button>
-      <button onclick="nextPlace()">⬅️ הבא</button>
+
+      <button onclick="prevPlace()">
+      ➡️ הקודם
+      </button>
+
+      <button onclick="nextPlace()">
+      ⬅️ הבא
+      </button>
+
     </div>
 
     <button class="action-btn"
@@ -496,9 +563,13 @@ function renderPlace(){
 }
 
 function nextPlace(){
+
   currentIndex++;
 
-  if(currentIndex >= places[currentCategory].length){
+  if(
+    currentIndex >=
+    places[currentCategory].length
+  ){
     currentIndex = 0;
   }
 
@@ -506,9 +577,11 @@ function nextPlace(){
 }
 
 function prevPlace(){
+
   currentIndex--;
 
   if(currentIndex < 0){
+
     currentIndex =
     places[currentCategory].length - 1;
   }
@@ -522,24 +595,53 @@ function randomPlace(){
   Object.keys(places);
 
   const randomCategory =
-  categories[Math.floor(Math.random()*categories.length)];
+  categories[
+    Math.floor(
+      Math.random() * categories.length
+    )
+  ];
 
-  currentCategory = randomCategory;
+  currentCategory =
+  randomCategory;
 
   currentIndex =
-  Math.floor(Math.random()*places[randomCategory].length);
+  Math.floor(
+    Math.random() *
+    places[randomCategory].length
+  );
 
   renderPlace();
 }
 
 function toggleDark(){
+
   document.body.classList.toggle("dark");
 }
 
 function setMood(mood){
+
   currentMood = mood;
 
-  alert("נבחר מצב: " + mood);
+  if(mood === "רגוע"){
+    currentCategory = "פארק";
+  }
+
+  else if(mood === "אנרגטי"){
+    currentCategory = "בר";
+  }
+
+  else if(mood === "רומנטי"){
+    currentCategory = "ים";
+  }
+
+  else if(mood === "ספונטני"){
+    randomPlace();
+    return;
+  }
+
+  currentIndex = 0;
+
+  renderPlace();
 }
 
 </script>
