@@ -25,8 +25,8 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 .trend-card span{display:block;font-size:12px;opacity:.75;margin-top:6px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 .main-btn{border:0;border-radius:18px;padding:16px;font-size:15px;cursor:pointer;color:white}
-.random-btn{background:#111}.location-btn{background:#0f9d58}.favorites-btn{background:#ff4d6d}.dark-btn{background:#333}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.random-btn{background:#111}.location-btn{background:#0f9d58}.favorites-btn{background:#ff4d6d}.dark-btn{background:#333}.smart-btn{background:#7c3aed}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
 .grid button{border:0;border-radius:22px;background:white;padding:18px;font-size:16px;box-shadow:0 8px 22px rgba(0,0,0,.1);cursor:pointer}
 .card{margin-top:28px;background:white;border-radius:30px;padding:22px;box-shadow:0 14px 36px rgba(0,0,0,.14);animation:pop .25s ease}
 @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -88,17 +88,9 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">🔥 חם עכשיו</div>
-    <div class="trending-row">
-      <button class="trend-card" onclick="showTrending('בר גג')">🍸 בר גג<span>הכי חם הלילה</span></button>
-      <button class="trend-card" onclick="showTrending('חוף שקט')">🌊 חוף שקט<span>מושלם לשקיעה</span></button>
-      <button class="trend-card" onclick="showTrending('לנדוור')">☕ לנדוור<span>טוב לשיחה</span></button>
-    </div>
-  </div>
-
   <div class="actions">
     <button class="main-btn random-btn" onclick="randomPlace()">🎲 רנדומלי</button>
+    <button class="main-btn smart-btn" onclick="smartPick()">🧠 חכם</button>
     <button class="main-btn location-btn" onclick="enableLocation()">📍 מיקום</button>
     <button class="main-btn favorites-btn" onclick="showFavorites()">❤️ מועדפים</button>
     <button class="main-btn dark-btn" onclick="toggleDark()">🌙 מצב לילה</button>
@@ -113,6 +105,15 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
     <button onclick="showCategory('בר')">🍻 בר</button>
     <button onclick="showCategory('פארק')">🌳 פארק</button>
     <button onclick="showCategory('ים')">🌊 ים</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔥 חם עכשיו</div>
+    <div class="trending-row">
+      <button class="trend-card" onclick="showTrending('בר גג')">🍸 בר גג<span>הכי חם הלילה</span></button>
+      <button class="trend-card" onclick="showTrending('חוף שקט')">🌊 חוף שקט<span>מושלם לשקיעה</span></button>
+      <button class="trend-card" onclick="showTrending('לנדוור')">☕ לנדוור<span>טוב לשיחה</span></button>
+    </div>
   </div>
 
   <div id="dice">🎲</div>
@@ -184,7 +185,7 @@ function setMeeting(type, button){
   currentMeeting = type;
   markActive(button);
   if(currentCategory){ currentIndex = 0; renderPlace(); }
-  else { randomPlace(); }
+  else { smartPick(); }
 }
 
 function getFilteredPlaces(category){
@@ -199,7 +200,9 @@ function enableLocation(){
     document.getElementById("locationStatus").innerText = "המכשיר לא תומך במיקום";
     return;
   }
+
   document.getElementById("locationStatus").innerText = "מבקש מיקום...";
+
   navigator.geolocation.getCurrentPosition(
     pos => {
       userLat = pos.coords.latitude;
@@ -219,12 +222,7 @@ function getMapLink(placeName){
 
 function getWhatsAppLink(place){
   const mapLink = getMapLink(place.name);
-  return "https://wa.me/?text=" + encodeURIComponent(
-    "בוא ניפגש פה 🍒\n" +
-    place.name + "\n" +
-    place.desc + "\n" +
-    mapLink
-  );
+  return "https://wa.me/?text=" + encodeURIComponent("בוא ניפגש פה 🍒\n" + place.name + "\n" + place.desc + "\n" + mapLink);
 }
 
 function showCategory(category){
@@ -303,6 +301,19 @@ function prevPlace(){
   const filteredPlaces = getFilteredPlaces(currentCategory);
   currentIndex = currentIndex - 1;
   if(currentIndex < 0) currentIndex = filteredPlaces.length - 1;
+  renderPlace();
+}
+
+function smartPick(){
+  let hour = new Date().getHours();
+
+  if(currentMeeting === "דייט") currentCategory = hour >= 18 ? "ים" : "קפה";
+  else if(currentMeeting === "חברים") currentCategory = hour >= 19 ? "בר" : "אוכל";
+  else if(currentMeeting === "עבודה") currentCategory = "קפה";
+  else if(currentMeeting === "משפחה") currentCategory = hour >= 18 ? "אוכל" : "פארק";
+  else currentCategory = hour >= 19 ? "בר" : "קפה";
+
+  currentIndex = 0;
   renderPlace();
 }
 
