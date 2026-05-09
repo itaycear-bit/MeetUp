@@ -10,7 +10,6 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 .dark{background:#111;color:white}
 #app{max-width:430px;margin:auto;padding:24px 18px 60px;text-align:center}
 .logo{font-size:58px}.title{font-size:48px;font-weight:900;margin:0}.subtitle{color:#666;margin:10px 0 25px;font-size:16px}
-
 .section{background:white;border-radius:24px;padding:16px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.08)}
 .dark .section{background:#1d1d1d}
 .section-title{font-size:15px;font-weight:700;margin-bottom:14px}
@@ -19,35 +18,28 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
 .filters button.active{background:#111;color:white}
 .dark .filters button{background:#333;color:white}
 .dark .filters button.active{background:white;color:#111}
-
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 .main-btn{border:0;border-radius:18px;padding:16px;font-size:15px;cursor:pointer;color:white}
 .random-btn{background:#111}.location-btn{background:#0f9d58}.favorites-btn{background:#ff4d6d}.dark-btn{background:#333}
-
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid button{border:0;border-radius:22px;background:white;padding:18px;font-size:16px;box-shadow:0 8px 22px rgba(0,0,0,.1);cursor:pointer}
 .dark .grid button{background:#1d1d1d;color:white}
-
 .card{margin-top:28px;background:white;border-radius:30px;padding:22px;box-shadow:0 14px 36px rgba(0,0,0,.14);animation:pop .25s ease}
 .dark .card{background:#1d1d1d}
 @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .card h2{font-size:28px;margin:0 0 10px}.card p{color:#444;font-size:16px}.dark .card p{color:#ddd}
-
 .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
 .tag{background:#efefef;border-radius:999px;padding:7px 12px;font-size:13px}
 .dark .tag{background:#333;color:white}
 .review{background:#f5f5f5;border-radius:18px;padding:14px;margin-top:12px}
 .dark .review{background:#2b2b2b}
-
 .arrows{display:flex;gap:10px;margin-top:16px}
 .arrows button{flex:1;border:0;border-radius:16px;padding:14px;background:#efefef;cursor:pointer}
 .dark .arrows button{background:#333;color:white}
-
 .action-btn,.whatsapp-btn,.fav-btn{width:100%;border:0;border-radius:18px;padding:15px;font-size:16px;margin-top:12px;cursor:pointer}
 .action-btn{background:#111;color:white}.whatsapp-btn{background:#25D366;color:white}.fav-btn{background:#ff4d6d;color:white}
 .popular{margin-top:12px;color:#ff3b5c;font-weight:bold}
 .small,.location-status{font-size:13px;color:#888;margin-top:12px}
-
 #dice{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:120px;z-index:9999;animation:spin 1s linear infinite}
 @keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg) scale(1)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.2)}}
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);z-index:9998}
@@ -105,6 +97,15 @@ body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradi
   </div>
 
   <div id="locationStatus" class="location-status">המיקום עדיין לא הופעל</div>
+
+  <div class="section">
+    <div class="section-title">🔥 חם עכשיו</div>
+    <div class="filters">
+      <button onclick="showTrending('בר גג')">🍸 בר גג</button>
+      <button onclick="showTrending('חוף שקט')">🌊 חוף שקט</button>
+      <button onclick="showTrending('לנדוור')">☕ לנדוור</button>
+    </div>
+  </div>
 
   <div class="grid">
     <button onclick="showCategory('פיצה')">🍕 פיצה</button>
@@ -193,6 +194,8 @@ function setMeeting(type, button){
   if(currentCategory){
     currentIndex = 0;
     renderPlace();
+  } else {
+    randomPlace();
   }
 }
 
@@ -239,6 +242,24 @@ function showCategory(category){
   currentCategory = category;
   currentIndex = 0;
   renderPlace();
+}
+
+function showTrending(placeName){
+  for(const category in places){
+    const found = places[category].find(place => place.name === placeName);
+
+    if(found){
+      currentCategory = category;
+      currentIndex = getFilteredPlaces(category).findIndex(place => place.name === placeName);
+
+      if(currentIndex < 0){
+        currentIndex = places[category].indexOf(found);
+      }
+
+      renderPlace();
+      break;
+    }
+  }
 }
 
 function renderPlace(){
