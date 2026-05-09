@@ -6,385 +6,1019 @@
 <title>MeetUp</title>
 
 <style>
-body{margin:0;font-family:-apple-system,Arial,sans-serif;background:linear-gradient(180deg,#fff,#ececec);color:#111;transition:.3s}
-.dark{background:#111;color:white}
-#app{max-width:430px;margin:auto;padding:24px 18px 60px;text-align:center}
-.logo{font-size:58px}.title{font-size:48px;font-weight:900;margin:0}.subtitle{color:#666;margin:10px 0 25px;font-size:16px}
-.section{background:white;border-radius:26px;padding:16px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.08)}
-.dark .section,.dark .card,.dark .grid button{background:#1d1d1d;color:white}
-.section-title{font-size:16px;font-weight:800;margin-bottom:14px;text-align:right}
-.filters,.trending-row{display:flex;overflow:auto;gap:10px}
-.filters button{border:0;background:#f4f4f4;border-radius:999px;padding:12px 16px;font-size:14px;white-space:nowrap;cursor:pointer}
-.filters button.active{background:#111;color:white}
-.dark .filters button{background:#333;color:white}
-.dark .filters button.active{background:white;color:#111}
-.trend-card{min-width:145px;border:0;border-radius:22px;background:#111;color:white;padding:16px;text-align:right;cursor:pointer}
-.trend-card span{display:block;font-size:12px;opacity:.75;margin-top:6px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.main-btn{border:0;border-radius:18px;padding:16px;font-size:15px;cursor:pointer;color:white}
-.random-btn{background:#111}.location-btn{background:#0f9d58}.favorites-btn{background:#ff4d6d}.dark-btn{background:#333}.smart-btn{background:#7c3aed}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
-.grid button{border:0;border-radius:22px;background:white;padding:18px;font-size:16px;box-shadow:0 8px 22px rgba(0,0,0,.1);cursor:pointer}
-.card{margin-top:28px;background:white;border-radius:30px;padding:22px;box-shadow:0 14px 36px rgba(0,0,0,.14);animation:pop .25s ease}
-@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.card h2{font-size:28px;margin:0 0 10px}.card p{color:#444;font-size:16px}.dark .card p{color:#ddd}
-.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
-.tag{background:#efefef;border-radius:999px;padding:7px 12px;font-size:13px}.dark .tag{background:#333;color:white}
-.review{background:#f5f5f5;border-radius:18px;padding:14px;margin-top:12px}.dark .review{background:#2b2b2b}
-.arrows{display:flex;gap:10px;margin-top:16px}
-.arrows button{flex:1;border:0;border-radius:16px;padding:14px;background:#efefef;cursor:pointer}.dark .arrows button{background:#333;color:white}
-.action-btn,.whatsapp-btn,.fav-btn,.delete-btn{width:100%;border:0;border-radius:18px;padding:15px;font-size:16px;margin-top:12px;cursor:pointer}
-.action-btn{background:#111;color:white}.whatsapp-btn{background:#25D366;color:white}.fav-btn{background:#ff4d6d;color:white}.delete-btn{background:#444;color:white}
-.popular{margin-top:12px;color:#ff3b5c;font-weight:bold}
-.small,.location-status{font-size:13px;color:#888;margin-top:12px}
-#dice{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:120px;z-index:9999;animation:spin 1s linear infinite}
-@keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg) scale(1)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.2)}}
-#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);z-index:9998}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:10000}
-.confetti-piece{position:absolute;font-size:24px;animation:fall 1.5s linear forwards}
-@keyframes fall{from{transform:translateY(-30px) rotate(0deg);opacity:1}to{transform:translateY(100vh) rotate(360deg);opacity:0}}
+body{
+  margin:0;
+  font-family:-apple-system,Arial,sans-serif;
+  background:linear-gradient(180deg,#fff,#ececec);
+  color:#111;
+  transition:.3s;
+}
+
+.dark{
+  background:#111;
+  color:white;
+}
+
+#app{
+  max-width:430px;
+  margin:auto;
+  padding:24px 18px 60px;
+  text-align:center;
+}
+
+.logo{
+  font-size:58px;
+}
+
+.title{
+  font-size:48px;
+  font-weight:900;
+  margin:0;
+}
+
+.subtitle{
+  color:#666;
+  margin:10px 0 25px;
+  font-size:16px;
+}
+
+.section{
+  background:white;
+  border-radius:26px;
+  padding:16px;
+  margin-bottom:18px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+.dark .section,
+.dark .card,
+.dark .grid button{
+  background:#1d1d1d;
+  color:white;
+}
+
+.section-title{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:14px;
+  text-align:right;
+}
+
+.filters,
+.trending-row{
+  display:flex;
+  overflow:auto;
+  gap:10px;
+}
+
+.filters button{
+  border:0;
+  background:#f4f4f4;
+  border-radius:999px;
+  padding:12px 16px;
+  font-size:14px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.filters button.active{
+  background:#111;
+  color:white;
+}
+
+.dark .filters button{
+  background:#333;
+  color:white;
+}
+
+.dark .filters button.active{
+  background:white;
+  color:#111;
+}
+
+.trend-card{
+  min-width:145px;
+  border:0;
+  border-radius:22px;
+  background:#111;
+  color:white;
+  padding:16px;
+  text-align:right;
+  cursor:pointer;
+}
+
+.trend-card span{
+  display:block;
+  font-size:12px;
+  opacity:.75;
+  margin-top:6px;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.main-btn{
+  border:0;
+  border-radius:18px;
+  padding:16px;
+  font-size:15px;
+  cursor:pointer;
+  color:white;
+}
+
+.random-btn{background:#111;}
+.smart-btn{background:#7c3aed;}
+.location-btn{background:#0f9d58;}
+.favorites-btn{background:#ff4d6d;}
+.dark-btn{background:#333;}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.grid button{
+  border:0;
+  border-radius:22px;
+  background:white;
+  padding:18px;
+  font-size:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
+  cursor:pointer;
+}
+
+.card{
+  margin-top:28px;
+  background:white;
+  border-radius:30px;
+  padding:22px;
+  box-shadow:0 14px 36px rgba(0,0,0,.14);
+  animation:pop .25s ease;
+}
+
+@keyframes pop{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card h2{
+  font-size:28px;
+  margin:0 0 10px;
+}
+
+.card p{
+  color:#444;
+  font-size:16px;
+}
+
+.dark .card p{
+  color:#ddd;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin:15px 0;
+}
+
+.tag{
+  background:#efefef;
+  border-radius:999px;
+  padding:7px 12px;
+  font-size:13px;
+}
+
+.dark .tag{
+  background:#333;
+  color:white;
+}
+
+.review{
+  background:#f5f5f5;
+  border-radius:18px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.dark .review{
+  background:#2b2b2b;
+}
+
+.arrows{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+}
+
+.arrows button{
+  flex:1;
+  border:0;
+  border-radius:16px;
+  padding:14px;
+  background:#efefef;
+  cursor:pointer;
+}
+
+.dark .arrows button{
+  background:#333;
+  color:white;
+}
+
+.action-btn,
+.whatsapp-btn,
+.fav-btn,
+.delete-btn{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:15px;
+  font-size:16px;
+  margin-top:12px;
+  cursor:pointer;
+}
+
+.action-btn{
+  background:#111;
+  color:white;
+}
+
+.whatsapp-btn{
+  background:#25D366;
+  color:white;
+}
+
+.fav-btn{
+  background:#ff4d6d;
+  color:white;
+}
+
+.delete-btn{
+  background:#444;
+  color:white;
+}
+
+.popular{
+  margin-top:12px;
+  color:#ff3b5c;
+  font-weight:bold;
+}
+
+.small,
+.location-status{
+  font-size:13px;
+  color:#888;
+  margin-top:12px;
+}
+
+#dice{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:120px;
+  z-index:9999;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  from{
+    transform:translate(-50%,-50%) rotate(0deg) scale(1);
+  }
+  to{
+    transform:translate(-50%,-50%) rotate(360deg) scale(1.2);
+  }
+}
+
+#overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+  z-index:9998;
+}
+
+#confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:10000;
+}
+
+.confetti-piece{
+  position:absolute;
+  font-size:24px;
+  animation:fall 1.5s linear forwards;
+}
+
+@keyframes fall{
+  from{
+    transform:translateY(-30px) rotate(0deg);
+    opacity:1;
+  }
+  to{
+    transform:translateY(100vh) rotate(360deg);
+    opacity:0;
+  }
+}
 </style>
 </head>
 
 <body>
+
 <div id="overlay"></div>
 <div id="confetti"></div>
 
 <div id="app">
-  <div class="logo">🍒</div>
-  <h1 class="title">MeetUp</h1>
-  <p class="subtitle">תבחרו וייב ותקציב — ונמצא מקום</p>
 
-  <div class="section">
-    <div class="section-title">😌 מצב רוח</div>
-    <div class="filters">
-      <button onclick="setMood('רגוע', this)">😌 רגוע</button>
-      <button onclick="setMood('אנרגטי', this)">⚡ אנרגטי</button>
-      <button onclick="setMood('רומנטי', this)">❤️ רומנטי</button>
-      <button onclick="setMood('ספונטני', this)">🎲 ספונטני</button>
-    </div>
-  </div>
+<div class="logo">🍒</div>
 
-  <div class="section">
-    <div class="section-title">💸 תקציב</div>
-    <div class="filters">
-      <button onclick="setBudget('זול', this)">💸 זול</button>
-      <button onclick="setBudget('רגיל', this)">💰 רגיל</button>
-      <button onclick="setBudget('יקר', this)">💎 יקר</button>
-      <button class="active" onclick="setBudget('הכל', this)">✨ הכל</button>
-    </div>
-  </div>
+<h1 class="title">MeetUp</h1>
 
-  <div class="actions">
-    <button class="main-btn random-btn" onclick="randomPlace()">🎲 רנדומלי</button>
-    <button class="main-btn smart-btn" onclick="smartPick()">🧠 חכם</button>
-    <button class="main-btn location-btn" onclick="enableLocation()">📍 מיקום</button>
-    <button class="main-btn favorites-btn" onclick="showFavorites()">❤️ מועדפים</button>
-    <button class="main-btn dark-btn" onclick="toggleDark()">🌙 מצב לילה</button>
-  </div>
+<p class="subtitle">
+תבחר מקום טוב בלי לחשוב יותר מדי 🍒
+</p>
 
-  <div id="locationStatus" class="location-status">המיקום עדיין לא הופעל</div>
+<div class="section">
 
-  <div class="grid">
-    <button onclick="showCategory('פיצה')">🍕 פיצה</button>
-    <button onclick="showCategory('קפה')">☕ קפה</button>
-    <button onclick="showCategory('אוכל')">🍔 אוכל</button>
-    <button onclick="showCategory('בר')">🍻 בר</button>
-    <button onclick="showCategory('פארק')">🌳 פארק</button>
-    <button onclick="showCategory('ים')">🌊 ים</button>
-  </div>
+<div class="section-title">
+💸 תקציב
+</div>
 
-  <div class="section">
-    <div class="section-title">🔥 חם עכשיו</div>
-    <div class="trending-row">
-      <button class="trend-card" onclick="showTrending('בר גג')">🍸 בר גג<span>הכי חם הלילה</span></button>
-      <button class="trend-card" onclick="showTrending('חוף שקט')">🌊 חוף שקט<span>מושלם לשקיעה</span></button>
-      <button class="trend-card" onclick="showTrending('לנדוור')">☕ לנדוור<span>טוב לשיחה</span></button>
-    </div>
-  </div>
+<div class="filters">
 
-  <div id="dice">🎲</div>
-  <div id="result"></div>
+<button onclick="setBudget('זול', this)">
+💸 זול
+</button>
+
+<button onclick="setBudget('רגיל', this)">
+💰 רגיל
+</button>
+
+<button onclick="setBudget('יקר', this)">
+💎 יקר
+</button>
+
+<button class="active" onclick="setBudget('הכל', this)">
+✨ הכל
+</button>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="main-btn random-btn" onclick="randomPlace()">
+🎲 רנדומלי
+</button>
+
+<button class="main-btn smart-btn" onclick="smartPick()">
+🧠 חכם
+</button>
+
+<button class="main-btn location-btn" onclick="enableLocation()">
+📍 מיקום
+</button>
+
+<button class="main-btn favorites-btn" onclick="showFavorites()">
+❤️ מועדפים
+</button>
+
+<button class="main-btn dark-btn" onclick="toggleDark()">
+🌙 מצב לילה
+</button>
+
+</div>
+
+<div id="locationStatus" class="location-status">
+המיקום עדיין לא הופעל
+</div>
+
+<div class="grid">
+
+<button onclick="showCategory('פיצה')">
+🍕 פיצה
+</button>
+
+<button onclick="showCategory('קפה')">
+☕ קפה
+</button>
+
+<button onclick="showCategory('אוכל')">
+🍔 אוכל
+</button>
+
+<button onclick="showCategory('בר')">
+🍻 בר
+</button>
+
+<button onclick="showCategory('פארק')">
+🌳 פארק
+</button>
+
+<button onclick="showCategory('ים')">
+🌊 ים
+</button>
+
+</div>
+
+<div class="section">
+
+<div class="section-title">
+🔥 חם עכשיו
+</div>
+
+<div class="trending-row">
+
+<button class="trend-card" onclick="showTrending('בר גג')">
+🍸 בר גג
+<span>הכי חם הלילה</span>
+</button>
+
+<button class="trend-card" onclick="showTrending('חוף שקט')">
+🌊 חוף שקט
+<span>מושלם לשקיעה</span>
+</button>
+
+<button class="trend-card" onclick="showTrending('לנדוור')">
+☕ לנדוור
+<span>טוב לשיחה</span>
+</button>
+
+</div>
+
+</div>
+
+<div id="dice">🎲</div>
+
+<div id="result"></div>
+
 </div>
 
 <script>
+
 let currentCategory = "";
 let currentIndex = 0;
 let currentBudget = "הכל";
-let currentMood = "";
 let userLat = null;
 let userLon = null;
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+let favorites =
+JSON.parse(localStorage.getItem("favorites")) || [];
 
 const places = {
-  "פיצה":[
-    {name:"פיצה האט",price:"₪50–₪100",level:"רגיל",rating:"4.2⭐",hours:"פתוח עד 23:00",close:23,desc:"פיצה טובה לקבוצה ולערב קליל.",review:"טעים, מהיר ואווירה טובה.",tags:["פיצה","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"פיצה בוטיק",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 00:00",close:24,desc:"פיצה איכותית עם תוספות מיוחדות.",review:"מרגיש מושקע וטעים.",tags:["יוקרתי","פיצה","דייט"],popular:""},
-    {name:"פיצה שכונתית",price:"₪25–₪55",level:"זול",rating:"4.1⭐",hours:"פתוח עד 22:30",close:22,desc:"פיצה זולה, פשוטה וטעימה.",review:"בול כשבא משהו זול ומהיר.",tags:["זול","מהיר","פיצה"],popular:""}
-  ],
-  "קפה":[
-    {name:"לנדוור",price:"₪35–₪70",level:"רגיל",rating:"4.5⭐",hours:"פתוח עד 23:00",close:23,desc:"קפה, בראנץ׳ וישיבה ארוכה.",review:"מקום מושלם לשיחה רגועה.",tags:["קפה","שקט","בראנץ׳"],popular:"🔥 פופולרי עכשיו"},
-    {name:"ארומה",price:"₪20–₪45",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"קפה קליל ומהיר.",review:"טוב לפגישה קצרה.",tags:["זול","קפה","מהיר"],popular:""},
-    {name:"קפה שקט",price:"₪30–₪70",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 21:00",close:21,desc:"מקום שקט ונעים לדבר או לעבוד.",review:"אווירה רגועה וממש נוחה.",tags:["שקט","עבודה","רגוע"],popular:""}
-  ],
-  "בר":[
-    {name:"בר גג",price:"₪70–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 02:00",close:2,desc:"נוף יפה וקוקטיילים.",review:"מרגיש כמו חו״ל.",tags:["לילה","קוקטיילים","נוף"],popular:"🔥 פופולרי עכשיו"},
-    {name:"פאב שכונתי",price:"₪40–₪90",level:"רגיל",rating:"4.4⭐",hours:"פתוח עד 01:00",close:1,desc:"בירה ואווירה קלילה.",review:"לא יקר וכיף לשבת.",tags:["בירה","חברים","קליל"],popular:""}
-  ],
-  "פארק":[
-    {name:"פארק גדול",price:"חינם",level:"זול",rating:"4.8⭐",hours:"פתוח 24/7",close:24,desc:"טבע, אוויר פתוח ושקט.",review:"אחלה מקום לדבר.",tags:["טבע","שקט","חינם"],popular:"🔥 פופולרי עכשיו"},
-    {name:"גן שקט",price:"חינם",level:"זול",rating:"4.5⭐",hours:"פתוח עד 22:00",close:22,desc:"מקום רגוע לשבת ולדבר.",review:"שקט ונעים בלי עומס.",tags:["שקט","חינם","רגוע"],popular:""}
-  ],
-  "ים":[
-    {name:"חוף שקט",price:"חינם",level:"זול",rating:"4.9⭐",hours:"פתוח 24/7",close:24,desc:"ים, שקיעה ושיחה טובה.",review:"וייב מטורף בערב.",tags:["ים","שקיעה","רגוע"],popular:"🔥 פופולרי עכשיו"},
-    {name:"טיילת ים",price:"חינם",level:"זול",rating:"4.7⭐",hours:"פתוח 24/7",close:24,desc:"הליכה מול הים.",review:"אווירה רגועה ונעימה.",tags:["ים","הליכה","נוף"],popular:""}
-  ],
-  "אוכל":[
-    {name:"BBB",price:"₪60–₪110",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 00:00",close:24,desc:"המבורגרים ואווירה טובה.",review:"טעים ומשביע.",tags:["המבורגר","חברים"],popular:"🔥 פופולרי עכשיו"},
-    {name:"סושי בר",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 23:00",close:23,desc:"סושי איכותי ואווירה יפה.",review:"אוכל טוב ומקום נעים.",tags:["סושי","איכותי","שקט"],popular:""},
-    {name:"שווארמה",price:"₪35–₪65",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",close:22,desc:"מהיר, זול ומשביע.",review:"מעולה כשבא אוכל בלי סיפור.",tags:["זול","מהיר","משביע"],popular:""}
-  ]
+
+"פיצה":[
+{
+name:"פיצה האט",
+price:"₪50–₪100",
+level:"רגיל",
+rating:"4.2⭐",
+hours:"פתוח עד 23:00",
+close:23,
+desc:"פיצה טובה לקבוצה ולערב קליל.",
+review:"טעים, מהיר ואווירה טובה.",
+tags:["פיצה","חברים","לילה"],
+popular:"🔥 פופולרי עכשיו"
+},
+{
+name:"פיצה בוטיק",
+price:"₪80–₪150",
+level:"יקר",
+rating:"4.7⭐",
+hours:"פתוח עד 00:00",
+close:24,
+desc:"פיצה איכותית עם תוספות מיוחדות.",
+review:"מרגיש מושקע וטעים.",
+tags:["יוקרתי","פיצה","דייט"],
+popular:""
+}
+],
+
+"קפה":[
+{
+name:"לנדוור",
+price:"₪35–₪70",
+level:"רגיל",
+rating:"4.5⭐",
+hours:"פתוח עד 23:00",
+close:23,
+desc:"קפה, בראנץ׳ וישיבה ארוכה.",
+review:"מקום מושלם לשיחה רגועה.",
+tags:["קפה","שקט"],
+popular:"🔥 פופולרי עכשיו"
+},
+{
+name:"ארומה",
+price:"₪20–₪45",
+level:"זול",
+rating:"4.2⭐",
+hours:"פתוח עד 22:00",
+close:22,
+desc:"קפה קליל ומהיר.",
+review:"טוב לפגישה קצרה.",
+tags:["זול","קפה"],
+popular:""
+}
+],
+
+"אוכל":[
+{
+name:"BBB",
+price:"₪60–₪110",
+level:"רגיל",
+rating:"4.6⭐",
+hours:"פתוח עד 00:00",
+close:24,
+desc:"המבורגרים ואווירה טובה.",
+review:"טעים ומשביע.",
+tags:["המבורגר","חברים"],
+popular:"🔥 פופולרי עכשיו"
+}
+],
+
+"בר":[
+{
+name:"בר גג",
+price:"₪70–₪150",
+level:"יקר",
+rating:"4.7⭐",
+hours:"פתוח עד 02:00",
+close:2,
+desc:"נוף יפה וקוקטיילים.",
+review:"מרגיש כמו חו״ל.",
+tags:["לילה","קוקטיילים"],
+popular:"🔥 פופולרי עכשיו"
+}
+],
+
+"פארק":[
+{
+name:"פארק גדול",
+price:"חינם",
+level:"זול",
+rating:"4.8⭐",
+hours:"פתוח 24/7",
+close:24,
+desc:"טבע, אוויר פתוח ושקט.",
+review:"אחלה מקום לדבר.",
+tags:["טבע","רגוע"],
+popular:"🔥 פופולרי עכשיו"
+}
+],
+
+"ים":[
+{
+name:"חוף שקט",
+price:"חינם",
+level:"זול",
+rating:"4.9⭐",
+hours:"פתוח 24/7",
+close:24,
+desc:"ים, שקיעה ושיחה טובה.",
+review:"וייב מטורף בערב.",
+tags:["ים","שקיעה"],
+popular:"🔥 פופולרי עכשיו"
+}
+]
+
 };
 
 function markActive(button){
-  const group = button.parentElement.querySelectorAll("button");
-  group.forEach(btn => btn.classList.remove("active"));
-  button.classList.add("active");
-}
 
-function setMood(mood, button){
-  currentMood = mood;
-  markActive(button);
+const group =
+button.parentElement.querySelectorAll("button");
 
-  if(mood === "רגוע") currentCategory = "פארק";
-  else if(mood === "אנרגטי") currentCategory = "בר";
-  else if(mood === "רומנטי") currentCategory = "ים";
-  else if(mood === "ספונטני"){ randomPlace(); return; }
+group.forEach(btn =>
+btn.classList.remove("active"));
 
-  currentIndex = 0;
-  renderPlace();
+button.classList.add("active");
 }
 
 function setBudget(budget, button){
-  currentBudget = budget;
-  markActive(button);
-  if(currentCategory){ currentIndex = 0; renderPlace(); }
+
+currentBudget = budget;
+
+markActive(button);
+
+if(currentCategory){
+
+currentIndex = 0;
+
+renderPlace();
+}
 }
 
 function getFilteredPlaces(category){
-  let list = places[category];
-  if(currentBudget !== "הכל") list = list.filter(place => place.level === currentBudget);
-  return list.length ? list : places[category];
+
+let list = places[category];
+
+if(currentBudget !== "הכל"){
+
+list = list.filter(place =>
+place.level === currentBudget);
 }
 
-function enableLocation(){
-  if(!navigator.geolocation){
-    document.getElementById("locationStatus").innerText = "המכשיר לא תומך במיקום";
-    return;
-  }
-
-  document.getElementById("locationStatus").innerText = "מבקש מיקום...";
-
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      userLat = pos.coords.latitude;
-      userLon = pos.coords.longitude;
-      document.getElementById("locationStatus").innerText = "✅ המיקום הופעל";
-    },
-    () => document.getElementById("locationStatus").innerText = "לא אישרת מיקום"
-  );
-}
-
-function getMapLink(placeName){
-  if(userLat && userLon){
-    return `https://www.google.com/maps/search/${encodeURIComponent(placeName)}/@${userLat},${userLon},15z`;
-  }
-  return "https://www.google.com/maps/search/" + encodeURIComponent(placeName);
-}
-
-function getWhatsAppLink(place){
-  const mapLink = getMapLink(place.name);
-  return "https://wa.me/?text=" + encodeURIComponent("בוא ניפגש פה 🍒\n" + place.name + "\n" + place.desc + "\n" + mapLink);
+return list.length ? list : places[category];
 }
 
 function showCategory(category){
-  currentCategory = category;
-  currentIndex = 0;
-  renderPlace();
+
+currentCategory = category;
+
+currentIndex = 0;
+
+renderPlace();
 }
 
 function showTrending(placeName){
-  for(const category in places){
-    const found = places[category].find(place => place.name === placeName);
-    if(found){
-      currentCategory = category;
-      currentIndex = places[category].indexOf(found);
-      renderPlace();
-      break;
-    }
-  }
+
+for(const category in places){
+
+const found =
+places[category].find(place =>
+place.name === placeName);
+
+if(found){
+
+currentCategory = category;
+
+currentIndex =
+places[category].indexOf(found);
+
+renderPlace();
+
+break;
 }
-
-function renderPlace(){
-  const filteredPlaces = getFilteredPlaces(currentCategory);
-  const place = filteredPlaces[currentIndex % filteredPlaces.length];
-  const currentHour = new Date().getHours();
-
-  let isOpen = true;
-  if(place.close !== 24){
-    if(place.close <= 6) isOpen = currentHour < place.close || currentHour >= 18;
-    else isOpen = currentHour < place.close;
-  }
-
-  const openText = isOpen ? "🟢 פתוח עכשיו" : "🔴 סגור עכשיו";
-  const mapLink = getMapLink(place.name);
-  const whatsappLink = getWhatsAppLink(place);
-
-  document.getElementById("result").innerHTML = `
-    <div class="card">
-      <h2>🍒 ${place.name}</h2>
-      <div class="popular">${place.popular}</div>
-      <p>${place.desc}</p>
-      <p>💰 ${place.price}</p>
-      <p>⭐ ${place.rating}</p>
-      <p>🕒 ${place.hours}</p>
-      <p>${openText}</p>
-      <p>🎯 תקציב: ${place.level}</p>
-
-      <div class="tags">
-        ${place.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-      </div>
-
-      <div class="review">💬 "${place.review}"</div>
-
-      <button class="fav-btn" onclick="saveFavorite()">❤️ שמור מקום</button>
-
-      <div class="arrows">
-        <button onclick="prevPlace()">➡️ הקודם</button>
-        <button onclick="nextPlace()">⬅️ הבא</button>
-      </div>
-
-      <button class="action-btn" onclick="window.open('${mapLink}')">📍 פתח במפות</button>
-      <button class="whatsapp-btn" onclick="window.open('${whatsappLink}')">📲 שלח בוואטסאפ</button>
-
-      <div class="small">${userLat ? "מבוסס על המיקום שלך" : "אפשר להפעיל מיקום"}</div>
-    </div>
-  `;
 }
-
-function nextPlace(){
-  const filteredPlaces = getFilteredPlaces(currentCategory);
-  currentIndex = (currentIndex + 1) % filteredPlaces.length;
-  renderPlace();
-}
-
-function prevPlace(){
-  const filteredPlaces = getFilteredPlaces(currentCategory);
-  currentIndex = currentIndex - 1;
-  if(currentIndex < 0) currentIndex = filteredPlaces.length - 1;
-  renderPlace();
 }
 
 function smartPick(){
-  let hour = new Date().getHours();
 
-  if(currentMood === "רגוע") currentCategory = hour >= 18 ? "ים" : "פארק";
-  else if(currentMood === "אנרגטי") currentCategory = hour >= 19 ? "בר" : "אוכל";
-  else if(currentMood === "רומנטי") currentCategory = hour >= 18 ? "ים" : "קפה";
-  else currentCategory = hour >= 19 ? "בר" : "קפה";
+let hour = new Date().getHours();
 
-  currentIndex = 0;
-  renderPlace();
+if(hour >= 20){
+
+currentCategory = "בר";
+}
+
+else if(hour >= 16){
+
+currentCategory = "אוכל";
+}
+
+else{
+
+currentCategory = "קפה";
+}
+
+currentIndex = 0;
+
+renderPlace();
+}
+
+function getMapLink(placeName){
+
+if(userLat && userLon){
+
+return `https://www.google.com/maps/search/${encodeURIComponent(placeName)}/@${userLat},${userLon},15z`;
+}
+
+return "https://www.google.com/maps/search/" +
+encodeURIComponent(placeName);
+}
+
+function getWhatsAppLink(place){
+
+const mapLink = getMapLink(place.name);
+
+return "https://wa.me/?text=" +
+encodeURIComponent(
+"בוא ניפגש פה 🍒\n" +
+place.name + "\n" +
+place.desc + "\n" +
+mapLink
+);
+}
+
+function renderPlace(){
+
+const filteredPlaces =
+getFilteredPlaces(currentCategory);
+
+const place =
+filteredPlaces[currentIndex % filteredPlaces.length];
+
+const mapLink =
+getMapLink(place.name);
+
+const whatsappLink =
+getWhatsAppLink(place);
+
+document.getElementById("result").innerHTML = `
+
+<div class="card">
+
+<h2>🍒 ${place.name}</h2>
+
+<div class="popular">
+${place.popular}
+</div>
+
+<p>${place.desc}</p>
+
+<p>💰 ${place.price}</p>
+
+<p>⭐ ${place.rating}</p>
+
+<p>🕒 ${place.hours}</p>
+
+<div class="tags">
+
+${place.tags.map(tag =>
+`<span class="tag">${tag}</span>`
+).join("")}
+
+</div>
+
+<div class="review">
+💬 "${place.review}"
+</div>
+
+<button class="fav-btn"
+onclick="saveFavorite()">
+❤️ שמור מקום
+</button>
+
+<div class="arrows">
+
+<button onclick="prevPlace()">
+➡️ הקודם
+</button>
+
+<button onclick="nextPlace()">
+⬅️ הבא
+</button>
+
+</div>
+
+<button class="action-btn"
+onclick="window.open('${mapLink}')">
+📍 פתח במפות
+</button>
+
+<button class="whatsapp-btn"
+onclick="window.open('${whatsappLink}')">
+📲 שלח בוואטסאפ
+</button>
+
+</div>
+`;
+}
+
+function nextPlace(){
+
+const filteredPlaces =
+getFilteredPlaces(currentCategory);
+
+currentIndex =
+(currentIndex + 1) % filteredPlaces.length;
+
+renderPlace();
+}
+
+function prevPlace(){
+
+const filteredPlaces =
+getFilteredPlaces(currentCategory);
+
+currentIndex--;
+
+if(currentIndex < 0){
+
+currentIndex =
+filteredPlaces.length - 1;
+}
+
+renderPlace();
 }
 
 function randomPlace(){
-  document.getElementById("result").innerHTML = "";
-  const dice = document.getElementById("dice");
-  const overlay = document.getElementById("overlay");
 
-  overlay.style.display = "block";
-  dice.style.display = "block";
+document.getElementById("result").innerHTML = "";
 
-  setTimeout(() => {
-    dice.style.display = "none";
-    overlay.style.display = "none";
+const dice =
+document.getElementById("dice");
 
-    const categories = Object.keys(places);
-    currentCategory = categories[Math.floor(Math.random() * categories.length)];
+const overlay =
+document.getElementById("overlay");
 
-    const filteredPlaces = getFilteredPlaces(currentCategory);
-    currentIndex = Math.floor(Math.random() * filteredPlaces.length);
+overlay.style.display = "block";
+dice.style.display = "block";
 
-    renderPlace();
-    launchConfetti();
-  }, 1800);
+setTimeout(() => {
+
+dice.style.display = "none";
+overlay.style.display = "none";
+
+const categories =
+Object.keys(places);
+
+currentCategory =
+categories[Math.floor(
+Math.random() * categories.length
+)];
+
+const filteredPlaces =
+getFilteredPlaces(currentCategory);
+
+currentIndex =
+Math.floor(
+Math.random() * filteredPlaces.length
+);
+
+renderPlace();
+
+launchConfetti();
+
+},1800);
 }
 
 function launchConfetti(){
-  const confetti = document.getElementById("confetti");
-  confetti.innerHTML = "";
 
-  for(let i = 0; i < 35; i++){
-    const piece = document.createElement("div");
-    piece.className = "confetti-piece";
-    piece.innerHTML = ["🎉","✨","🍒","⭐"][Math.floor(Math.random()*4)];
-    piece.style.left = Math.random() * 100 + "vw";
-    piece.style.animationDelay = Math.random() * 0.5 + "s";
-    confetti.appendChild(piece);
-  }
+const confetti =
+document.getElementById("confetti");
 
-  setTimeout(() => confetti.innerHTML = "", 2200);
+confetti.innerHTML = "";
+
+for(let i = 0; i < 35; i++){
+
+const piece =
+document.createElement("div");
+
+piece.className =
+"confetti-piece";
+
+piece.innerHTML =
+["🎉","✨","🍒","⭐"]
+[Math.floor(Math.random()*4)];
+
+piece.style.left =
+Math.random() * 100 + "vw";
+
+confetti.appendChild(piece);
+}
+
+setTimeout(() =>
+confetti.innerHTML = "",2200);
 }
 
 function saveFavorite(){
-  const filteredPlaces = getFilteredPlaces(currentCategory);
-  const place = filteredPlaces[currentIndex % filteredPlaces.length];
 
-  if(favorites.find(f => f.name === place.name)){
-    alert("❤️ כבר שמור");
-    return;
-  }
+const filteredPlaces =
+getFilteredPlaces(currentCategory);
 
-  favorites.push(place);
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  alert("❤️ נשמר למועדפים");
+const place =
+filteredPlaces[currentIndex % filteredPlaces.length];
+
+if(favorites.find(f =>
+f.name === place.name)){
+
+alert("❤️ כבר שמור");
+
+return;
+}
+
+favorites.push(place);
+
+localStorage.setItem(
+"favorites",
+JSON.stringify(favorites)
+);
+
+alert("❤️ נשמר למועדפים");
 }
 
 function removeFavorite(index){
-  favorites.splice(index, 1);
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  showFavorites();
+
+favorites.splice(index,1);
+
+localStorage.setItem(
+"favorites",
+JSON.stringify(favorites)
+);
+
+showFavorites();
 }
 
 function showFavorites(){
-  if(favorites.length === 0){
-    document.getElementById("result").innerHTML = `<div class="card"><h2>❤️ אין מועדפים עדיין</h2></div>`;
-    return;
-  }
 
-  document.getElementById("result").innerHTML =
-    favorites.map((place, index) => {
-      const mapLink = getMapLink(place.name);
-      const whatsappLink = getWhatsAppLink(place);
+if(favorites.length === 0){
 
-      return `
-        <div class="card">
-          <h2>❤️ ${place.name}</h2>
-          <p>${place.desc}</p>
-          <p>⭐ ${place.rating}</p>
-          <p>💰 ${place.price}</p>
+document.getElementById("result").innerHTML =
+`<div class="card">
+<h2>❤️ אין מועדפים עדיין</h2>
+</div>`;
 
-          <button class="action-btn" onclick="window.open('${mapLink}')">📍 פתח במפות</button>
-          <button class="whatsapp-btn" onclick="window.open('${whatsappLink}')">📲 שלח בוואטסאפ</button>
-          <button class="delete-btn" onclick="removeFavorite(${index})">🗑️ מחק מהמועדפים</button>
-        </div>
-      `;
-    }).join("");
+return;
+}
+
+document.getElementById("result").innerHTML =
+
+favorites.map((place,index) => {
+
+const mapLink =
+getMapLink(place.name);
+
+const whatsappLink =
+getWhatsAppLink(place);
+
+return `
+
+<div class="card">
+
+<h2>❤️ ${place.name}</h2>
+
+<p>${place.desc}</p>
+
+<p>⭐ ${place.rating}</p>
+
+<p>💰 ${place.price}</p>
+
+<button class="action-btn"
+onclick="window.open('${mapLink}')">
+📍 פתח במפות
+</button>
+
+<button class="whatsapp-btn"
+onclick="window.open('${whatsappLink}')">
+📲 שלח בוואטסאפ
+</button>
+
+<button class="delete-btn"
+onclick="removeFavorite(${index})">
+🗑️ מחק מהמועדפים
+</button>
+
+</div>
+`;
+
+}).join("");
+}
+
+function enableLocation(){
+
+if(!navigator.geolocation){
+
+document.getElementById("locationStatus")
+.innerText = "המכשיר לא תומך במיקום";
+
+return;
+}
+
+document.getElementById("locationStatus")
+.innerText = "מבקש מיקום...";
+
+navigator.geolocation.getCurrentPosition(
+
+pos => {
+
+userLat = pos.coords.latitude;
+userLon = pos.coords.longitude;
+
+document.getElementById("locationStatus")
+.innerText = "✅ המיקום הופעל";
+},
+
+() => {
+
+document.getElementById("locationStatus")
+.innerText = "לא אישרת מיקום";
+}
+);
 }
 
 function toggleDark(){
-  document.body.classList.toggle("dark");
+
+document.body.classList.toggle("dark");
 }
+
 </script>
 
 </body>
