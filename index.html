@@ -13,7 +13,6 @@ body{
   color:#111;
   transition:.3s;
 }
-
 .dark{background:#111;color:white}
 
 #app{
@@ -34,7 +33,6 @@ body{
   margin-bottom:18px;
   box-shadow:0 8px 22px rgba(0,0,0,.08);
 }
-
 .dark .section{background:#1d1d1d}
 
 .section-title{
@@ -58,7 +56,6 @@ body{
   white-space:nowrap;
   cursor:pointer;
 }
-
 .dark .filters button{
   background:#333;
   color:white;
@@ -100,7 +97,6 @@ body{
   box-shadow:0 8px 22px rgba(0,0,0,.1);
   cursor:pointer;
 }
-
 .dark .grid button{
   background:#1d1d1d;
   color:white;
@@ -114,16 +110,7 @@ body{
   box-shadow:0 14px 36px rgba(0,0,0,.14);
   animation:pop .25s ease;
 }
-
 .dark .card{background:#1d1d1d}
-
-.place-image{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:24px;
-  margin-bottom:16px;
-}
 
 @keyframes pop{
   from{opacity:0;transform:translateY(12px)}
@@ -148,7 +135,6 @@ body{
   padding:7px 12px;
   font-size:13px;
 }
-
 .dark .tag{
   background:#333;
   color:white;
@@ -160,7 +146,6 @@ body{
   padding:14px;
   margin-top:12px;
 }
-
 .dark .review{background:#2b2b2b}
 
 .arrows{
@@ -177,7 +162,6 @@ body{
   background:#efefef;
   cursor:pointer;
 }
-
 .dark .arrows button{
   background:#333;
   color:white;
@@ -260,7 +244,7 @@ body{
 
 <div class="logo">🍒</div>
 <h1 class="title">MeetUp</h1>
-<p class="subtitle">תבחרו וייב, תקציב ומקום מושלם</p>
+<p class="subtitle">תבחרו וייב, תקציב וסוג מפגש</p>
 
 <div class="section">
   <div class="section-title">😌 מצב רוח</div>
@@ -279,6 +263,17 @@ body{
     <button onclick="setBudget('רגיל')">💰 רגיל</button>
     <button onclick="setBudget('יקר')">💎 יקר</button>
     <button onclick="setBudget('הכל')">✨ הכל</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">👥 סוג מפגש</div>
+  <div class="filters">
+    <button onclick="setMeeting('דייט')">❤️ דייט</button>
+    <button onclick="setMeeting('חברים')">🍻 חברים</button>
+    <button onclick="setMeeting('עבודה')">💻 עבודה</button>
+    <button onclick="setMeeting('משפחה')">👨‍👩‍👧 משפחה</button>
+    <button onclick="setMeeting('הכל')">✨ הכל</button>
   </div>
 </div>
 
@@ -310,6 +305,7 @@ let currentCategory = "";
 let currentIndex = 0;
 let currentMood = "";
 let currentBudget = "הכל";
+let currentMeeting = "הכל";
 let userLat = null;
 let userLon = null;
 
@@ -319,7 +315,6 @@ const places = {
   "פיצה":[
     {
       name:"פיצה האט",
-      image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200",
       price:"₪50–₪100",
       level:"רגיל",
       rating:"4.2⭐",
@@ -328,11 +323,11 @@ const places = {
       desc:"פיצה טובה לקבוצה ולערב קליל.",
       review:"טעים, מהיר ואווירה טובה.",
       tags:["פיצה","חברים","לילה"],
+      meeting:["חברים","משפחה"],
       popular:"🔥 פופולרי עכשיו"
     },
     {
       name:"פיצה בוטיק",
-      image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200",
       price:"₪80–₪150",
       level:"יקר",
       rating:"4.7⭐",
@@ -340,7 +335,21 @@ const places = {
       close:24,
       desc:"פיצה איכותית עם תוספות מיוחדות.",
       review:"מרגיש מושקע וטעים.",
-      tags:["יוקרתי","פיצה"],
+      tags:["יוקרתי","פיצה","דייט"],
+      meeting:["דייט","חברים"],
+      popular:""
+    },
+    {
+      name:"פיצה שכונתית",
+      price:"₪25–₪55",
+      level:"זול",
+      rating:"4.1⭐",
+      hours:"פתוח עד 22:30",
+      close:22,
+      desc:"פיצה זולה, פשוטה וטעימה.",
+      review:"בול כשבא משהו זול ומהיר.",
+      tags:["זול","מהיר","פיצה"],
+      meeting:["חברים","משפחה"],
       popular:""
     }
   ],
@@ -348,7 +357,6 @@ const places = {
   "קפה":[
     {
       name:"לנדוור",
-      image:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200",
       price:"₪35–₪70",
       level:"רגיל",
       rating:"4.5⭐",
@@ -356,12 +364,12 @@ const places = {
       close:23,
       desc:"קפה, בראנץ׳ וישיבה ארוכה.",
       review:"מקום מושלם לשיחה רגועה.",
-      tags:["קפה","שקט"],
+      tags:["קפה","שקט","בראנץ׳"],
+      meeting:["דייט","עבודה","חברים"],
       popular:"🔥 פופולרי עכשיו"
     },
     {
       name:"ארומה",
-      image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200",
       price:"₪20–₪45",
       level:"זול",
       rating:"4.2⭐",
@@ -369,7 +377,21 @@ const places = {
       close:22,
       desc:"קפה קליל ומהיר.",
       review:"טוב לפגישה קצרה.",
-      tags:["זול","קפה"],
+      tags:["זול","קפה","מהיר"],
+      meeting:["עבודה","חברים"],
+      popular:""
+    },
+    {
+      name:"קפה שקט",
+      price:"₪30–₪70",
+      level:"רגיל",
+      rating:"4.6⭐",
+      hours:"פתוח עד 21:00",
+      close:21,
+      desc:"מקום שקט ונעים לדבר או לעבוד.",
+      review:"אווירה רגועה וממש נוחה.",
+      tags:["שקט","עבודה","רגוע"],
+      meeting:["עבודה","דייט"],
       popular:""
     }
   ],
@@ -377,7 +399,6 @@ const places = {
   "בר":[
     {
       name:"בר גג",
-      image:"https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=1200",
       price:"₪70–₪150",
       level:"יקר",
       rating:"4.7⭐",
@@ -385,15 +406,28 @@ const places = {
       close:2,
       desc:"נוף יפה וקוקטיילים.",
       review:"מרגיש כמו חו״ל.",
-      tags:["לילה","קוקטיילים"],
+      tags:["לילה","קוקטיילים","נוף"],
+      meeting:["דייט","חברים"],
       popular:"🔥 פופולרי עכשיו"
+    },
+    {
+      name:"פאב שכונתי",
+      price:"₪40–₪90",
+      level:"רגיל",
+      rating:"4.4⭐",
+      hours:"פתוח עד 01:00",
+      close:1,
+      desc:"בירה ואווירה קלילה.",
+      review:"לא יקר וכיף לשבת.",
+      tags:["בירה","חברים","קליל"],
+      meeting:["חברים"],
+      popular:""
     }
   ],
 
   "פארק":[
     {
       name:"פארק גדול",
-      image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200",
       price:"חינם",
       level:"זול",
       rating:"4.8⭐",
@@ -401,15 +435,28 @@ const places = {
       close:24,
       desc:"טבע, אוויר פתוח ושקט.",
       review:"אחלה מקום לדבר.",
-      tags:["טבע","שקט"],
+      tags:["טבע","שקט","חינם"],
+      meeting:["דייט","חברים","משפחה"],
       popular:"🔥 פופולרי עכשיו"
+    },
+    {
+      name:"גן שקט",
+      price:"חינם",
+      level:"זול",
+      rating:"4.5⭐",
+      hours:"פתוח עד 22:00",
+      close:22,
+      desc:"מקום רגוע לשבת ולדבר.",
+      review:"שקט ונעים בלי עומס.",
+      tags:["שקט","חינם","רגוע"],
+      meeting:["דייט","עבודה"],
+      popular:""
     }
   ],
 
   "ים":[
     {
       name:"חוף שקט",
-      image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",
       price:"חינם",
       level:"זול",
       rating:"4.9⭐",
@@ -417,15 +464,28 @@ const places = {
       close:24,
       desc:"ים, שקיעה ושיחה טובה.",
       review:"וייב מטורף בערב.",
-      tags:["ים","שקיעה"],
+      tags:["ים","שקיעה","רגוע"],
+      meeting:["דייט","חברים"],
       popular:"🔥 פופולרי עכשיו"
+    },
+    {
+      name:"טיילת ים",
+      price:"חינם",
+      level:"זול",
+      rating:"4.7⭐",
+      hours:"פתוח 24/7",
+      close:24,
+      desc:"הליכה מול הים.",
+      review:"אווירה רגועה ונעימה.",
+      tags:["ים","הליכה","נוף"],
+      meeting:["דייט","משפחה","חברים"],
+      popular:""
     }
   ],
 
   "אוכל":[
     {
       name:"BBB",
-      image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200",
       price:"₪60–₪110",
       level:"רגיל",
       rating:"4.6⭐",
@@ -434,7 +494,34 @@ const places = {
       desc:"המבורגרים ואווירה טובה.",
       review:"טעים ומשביע.",
       tags:["המבורגר","חברים"],
+      meeting:["חברים","משפחה"],
       popular:"🔥 פופולרי עכשיו"
+    },
+    {
+      name:"סושי בר",
+      price:"₪80–₪150",
+      level:"יקר",
+      rating:"4.7⭐",
+      hours:"פתוח עד 23:00",
+      close:23,
+      desc:"סושי איכותי ואווירה יפה.",
+      review:"אוכל טוב ומקום נעים.",
+      tags:["סושי","איכותי","שקט"],
+      meeting:["דייט","חברים"],
+      popular:""
+    },
+    {
+      name:"שווארמה",
+      price:"₪35–₪65",
+      level:"זול",
+      rating:"4.2⭐",
+      hours:"פתוח עד 22:00",
+      close:22,
+      desc:"מהיר, זול ומשביע.",
+      review:"מעולה כשבא אוכל בלי סיפור.",
+      tags:["זול","מהיר","משביע"],
+      meeting:["חברים"],
+      popular:""
     }
   ]
 };
@@ -463,7 +550,18 @@ function setBudget(budget){
   document.getElementById("result").innerHTML = `
     <div class="card">
       <h2>💸 תקציב: ${budget}</h2>
-      <p>ההמלצות הותאמו לתקציב שבחרת</p>
+      <p>ההמלצות הותאמו לתקציב שבחרת.</p>
+    </div>
+  `;
+}
+
+function setMeeting(type){
+  currentMeeting = type;
+
+  document.getElementById("result").innerHTML = `
+    <div class="card">
+      <h2>👥 סוג מפגש: ${type}</h2>
+      <p>ההמלצות הותאמו לסוג המפגש.</p>
     </div>
   `;
 }
@@ -471,17 +569,19 @@ function setBudget(budget){
 function getFilteredPlaces(category){
   let list = places[category];
 
-  if(currentBudget === "הכל"){
-    return list;
+  if(currentBudget !== "הכל"){
+    list = list.filter(place => place.level === currentBudget);
   }
 
-  let filtered = list.filter(place => place.level === currentBudget);
-
-  if(filtered.length === 0){
-    return list;
+  if(currentMeeting !== "הכל"){
+    list = list.filter(place => place.meeting.includes(currentMeeting));
   }
 
-  return filtered;
+  if(list.length === 0){
+    return places[category];
+  }
+
+  return list;
 }
 
 function enableLocation(){
@@ -548,8 +648,6 @@ function renderPlace(){
 
   document.getElementById("result").innerHTML = `
     <div class="card">
-      <img class="place-image" src="${place.image}">
-
       <h2>🍒 ${place.name}</h2>
 
       <div class="popular">${place.popular}</div>
@@ -559,7 +657,8 @@ function renderPlace(){
       <p>⭐ ${place.rating}</p>
       <p>🕒 ${place.hours}</p>
       <p>${openText}</p>
-      <p>🎯 ${place.level}</p>
+      <p>🎯 תקציב: ${place.level}</p>
+      <p>👥 מתאים ל: ${place.meeting.join(", ")}</p>
 
       <div class="tags">
         ${place.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
@@ -679,7 +778,6 @@ function showFavorites(){
   document.getElementById("result").innerHTML =
     favorites.map(place => `
       <div class="card">
-        <img class="place-image" src="${place.image}">
         <h2>❤️ ${place.name}</h2>
         <p>${place.desc}</p>
         <p>⭐ ${place.rating}</p>
