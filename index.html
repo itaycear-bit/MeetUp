@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MeetUp</title>
 
 <style>
@@ -213,6 +215,24 @@ body{
   margin-top:12px;
 }
 
+#dice{
+  display:none;
+  font-size:100px;
+  margin-top:30px;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+  from{
+    transform:rotate(0deg) scale(1);
+  }
+
+  to{
+    transform:rotate(360deg) scale(1.2);
+  }
+}
+
 </style>
 </head>
 
@@ -286,6 +306,10 @@ style="background:#333;">
 
 </div>
 
+<div id="dice">
+🎲
+</div>
+
 <div id="result"></div>
 
 </div>
@@ -356,17 +380,6 @@ hours:"פתוח עד 22:00",
 desc:"קפה קליל ומהיר.",
 review:"טוב לפגישה קצרה.",
 tags:["זול","קפה","מהיר"],
-popular:""
-},
-
-{
-name:"קפה גרג",
-price:"₪30–₪65",
-rating:"4.1⭐",
-hours:"פתוח עד 22:30",
-desc:"קפה, קינוחים וישיבה.",
-review:"מתאים לקבוצה קטנה.",
-tags:["קפה","קינוחים","חברים"],
 popular:""
 }
 
@@ -591,26 +604,39 @@ function prevPlace(){
 
 function randomPlace(){
 
-  const categories =
-  Object.keys(places);
+  document.getElementById("result").innerHTML = "";
 
-  const randomCategory =
-  categories[
+  const dice =
+  document.getElementById("dice");
+
+  dice.style.display = "block";
+
+  setTimeout(() => {
+
+    dice.style.display = "none";
+
+    const categories =
+    Object.keys(places);
+
+    const randomCategory =
+    categories[
+      Math.floor(
+        Math.random() * categories.length
+      )
+    ];
+
+    currentCategory =
+    randomCategory;
+
+    currentIndex =
     Math.floor(
-      Math.random() * categories.length
-    )
-  ];
+      Math.random() *
+      places[randomCategory].length
+    );
 
-  currentCategory =
-  randomCategory;
+    renderPlace();
 
-  currentIndex =
-  Math.floor(
-    Math.random() *
-    places[randomCategory].length
-  );
-
-  renderPlace();
+  }, 1800);
 }
 
 function toggleDark(){
