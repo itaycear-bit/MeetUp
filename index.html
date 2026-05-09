@@ -6,152 +6,76 @@
 <title>MeetUp</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: -apple-system, Arial, sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #fafafa, #e9e9e9);
-  color: #111;
+body{
+  margin:0;
+  font-family:-apple-system,Arial,sans-serif;
+  background:linear-gradient(180deg,#fff,#ececec);
+  color:#111;
 }
-
-#app {
-  max-width: 430px;
-  margin: auto;
-  padding: 35px 22px;
-  text-align: center;
+#app{
+  max-width:430px;
+  margin:auto;
+  padding:35px 22px;
+  text-align:center;
 }
-
-.logo {
-  font-size: 55px;
+.logo{font-size:54px}
+.title{font-size:48px;font-weight:900;margin:5px 0}
+.subtitle{color:#555;font-size:17px;margin-bottom:26px}
+.main-btn{
+  width:100%;padding:18px;border:0;border-radius:24px;
+  background:#111;color:#fff;font-size:18px;
 }
-
-.title {
-  font-size: 50px;
-  font-weight: 900;
-  margin: 5px 0;
+.options{display:none;margin-top:26px}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
-
-.subtitle {
-  color: #555;
-  font-size: 17px;
-  margin-bottom: 28px;
+.grid button,.place-btn{
+  border:0;border-radius:22px;background:#fff;
+  padding:18px;font-size:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
 }
-
-.main-btn {
-  width: 100%;
-  padding: 18px;
-  background: #111;
-  color: white;
-  border: none;
-  border-radius: 22px;
-  font-size: 18px;
+#placesList{margin-top:24px;display:grid;gap:12px}
+.place-btn{text-align:right}
+.card{
+  margin-top:28px;background:#fff;border-radius:30px;padding:22px;
+  box-shadow:0 14px 36px rgba(0,0,0,.15);
+  animation:pop .25s ease;
 }
-
-.options {
-  display: none;
-  margin-top: 28px;
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.place-img{
+  width:100%;height:180px;object-fit:cover;border-radius:24px;margin-bottom:16px;
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+.card h2{margin:5px 0 12px;font-size:27px}
+.card p{font-size:16px;margin:9px 0;color:#333}
+.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
+.tag{background:#f1f1f1;border-radius:999px;padding:7px 11px;font-size:13px}
+.review{
+  background:#f7f7f7;border-radius:18px;padding:13px;margin-top:12px;
+  font-size:15px;color:#333;
 }
-
-.grid button, .place-btn {
-  background: white;
-  border: none;
-  border-radius: 20px;
-  padding: 18px;
-  font-size: 16px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+.action-btn,.whatsapp-btn{
+  width:100%;border:0;border-radius:17px;padding:15px;
+  font-size:16px;margin-top:10px;
 }
-
-#placesList {
-  margin-top: 25px;
-  display: grid;
-  gap: 12px;
-}
-
-.place-btn {
-  text-align: right;
-}
-
-.card {
-  margin-top: 28px;
-  background: white;
-  border-radius: 28px;
-  padding: 22px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
-  animation: pop 0.25s ease;
-}
-
-@keyframes pop {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.place-img {
-  width: 100%;
-  height: 170px;
-  border-radius: 22px;
-  object-fit: cover;
-  margin-bottom: 16px;
-}
-
-.card h2 {
-  margin: 5px 0 12px;
-  font-size: 26px;
-}
-
-.card p {
-  font-size: 16px;
-  margin: 9px 0;
-  color: #333;
-}
-
-.action-btn, .whatsapp-btn {
-  width: 100%;
-  border: none;
-  border-radius: 16px;
-  padding: 15px;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.action-btn {
-  background: #111;
-  color: white;
-}
-
-.whatsapp-btn {
-  background: #25D366;
-  color: white;
-}
-
-button {
-  cursor: pointer;
-}
-
-.small {
-  color: #777;
-  font-size: 13px;
-}
+.action-btn{background:#111;color:white}
+.whatsapp-btn{background:#25D366;color:white}
+button{cursor:pointer}
+.small{font-size:13px;color:#777}
 </style>
 </head>
 
 <body>
-
 <div id="app">
   <div class="logo">📍</div>
   <h1 class="title">MeetUp</h1>
-  <p class="subtitle">בחרו וייב, קבלו 6 מקומות, ואז תפתחו במפות</p>
+  <p class="subtitle">בחרו וייב, תראו מקומות, ואז תפתחו במפות</p>
 
   <button class="main-btn" onclick="start()">מצא לי מקום</button>
 
   <div id="options" class="options">
     <p><b>בחרו וייב</b></p>
-
     <div class="grid">
       <button onclick="showPlaces('קפה')">☕ קפה</button>
       <button onclick="showPlaces('אוכל')">🍔 אוכל</button>
@@ -167,103 +91,128 @@ button {
 </div>
 
 <script>
-function start() {
-  document.getElementById("options").style.display = "block";
+function start(){
+  document.getElementById("options").style.display="block";
 }
 
-const places = {
-  "קפה": [
-    {name:"ארומה", price:"₪20–₪45", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"קפה קליל, מאפים, טוב לשיחה קצרה.", img:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800"},
-    {name:"לנדוור", price:"₪35–₪70", rating:"4.5⭐", hours:"פתוח עד 23:00", desc:"מקום נעים לבראנץ׳, קפה וישיבה ארוכה.", img:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800"},
-    {name:"קפה גרג", price:"₪30–₪65", rating:"4.1⭐", hours:"פתוח עד 22:30", desc:"קפה, קינוחים ואווירה נוחה לחברים.", img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800"},
-    {name:"בית קפה שקט", price:"₪25–₪55", rating:"4.6⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים לדבר ולשבת.", img:"https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800"},
-    {name:"קפה שכונתי", price:"₪20–₪50", rating:"4.3⭐", hours:"פתוח עד 20:00", desc:"מקום פשוט, רגוע ולא עמוס.", img:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800"},
-    {name:"קפה קינוחים", price:"₪30–₪75", rating:"4.4⭐", hours:"פתוח עד 00:00", desc:"קפה ומתוקים, מתאים לערב קליל.", img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800"}
-  ],
-
-  "אוכל": [
-    {name:"BBB", price:"₪60–₪110", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"המבורגרים, אווירה טובה וחברים.", img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800"},
-    {name:"סושי בר", price:"₪80–₪150", rating:"4.7⭐", hours:"פתוח עד 23:30", desc:"סושי, ישיבה נעימה ואוכל איכותי.", img:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"},
-    {name:"פיצה", price:"₪45–₪90", rating:"4.3⭐", hours:"פתוח עד 01:00", desc:"קליל, טעים ומתאים לקבוצה.", img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800"},
-    {name:"המבורגר", price:"₪55–₪100", rating:"4.5⭐", hours:"פתוח עד 23:00", desc:"אוכל מהיר אבל איכותי.", img:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=800"},
-    {name:"איטלקי", price:"₪70–₪140", rating:"4.4⭐", hours:"פתוח עד 23:00", desc:"פסטה, פיצה ואווירה רגועה.", img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800"},
-    {name:"שווארמה", price:"₪35–₪70", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"מהיר, זול ומשביע.", img:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800"}
-  ],
-
-  "פארק": [
-    {name:"פארק קרוב", price:"חינם", rating:"4.8⭐", hours:"פתוח 24/7", desc:"טבע, אוויר פתוח ומקום לדבר.", img:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800"},
-    {name:"גן ציבורי", price:"חינם", rating:"4.3⭐", hours:"פתוח עד 23:00", desc:"שקט, ירוק ונעים לשבת.", img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"},
-    {name:"טיילת", price:"חינם", rating:"4.7⭐", hours:"פתוח 24/7", desc:"הליכה, שיחה ונוף יפה.", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"},
-    {name:"פארק גדול", price:"חינם", rating:"4.6⭐", hours:"פתוח עד 22:00", desc:"מתאים לקבוצה גדולה.", img:"https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=800"},
-    {name:"פינת ישיבה ירוקה", price:"חינם", rating:"4.2⭐", hours:"פתוח 24/7", desc:"מקום רגוע לשבת ולדבר.", img:"https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800"},
-    {name:"גן שקט", price:"חינם", rating:"4.5⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים בלי הרבה רעש.", img:"https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800"}
-  ],
-
-  "בר": [
-    {name:"פאב שכונתי", price:"₪40–₪90", rating:"4.4⭐", hours:"פתוח עד 02:00", desc:"בירה, מוזיקה ואווירה קלילה.", img:"https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800"},
-    {name:"בר קוקטיילים", price:"₪60–₪130", rating:"4.6⭐", hours:"פתוח עד 01:30", desc:"קוקטיילים, וייב טוב וישיבה יפה.", img:"https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=800"},
-    {name:"בר שקט", price:"₪45–₪100", rating:"4.5⭐", hours:"פתוח עד 00:30", desc:"מקום רגוע לדבר בלי צעקות.", img:"https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=800"},
-    {name:"בר גג", price:"₪70–₪150", rating:"4.7⭐", hours:"פתוח עד 02:00", desc:"נוף, אווירה ותמונות יפות.", img:"https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=800"},
-    {name:"בר מוזיקה", price:"₪50–₪120", rating:"4.3⭐", hours:"פתוח עד 03:00", desc:"יותר אנרגיה, מוזיקה ואנשים.", img:"https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800"},
-    {name:"בר יין", price:"₪60–₪140", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"קלאסי, רגוע ומתאים לשיחה.", img:"https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800"}
-  ],
-
-  "קינוח": [
-    {name:"גלידרייה", price:"₪20–₪45", rating:"4.6⭐", hours:"פתוח עד 00:00", desc:"גלידה, קליל ומתוק.", img:"https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800"},
-    {name:"קרפ", price:"₪25–₪55", rating:"4.4⭐", hours:"פתוח עד 23:00", desc:"מתוק, כיף ומתאים לערב.", img:"https://images.unsplash.com/photo-1519676867240-f03562e64548?w=800"},
-    {name:"וופל בלגי", price:"₪35–₪70", rating:"4.5⭐", hours:"פתוח עד 00:00", desc:"קינוח מושקע לשבת עם חברים.", img:"https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800"},
-    {name:"מאפייה", price:"₪15–₪45", rating:"4.2⭐", hours:"פתוח עד 20:00", desc:"מאפים, קפה ומשהו קטן.", img:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800"},
-    {name:"קונדיטוריה", price:"₪30–₪80", rating:"4.7⭐", hours:"פתוח עד 22:00", desc:"עוגות וקינוחים איכותיים.", img:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"},
-    {name:"יוגורט בר", price:"₪20–₪50", rating:"4.3⭐", hours:"פתוח עד 23:30", desc:"קליל, מתוק ולא כבד.", img:"https://images.unsplash.com/photo-1488477304112-4944851de03d?w=800"}
-  ],
-
-  "שקט": [
-    {name:"בית קפה שקט", price:"₪25–₪60", rating:"4.5⭐", hours:"פתוח עד 21:00", desc:"מקום שקט ונעים לדבר ולשבת.", img:"https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800"},
-    {name:"פארק שקט", price:"חינם", rating:"4.7⭐", hours:"פתוח 24/7", desc:"אוויר, שקט ושיחה טובה.", img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"},
-    {name:"ספרייה", price:"חינם", rating:"4.4⭐", hours:"פתוח עד 19:00", desc:"שקט מאוד, מתאים לדבר רגוע.", img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800"},
-    {name:"טיילת שקטה", price:"חינם", rating:"4.6⭐", hours:"פתוח 24/7", desc:"הליכה רגועה ושיחה.", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"},
-    {name:"גן קטן", price:"חינם", rating:"4.2⭐", hours:"פתוח עד 22:00", desc:"מקום פשוט, נעים ולא עמוס.", img:"https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800"},
-    {name:"לאונג׳ שקט", price:"₪50–₪120", rating:"4.5⭐", hours:"פתוח עד 00:00", desc:"ישיבה נוחה, רגוע וקצת יוקרתי.", img:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800"}
-  ]
+const img = {
+  cafe:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900",
+  food:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900",
+  park:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
+  bar:"https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=900",
+  dessert:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900",
+  quiet:"https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=900"
 };
 
-function showPlaces(type) {
-  document.getElementById("result").innerHTML = "";
-  let list = places[type];
+const places = {
+"קפה":[
+{name:"ארומה",price:"₪20–₪45",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"קפה קליל, מאפים וישיבה נוחה.",review:"מקום נוח לפגישה קצרה וקפה מהיר.",tags:["קליל","זול","נוח"],img:img.cafe},
+{name:"לנדוור",price:"₪35–₪75",rating:"4.5⭐",hours:"פתוח עד 23:00",desc:"בראנץ׳, קפה ואווירה טובה.",review:"אחלה מקום לשבת הרבה זמן עם חברים.",tags:["בראנץ׳","ישיבה ארוכה","נעים"],img:img.cafe},
+{name:"קפה גרג",price:"₪30–₪65",rating:"4.1⭐",hours:"פתוח עד 22:30",desc:"קפה, קינוחים ואוכל קל.",review:"נוח, מוכר ומתאים לקבוצה קטנה.",tags:["קינוחים","חברים","קפה"],img:img.cafe},
+{name:"קפה שכונתי",price:"₪20–₪50",rating:"4.4⭐",hours:"פתוח עד 20:00",desc:"מקום רגוע ופשוט לשיחה.",review:"שקט יחסית, טוב לדבר בלי רעש.",tags:["שקט","רגוע","פשוט"],img:img.cafe},
+{name:"בית קפה שקט",price:"₪25–₪60",rating:"4.6⭐",hours:"פתוח עד 21:00",desc:"מקום שקט ונעים לדבר ולשבת.",review:"אווירה רגועה וכיסאות נוחים.",tags:["שקט","שיחה","נעים"],img:img.quiet},
+{name:"קפה קינוחים",price:"₪30–₪75",rating:"4.4⭐",hours:"פתוח עד 00:00",desc:"מתוקים, קפה ואווירה קלילה.",review:"מושלם כשבא משהו מתוק בערב.",tags:["מתוק","ערב","קינוח"],img:img.dessert},
+{name:"קפה פתוח מאוחר",price:"₪30–₪70",rating:"4.3⭐",hours:"פתוח עד 01:00",desc:"טוב למפגש ספונטני בלילה.",review:"פתוח מאוחר וזה ממש מציל.",tags:["לילה","ספונטני","קפה"],img:img.cafe},
+{name:"קפה קטן",price:"₪18–₪40",rating:"4.2⭐",hours:"פתוח עד 19:00",desc:"קטן, פשוט ולא יקר.",review:"מקום חמוד בלי יותר מדי רעש.",tags:["זול","קטן","רגוע"],img:img.cafe}
+],
 
-  document.getElementById("placesList").innerHTML =
+"אוכל":[
+{name:"BBB",price:"₪60–₪110",rating:"4.6⭐",hours:"פתוח עד 00:00",desc:"המבורגרים ואווירה טובה.",review:"טעים, משביע ומתאים לחברים.",tags:["המבורגר","חברים","משביע"],img:img.food},
+{name:"סושי בר",price:"₪80–₪150",rating:"4.7⭐",hours:"פתוח עד 23:30",desc:"סושי, ישיבה יפה ואוכל איכותי.",review:"אוכל טוב ואווירה יותר קלאסית.",tags:["סושי","איכותי","קלאסי"],img:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=900"},
+{name:"פיצה",price:"₪45–₪90",rating:"4.3⭐",hours:"פתוח עד 01:00",desc:"קליל, טעים ומתאים לקבוצה.",review:"הכי קל להזמין ולשבת ביחד.",tags:["זול","קבוצה","קליל"],img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=900"},
+{name:"איטלקי",price:"₪70–₪140",rating:"4.4⭐",hours:"פתוח עד 23:00",desc:"פסטה, פיצה ואווירה רגועה.",review:"אחלה לדיבור נעים ואוכל טוב.",tags:["פסטה","רגוע","טעים"],img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=900"},
+{name:"שווארמה",price:"₪35–₪70",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"מהיר, זול ומשביע.",review:"פשוט, מהיר ולא מסובך.",tags:["זול","מהיר","משביע"],img:img.food},
+{name:"המבורגר קטן",price:"₪45–₪85",rating:"4.5⭐",hours:"פתוח עד 23:00",desc:"המבורגר טוב בלי לשבור את הכיס.",review:"וייב צעיר וטעים.",tags:["צעיר","טעים","קליל"],img:img.food},
+{name:"אסייתי",price:"₪60–₪120",rating:"4.5⭐",hours:"פתוח עד 23:30",desc:"מוקפצים, נודלס וסושי.",review:"מגוון טוב כשלא יודעים מה בא.",tags:["מגוון","אסייתי","נעים"],img:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=900"},
+{name:"אוכל רחוב",price:"₪25–₪60",rating:"4.1⭐",hours:"פתוח עד 00:00",desc:"מהיר, זול וספונטני.",review:"מעולה לפגישה בלי תכנון.",tags:["ספונטני","זול","מהיר"],img:img.food}
+],
+
+"פארק":[
+{name:"פארק קרוב",price:"חינם",rating:"4.8⭐",hours:"פתוח 24/7",desc:"טבע, אוויר פתוח ומקום לדבר.",review:"כיף לשבת בלי לחץ ובלי כסף.",tags:["חינם","טבע","שיחה"],img:img.park},
+{name:"גן ציבורי",price:"חינם",rating:"4.3⭐",hours:"פתוח עד 23:00",desc:"שקט, ירוק ונעים לשבת.",review:"מקום פשוט לשיחה רגועה.",tags:["שקט","חינם","ירוק"],img:img.park},
+{name:"טיילת",price:"חינם",rating:"4.7⭐",hours:"פתוח 24/7",desc:"הליכה, שיחה ונוף.",review:"הכי טוב לשיחה תוך כדי הליכה.",tags:["נוף","הליכה","חינם"],img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900"},
+{name:"פארק גדול",price:"חינם",rating:"4.6⭐",hours:"פתוח עד 22:00",desc:"מתאים לחבורה גדולה.",review:"יש מקום לכולם ולא מרגיש צפוף.",tags:["קבוצה","מרווח","חינם"],img:img.park},
+{name:"פינת ישיבה",price:"חינם",rating:"4.4⭐",hours:"פתוח 24/7",desc:"מקום רגוע לשבת ולדבר.",review:"נעים, פשוט ומרגיש פרטי.",tags:["רגוע","פרטי","שיחה"],img:img.park},
+{name:"גן שקט",price:"חינם",rating:"4.5⭐",hours:"פתוח עד 21:00",desc:"מקום שקט בלי הרבה רעש.",review:"טוב למי שרוצה לדבר באמת.",tags:["שקט","רגוע","חינם"],img:img.park},
+{name:"פארק עם דשא",price:"חינם",rating:"4.6⭐",hours:"פתוח עד 23:00",desc:"אפשר לשבת על הדשא בכיף.",review:"וייב רגוע ופתוח.",tags:["דשא","חברים","רגוע"],img:img.park},
+{name:"אזור נוף",price:"חינם",rating:"4.7⭐",hours:"פתוח 24/7",desc:"מקום יפה לתמונות ושיחה.",review:"נראה טוב ומרגיש מיוחד.",tags:["נוף","תמונות","חינם"],img:img.park}
+],
+
+"בר":[
+{name:"פאב שכונתי",price:"₪40–₪90",rating:"4.4⭐",hours:"פתוח עד 02:00",desc:"בירה, מוזיקה ואווירה קלילה.",review:"וייב טוב ולא מתאמץ מדי.",tags:["בירה","קליל","לילה"],img:img.bar},
+{name:"בר קוקטיילים",price:"₪60–₪130",rating:"4.6⭐",hours:"פתוח עד 01:30",desc:"קוקטיילים וישיבה יפה.",review:"נראה טוב ומרגיש יותר יוקרתי.",tags:["קוקטיילים","יוקרתי","דייט"],img:img.bar},
+{name:"בר שקט",price:"₪45–₪100",rating:"4.5⭐",hours:"פתוח עד 00:30",desc:"רגוע לדבר בלי צעקות.",review:"סוף סוף בר שאפשר לדבר בו.",tags:["שקט","שיחה","רגוע"],img:img.bar},
+{name:"בר גג",price:"₪70–₪150",rating:"4.7⭐",hours:"פתוח עד 02:00",desc:"נוף, אווירה ותמונות.",review:"מקום עם וואו קטן.",tags:["נוף","תמונות","יוקרתי"],img:img.bar},
+{name:"בר מוזיקה",price:"₪50–₪120",rating:"4.3⭐",hours:"פתוח עד 03:00",desc:"יותר אנרגיה ומוזיקה.",review:"מתאים כשבא לצאת באמת.",tags:["מוזיקה","אנרגיה","לילה"],img:img.bar},
+{name:"בר יין",price:"₪60–₪140",rating:"4.6⭐",hours:"פתוח עד 00:00",desc:"קלאסי, רגוע ומתאים לשיחה.",review:"אווירה בוגרת ונעימה.",tags:["יין","קלאסי","שקט"],img:img.bar},
+{name:"בר זול",price:"₪30–₪70",rating:"4.1⭐",hours:"פתוח עד 02:00",desc:"שתייה במחיר נוח.",review:"לא מפואר אבל עושה את העבודה.",tags:["זול","חברים","בירה"],img:img.bar},
+{name:"לאונג׳",price:"₪70–₪160",rating:"4.5⭐",hours:"פתוח עד 01:00",desc:"ישיבה נוחה ואווירה יפה.",review:"מרגיש נקי, יפה ונוח.",tags:["נוח","יפה","רגוע"],img:img.bar}
+],
+
+"קינוח":[
+{name:"גלידרייה",price:"₪20–₪45",rating:"4.6⭐",hours:"פתוח עד 00:00",desc:"גלידה, קליל ומתוק.",review:"כיף קטן שתמיד עובד.",tags:["מתוק","קליל","זול"],img:img.dessert},
+{name:"קרפ",price:"₪25–₪55",rating:"4.4⭐",hours:"פתוח עד 23:00",desc:"מתוק, חם וכיפי.",review:"מושלם לערב קליל.",tags:["חם","מתוק","ערב"],img:img.dessert},
+{name:"וופל בלגי",price:"₪35–₪70",rating:"4.5⭐",hours:"פתוח עד 00:00",desc:"קינוח מושקע לחברים.",review:"נראה טוב וטעים.",tags:["מושקע","חברים","מתוק"],img:img.dessert},
+{name:"מאפייה",price:"₪15–₪45",rating:"4.2⭐",hours:"פתוח עד 20:00",desc:"מאפים וקפה קטן.",review:"קליל וזול יחסית.",tags:["זול","מאפים","קפה"],img:img.dessert},
+{name:"קונדיטוריה",price:"₪30–₪80",rating:"4.7⭐",hours:"פתוח עד 22:00",desc:"עוגות וקינוחים איכותיים.",review:"טעים ומרגיש מיוחד.",tags:["עוגות","איכותי","יפה"],img:img.dessert},
+{name:"יוגורט בר",price:"₪20–₪50",rating:"4.3⭐",hours:"פתוח עד 23:30",desc:"קליל, מתוק ולא כבד.",review:"טוב כשבא משהו קטן.",tags:["קליל","מתוק","לא כבד"],img:img.dessert},
+{name:"דונאטס",price:"₪20–₪50",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"צבעוני, מתוק וכיפי.",review:"מקום חמוד לתמונה וקינוח.",tags:["צבעוני","תמונה","מתוק"],img:img.dessert},
+{name:"קינוח לילה",price:"₪30–₪70",rating:"4.5⭐",hours:"פתוח עד 01:00",desc:"מתוק לשעות מאוחרות.",review:"מציל כשבא קינוח בלילה.",tags:["לילה","מתוק","פתוח מאוחר"],img:img.dessert}
+],
+
+"שקט":[
+{name:"בית קפה שקט",price:"₪25–₪60",rating:"4.5⭐",hours:"פתוח עד 21:00",desc:"מקום שקט ונעים לדבר ולשבת.",review:"מעולה לשיחה אמיתית.",tags:["שקט","שיחה","נעים"],img:img.quiet},
+{name:"פארק שקט",price:"חינם",rating:"4.7⭐",hours:"פתוח 24/7",desc:"אוויר, שקט ושיחה טובה.",review:"פשוט מרגיע.",tags:["חינם","טבע","רגוע"],img:img.park},
+{name:"ספרייה",price:"חינם",rating:"4.4⭐",hours:"פתוח עד 19:00",desc:"שקט מאוד ומתאים לרוגע.",review:"מקום רגוע אבל פחות חברתי.",tags:["מאוד שקט","חינם","רגוע"],img:"https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900"},
+{name:"טיילת שקטה",price:"חינם",rating:"4.6⭐",hours:"פתוח 24/7",desc:"הליכה רגועה ושיחה.",review:"וייב טוב לשיחה ארוכה.",tags:["הליכה","שקט","נוף"],img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900"},
+{name:"גן קטן",price:"חינם",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"פשוט, נעים ולא עמוס.",review:"מקום בלי יותר מדי אנשים.",tags:["לא עמוס","חינם","שקט"],img:img.park},
+{name:"לאונג׳ שקט",price:"₪50–₪120",rating:"4.5⭐",hours:"פתוח עד 00:00",desc:"ישיבה נוחה וקצת יוקרתית.",review:"נוח, יפה ולא רועש.",tags:["יוקרתי","נוח","שקט"],img:img.bar},
+{name:"פינת נוף",price:"חינם",rating:"4.8⭐",hours:"פתוח 24/7",desc:"מקום יפה לשבת ולדבר.",review:"מרגיש מיוחד בלי לשלם.",tags:["נוף","שיחה","חינם"],img:img.park},
+{name:"קפה רגוע",price:"₪25–₪55",rating:"4.4⭐",hours:"פתוח עד 22:00",desc:"קפה עם אווירה רגועה.",review:"טוב למי שלא רוצה עומס.",tags:["קפה","רגוע","שיחה"],img:img.quiet}
+]
+};
+
+function showPlaces(type){
+  document.getElementById("result").innerHTML="";
+  const list=places[type];
+
+  document.getElementById("placesList").innerHTML=
     "<h3>בחרו מקום</h3>" +
-    list.map((place, index) => `
-      <button class="place-btn" onclick="showDetails('${type}', ${index})">
+    list.map((place,index)=>`
+      <button class="place-btn" onclick="showDetails('${type}',${index})">
         <b>${place.name}</b><br>
-        ${place.taste} · ${place.price} · ${place.rating}
+        ${place.desc}<br>
+        ${place.price} · ${place.rating}
       </button>
     `).join("");
 }
 
-function showDetails(type, index) {
-  let place = places[type][index];
-  let mapLink = "https://www.google.com/maps/search/" + encodeURIComponent(place.name);
+function showDetails(type,index){
+  const place=places[type][index];
+  const mapLink="https://www.google.com/maps/search/"+encodeURIComponent(place.name);
+  const whatsappText=
+`בוא ניפגש פה 👇🔥
+${place.name}
+${place.desc}
+${place.price} | ${place.rating}
+${place.hours}
+${mapLink}`;
+  const whatsappLink="https://wa.me/?text="+encodeURIComponent(whatsappText);
 
-  let whatsappText =
-    "בוא ניפגש פה 👇🔥\n" +
-    place.name + "\n" +
-    place.desc + "\n" +
-    place.price + " | " + place.rating + "\n" +
-    place.hours + "\n" +
-    mapLink;
-
-  let whatsappLink = "https://wa.me/?text=" + encodeURIComponent(whatsappText);
-
-  document.getElementById("result").innerHTML = `
+  document.getElementById("result").innerHTML=`
     <div class="card">
       <img class="place-img" src="${place.img}">
       <h2>📍 ${place.name}</h2>
       <p>✨ ${place.desc}</p>
-      <p>🍽️ ${place.taste}</p>
       <p>💰 ${place.price}</p>
       <p>⭐ ${place.rating}</p>
       <p>🕒 ${place.hours}</p>
+
+      <div class="tags">
+        ${place.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+      </div>
+
+      <div class="review">💬 “${place.review}”</div>
 
       <a href="${mapLink}" target="_blank">
         <button class="action-btn">פתח במפות</button>
@@ -273,11 +222,10 @@ function showDetails(type, index) {
         <button class="whatsapp-btn">שלח לחבר בוואטסאפ</button>
       </a>
 
-      <p class="small">המחירים, השעות והדירוגים כרגע לדוגמה</p>
+      <p class="small">המידע כרגע לדוגמה לגרסת MVP</p>
     </div>
   `;
 }
 </script>
-
 </body>
 </html>
