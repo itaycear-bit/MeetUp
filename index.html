@@ -13,8 +13,16 @@ body{
   color:#111;
   transition:.3s;
 }
+
 .dark{background:#111;color:white}
-#app{max-width:430px;margin:auto;padding:30px 20px 60px;text-align:center}
+
+#app{
+  max-width:430px;
+  margin:auto;
+  padding:30px 20px 60px;
+  text-align:center;
+}
+
 .logo{font-size:60px}
 .title{font-size:52px;font-weight:900;margin:0}
 .subtitle{color:#666;margin:10px 0 25px;font-size:17px}
@@ -28,41 +36,107 @@ body{
   margin-top:12px;
   cursor:pointer;
 }
+
 .main-btn,.action-btn{background:#111;color:white}
 .whatsapp-btn{background:#25D366;color:white}
 .fav-btn{background:#ff4d6d;color:white}
 
-.moods{display:flex;overflow:auto;gap:10px;margin-bottom:20px;padding-bottom:5px}
+.moods{
+  display:flex;
+  overflow:auto;
+  gap:10px;
+  margin-bottom:14px;
+  padding-bottom:5px;
+}
+
 .moods button{
-  border:0;background:white;border-radius:999px;padding:12px 16px;
-  font-size:15px;white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.1)
+  border:0;
+  background:white;
+  border-radius:999px;
+  padding:12px 16px;
+  font-size:15px;
+  white-space:nowrap;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  cursor:pointer;
 }
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:25px;
+}
+
 .grid button{
-  border:0;border-radius:22px;background:white;padding:18px;font-size:16px;
-  box-shadow:0 8px 22px rgba(0,0,0,.1)
+  border:0;
+  border-radius:22px;
+  background:white;
+  padding:18px;
+  font-size:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
 }
+
 .card{
-  margin-top:28px;background:white;border-radius:30px;padding:22px;
-  box-shadow:0 14px 36px rgba(0,0,0,.14);animation:pop .25s ease;
+  margin-top:28px;
+  background:white;
+  border-radius:30px;
+  padding:22px;
+  box-shadow:0 14px 36px rgba(0,0,0,.14);
+  animation:pop .25s ease;
 }
+
 .dark .card{background:#1d1d1d}
-@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@keyframes pop{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
 .card h2{font-size:28px;margin:0 0 10px}
 .card p{color:#444;font-size:16px}
 .dark .card p{color:#ddd}
 
-.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
-.tag{background:#efefef;border-radius:999px;padding:7px 12px;font-size:13px}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin:15px 0;
+}
+
+.tag{
+  background:#efefef;
+  border-radius:999px;
+  padding:7px 12px;
+  font-size:13px;
+}
+
 .dark .tag{background:#333;color:white}
 
-.review{background:#f5f5f5;border-radius:18px;padding:14px;margin-top:12px}
+.review{
+  background:#f5f5f5;
+  border-radius:18px;
+  padding:14px;
+  margin-top:12px;
+}
+
 .dark .review{background:#2b2b2b}
 
-.arrows{display:flex;gap:10px;margin-top:16px}
-.arrows button{
-  flex:1;border:0;border-radius:16px;padding:14px;background:#efefef;cursor:pointer
+.arrows{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
 }
+
+.arrows button{
+  flex:1;
+  border:0;
+  border-radius:16px;
+  padding:14px;
+  background:#efefef;
+  cursor:pointer;
+}
+
 .dark .arrows button{background:#333;color:white}
 
 .popular{margin-top:12px;color:#ff3b5c;font-weight:bold}
@@ -71,20 +145,43 @@ body{
 button{cursor:pointer}
 
 #dice{
-  display:none;position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%);font-size:120px;z-index:9999;
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:120px;
+  z-index:9999;
   animation:spin 1s linear infinite;
 }
+
 @keyframes spin{
   from{transform:translate(-50%,-50%) rotate(0deg) scale(1)}
   to{transform:translate(-50%,-50%) rotate(360deg) scale(1.2)}
 }
+
 #overlay{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);
-  backdrop-filter:blur(6px);z-index:9998;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+  z-index:9998;
 }
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:10000}
-.confetti-piece{position:absolute;font-size:24px;animation:fall 1.5s linear forwards}
+
+#confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:10000;
+}
+
+.confetti-piece{
+  position:absolute;
+  font-size:24px;
+  animation:fall 1.5s linear forwards;
+}
+
 @keyframes fall{
   from{transform:translateY(-30px) rotate(0deg);opacity:1}
   to{transform:translateY(100vh) rotate(360deg);opacity:0}
@@ -100,13 +197,20 @@ button{cursor:pointer}
 <div id="app">
   <div class="logo">🍒</div>
   <h1 class="title">MeetUp</h1>
-  <p class="subtitle">תבחרו וייב ותמצאו מקום מושלם להיפגש</p>
+  <p class="subtitle">תבחרו וייב, תקציב, ונמצא מקום מושלם</p>
 
   <div class="moods">
     <button onclick="setMood('רגוע')">😌 רגוע</button>
     <button onclick="setMood('אנרגטי')">⚡ אנרגטי</button>
     <button onclick="setMood('רומנטי')">❤️ רומנטי</button>
     <button onclick="setMood('ספונטני')">🎲 ספונטני</button>
+  </div>
+
+  <div class="moods">
+    <button onclick="setBudget('זול')">💸 זול</button>
+    <button onclick="setBudget('רגיל')">💰 רגיל</button>
+    <button onclick="setBudget('יקר')">💎 יקר</button>
+    <button onclick="setBudget('הכל')">✨ הכל</button>
   </div>
 
   <button class="main-btn" onclick="enableLocation()">📍 הפעל מיקום</button>
@@ -133,6 +237,7 @@ button{cursor:pointer}
 let currentCategory = "";
 let currentIndex = 0;
 let currentMood = "";
+let currentBudget = "הכל";
 let userLat = null;
 let userLon = null;
 
@@ -140,30 +245,67 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 const places = {
   "פיצה":[
-    {name:"פיצה האט",price:"₪50–₪100",rating:"4.2⭐",hours:"פתוח עד 23:00",desc:"פיצה טובה לקבוצה ולערב קליל.",review:"טעים, מהיר ואווירה טובה.",tags:["פיצה","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"דומינוס",price:"₪45–₪90",rating:"4.4⭐",hours:"פתוח עד 00:00",desc:"קליל, מהיר ומתאים לחבורה.",review:"אחלה מקום כשלא יודעים מה להזמין.",tags:["מהיר","פיצה","קליל"],popular:""}
+    {name:"פיצה האט",price:"₪50–₪100",level:"רגיל",rating:"4.2⭐",hours:"פתוח עד 23:00",desc:"פיצה טובה לקבוצה ולערב קליל.",review:"טעים, מהיר ואווירה טובה.",tags:["פיצה","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
+    {name:"דומינוס",price:"₪45–₪90",level:"רגיל",rating:"4.4⭐",hours:"פתוח עד 00:00",desc:"קליל, מהיר ומתאים לחבורה.",review:"אחלה מקום כשלא יודעים מה להזמין.",tags:["מהיר","פיצה","קליל"],popular:""},
+    {name:"פיצה שכונתית",price:"₪25–₪55",level:"זול",rating:"4.1⭐",hours:"פתוח עד 22:30",desc:"פיצה זולה, פשוטה וטעימה.",review:"בול כשבא משהו זול ומהיר.",tags:["זול","מהיר","פיצה"],popular:""},
+    {name:"פיצה בוטיק",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 23:30",desc:"פיצה איכותית עם תוספות מיוחדות.",review:"מרגיש יותר יוקרתי ומושקע.",tags:["יוקרתי","איכותי","פיצה"],popular:""}
   ],
+
   "קפה":[
-    {name:"לנדוור",price:"₪35–₪70",rating:"4.5⭐",hours:"פתוח עד 23:00",desc:"קפה, בראנץ׳ וישיבה ארוכה.",review:"מקום מושלם לשיחה רגועה.",tags:["בראנץ׳","קפה","שקט"],popular:"🔥 פופולרי עכשיו"},
-    {name:"ארומה",price:"₪20–₪45",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"קפה קליל ומהיר.",review:"טוב לפגישה קצרה.",tags:["זול","קפה","מהיר"],popular:""}
+    {name:"לנדוור",price:"₪35–₪70",level:"רגיל",rating:"4.5⭐",hours:"פתוח עד 23:00",desc:"קפה, בראנץ׳ וישיבה ארוכה.",review:"מקום מושלם לשיחה רגועה.",tags:["בראנץ׳","קפה","שקט"],popular:"🔥 פופולרי עכשיו"},
+    {name:"ארומה",price:"₪20–₪45",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"קפה קליל ומהיר.",review:"טוב לפגישה קצרה.",tags:["זול","קפה","מהיר"],popular:""},
+    {name:"קפה בוטיק",price:"₪50–₪100",level:"יקר",rating:"4.6⭐",hours:"פתוח עד 21:00",desc:"קפה איכותי ואווירה שקטה.",review:"נעים, רגוע ומרגיש איכותי.",tags:["שקט","איכותי","קפה"],popular:""}
   ],
+
   "בר":[
-    {name:"בר גג",price:"₪70–₪150",rating:"4.7⭐",hours:"פתוח עד 02:00",desc:"נוף יפה וקוקטיילים.",review:"מרגיש כמו חו״ל.",tags:["נוף","לילה","קוקטיילים"],popular:"🔥 פופולרי עכשיו"},
-    {name:"פאב שכונתי",price:"₪40–₪90",rating:"4.4⭐",hours:"פתוח עד 01:00",desc:"בירה ואווירה קלילה.",review:"לא יקר וכיף לשבת.",tags:["בירה","חברים","קליל"],popular:""}
+    {name:"בר גג",price:"₪70–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 02:00",desc:"נוף יפה וקוקטיילים.",review:"מרגיש כמו חו״ל.",tags:["נוף","לילה","קוקטיילים"],popular:"🔥 פופולרי עכשיו"},
+    {name:"פאב שכונתי",price:"₪40–₪90",level:"רגיל",rating:"4.4⭐",hours:"פתוח עד 01:00",desc:"בירה ואווירה קלילה.",review:"לא יקר וכיף לשבת.",tags:["בירה","חברים","קליל"],popular:""},
+    {name:"בר זול",price:"₪25–₪60",level:"זול",rating:"4.1⭐",hours:"פתוח עד 02:00",desc:"שתייה במחיר נוח ואווירה פשוטה.",review:"לא מפואר אבל עושה את העבודה.",tags:["זול","בירה","חברים"],popular:""}
   ],
+
   "פארק":[
-    {name:"פארק גדול",price:"חינם",rating:"4.8⭐",hours:"פתוח 24/7",desc:"טבע, אוויר פתוח ושקט.",review:"אחלה מקום לדבר.",tags:["טבע","שקט","חינם"],popular:"🔥 פופולרי עכשיו"},
-    {name:"טיילת",price:"חינם",rating:"4.7⭐",hours:"פתוח 24/7",desc:"הליכה ושיחה מול הנוף.",review:"הכי טוב בערב.",tags:["נוף","הליכה","חינם"],popular:""}
+    {name:"פארק גדול",price:"חינם",level:"זול",rating:"4.8⭐",hours:"פתוח 24/7",desc:"טבע, אוויר פתוח ושקט.",review:"אחלה מקום לדבר.",tags:["טבע","שקט","חינם"],popular:"🔥 פופולרי עכשיו"},
+    {name:"טיילת",price:"חינם",level:"זול",rating:"4.7⭐",hours:"פתוח 24/7",desc:"הליכה ושיחה מול הנוף.",review:"הכי טוב בערב.",tags:["נוף","הליכה","חינם"],popular:""}
   ],
+
   "ים":[
-    {name:"חוף שקט",price:"חינם",rating:"4.9⭐",hours:"פתוח 24/7",desc:"ים, שקיעה ושיחה טובה.",review:"וייב מטורף בערב.",tags:["ים","שקיעה","רגוע"],popular:"🔥 פופולרי עכשיו"},
-    {name:"טיילת ים",price:"חינם",rating:"4.7⭐",hours:"פתוח 24/7",desc:"הליכה מול הים.",review:"אווירה רגועה ונעימה.",tags:["ים","הליכה","נוף"],popular:""}
+    {name:"חוף שקט",price:"חינם",level:"זול",rating:"4.9⭐",hours:"פתוח 24/7",desc:"ים, שקיעה ושיחה טובה.",review:"וייב מטורף בערב.",tags:["ים","שקיעה","רגוע"],popular:"🔥 פופולרי עכשיו"},
+    {name:"טיילת ים",price:"חינם",level:"זול",rating:"4.7⭐",hours:"פתוח 24/7",desc:"הליכה מול הים.",review:"אווירה רגועה ונעימה.",tags:["ים","הליכה","נוף"],popular:""}
   ],
+
   "אוכל":[
-    {name:"BBB",price:"₪60–₪110",rating:"4.6⭐",hours:"פתוח עד 00:00",desc:"המבורגרים ואווירה טובה.",review:"טעים ומשביע.",tags:["המבורגר","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
-    {name:"סושי בר",price:"₪80–₪150",rating:"4.7⭐",hours:"פתוח עד 23:00",desc:"סושי איכותי ואווירה יפה.",review:"אוכל טוב ומקום נעים.",tags:["סושי","איכותי","שקט"],popular:""}
+    {name:"BBB",price:"₪60–₪110",level:"רגיל",rating:"4.6⭐",hours:"פתוח עד 00:00",desc:"המבורגרים ואווירה טובה.",review:"טעים ומשביע.",tags:["המבורגר","חברים","לילה"],popular:"🔥 פופולרי עכשיו"},
+    {name:"סושי בר",price:"₪80–₪150",level:"יקר",rating:"4.7⭐",hours:"פתוח עד 23:00",desc:"סושי איכותי ואווירה יפה.",review:"אוכל טוב ומקום נעים.",tags:["סושי","איכותי","שקט"],popular:""},
+    {name:"שווארמה",price:"₪35–₪65",level:"זול",rating:"4.2⭐",hours:"פתוח עד 22:00",desc:"מהיר, זול ומשביע.",review:"מעולה כשבא אוכל בלי סיפור.",tags:["זול","מהיר","משביע"],popular:""}
   ]
 };
+
+function setBudget(budget){
+  currentBudget = budget;
+
+  document.getElementById("result").innerHTML = `
+    <div class="card">
+      <h2>💸 תקציב נבחר: ${budget}</h2>
+      <p>עכשיו ההמלצות יותאמו לתקציב שבחרת.</p>
+    </div>
+  `;
+}
+
+function getFilteredPlaces(category){
+  let list = places[category];
+
+  if(currentBudget === "הכל"){
+    return list;
+  }
+
+  let filtered = list.filter(place => place.level === currentBudget);
+
+  if(filtered.length === 0){
+    return list;
+  }
+
+  return filtered;
+}
 
 function enableLocation(){
   if(!navigator.geolocation){
@@ -200,7 +342,9 @@ function showCategory(category){
 }
 
 function renderPlace(){
-  const place = places[currentCategory][currentIndex];
+  const filteredPlaces = getFilteredPlaces(currentCategory);
+  const place = filteredPlaces[currentIndex % filteredPlaces.length];
+
   const mapLink = getMapLink(place.name);
 
   const whatsappLink =
@@ -216,6 +360,7 @@ function renderPlace(){
       <p>💰 ${place.price}</p>
       <p>⭐ ${place.rating}</p>
       <p>🕒 ${place.hours}</p>
+      <p>🎯 תקציב: ${place.level}</p>
 
       <div class="tags">
         ${place.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
@@ -239,18 +384,26 @@ function renderPlace(){
 }
 
 function nextPlace(){
+  const filteredPlaces = getFilteredPlaces(currentCategory);
+
   currentIndex++;
-  if(currentIndex >= places[currentCategory].length){
+
+  if(currentIndex >= filteredPlaces.length){
     currentIndex = 0;
   }
+
   renderPlace();
 }
 
 function prevPlace(){
+  const filteredPlaces = getFilteredPlaces(currentCategory);
+
   currentIndex--;
+
   if(currentIndex < 0){
-    currentIndex = places[currentCategory].length - 1;
+    currentIndex = filteredPlaces.length - 1;
   }
+
   renderPlace();
 }
 
@@ -271,7 +424,9 @@ function randomPlace(){
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
     currentCategory = randomCategory;
-    currentIndex = Math.floor(Math.random() * places[randomCategory].length);
+
+    const filteredPlaces = getFilteredPlaces(randomCategory);
+    currentIndex = Math.floor(Math.random() * filteredPlaces.length);
 
     renderPlace();
     launchConfetti();
@@ -297,7 +452,9 @@ function launchConfetti(){
 }
 
 function saveFavorite(){
-  const place = places[currentCategory][currentIndex];
+  const filteredPlaces = getFilteredPlaces(currentCategory);
+  const place = filteredPlaces[currentIndex % filteredPlaces.length];
+
   const alreadyExists = favorites.find(f => f.name === place.name);
 
   if(alreadyExists){
@@ -327,6 +484,7 @@ function showFavorites(){
         <p>${place.desc}</p>
         <p>⭐ ${place.rating}</p>
         <p>💰 ${place.price}</p>
+        <p>🎯 תקציב: ${place.level}</p>
       </div>
     `).join("");
 }
