@@ -1,10 +1,21 @@
-<div id="splash">
-  <div class="splash-logo">🍒</div>
-  <div class="splash-title">MeetUp</div>
-  <div class="splash-sub">לחץ על הדובדבן כדי להתחיל</div>
-</div>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MeetUp</title>
 
 <style>
+
+body{
+  margin:0;
+  font-family:-apple-system,Arial,sans-serif;
+  background:linear-gradient(180deg,#fff,#ececec);
+  color:#111;
+}
+
 #splash{
   position:fixed;
   inset:0;
@@ -13,7 +24,7 @@
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  z-index:20000;
+  z-index:99999;
   transition:.4s;
 }
 
@@ -37,6 +48,7 @@
 }
 
 @keyframes float{
+
   0%{
     transform:translateY(0);
   }
@@ -49,26 +61,376 @@
     transform:translateY(0);
   }
 }
+
+#app{
+  max-width:430px;
+  margin:auto;
+  padding:24px 18px 60px;
+  text-align:center;
+}
+
+.logo{
+  font-size:58px;
+}
+
+.title{
+  font-size:48px;
+  font-weight:900;
+  margin:0;
+}
+
+.subtitle{
+  color:#666;
+  margin:10px 0 25px;
+  font-size:16px;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.main-btn{
+  border:0;
+  border-radius:18px;
+  padding:16px;
+  font-size:15px;
+  cursor:pointer;
+  color:white;
+}
+
+.random-btn{
+  background:#111;
+}
+
+.smart-btn{
+  background:#7c3aed;
+}
+
+.location-btn{
+  background:#0f9d58;
+}
+
+.favorites-btn{
+  background:#ff4d6d;
+}
+
+.dark-btn{
+  background:#333;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.grid button{
+  border:0;
+  border-radius:22px;
+  background:white;
+  padding:18px;
+  font-size:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
+  cursor:pointer;
+}
+
+.section{
+  background:white;
+  border-radius:26px;
+  padding:16px;
+  margin-bottom:18px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+.section-title{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:14px;
+  text-align:right;
+}
+
+.trending-row{
+  display:flex;
+  overflow:auto;
+  gap:10px;
+}
+
+.trend-card{
+  min-width:145px;
+  border:0;
+  border-radius:22px;
+  background:#111;
+  color:white;
+  padding:16px;
+  text-align:right;
+  cursor:pointer;
+}
+
+.trend-card span{
+  display:block;
+  font-size:12px;
+  opacity:.75;
+  margin-top:6px;
+}
+
+.card{
+  margin-top:28px;
+  background:white;
+  border-radius:30px;
+  padding:22px;
+  box-shadow:0 14px 36px rgba(0,0,0,.14);
+}
+
+.card h2{
+  font-size:28px;
+}
+
+.action-btn{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:15px;
+  font-size:16px;
+  margin-top:12px;
+  cursor:pointer;
+  background:#111;
+  color:white;
+}
+
 </style>
+</head>
+
+<body>
+
+<div id="splash">
+
+  <div class="splash-logo">
+    🍒
+  </div>
+
+  <div class="splash-title">
+    MeetUp
+  </div>
+
+  <div class="splash-sub">
+    לחץ על הדובדבן כדי להתחיל
+  </div>
+
+</div>
+
+<div id="app">
+
+  <div class="logo">🍒</div>
+
+  <h1 class="title">
+    MeetUp
+  </h1>
+
+  <p class="subtitle">
+    תבחר מקום טוב בלי לחשוב יותר מדי 🍒
+  </p>
+
+  <div class="actions">
+
+    <button class="main-btn random-btn"
+    onclick="randomPlace()">
+      🎲 רנדומלי
+    </button>
+
+    <button class="main-btn smart-btn"
+    onclick="smartPick()">
+      🧠 חכם
+    </button>
+
+    <button class="main-btn location-btn">
+      📍 מיקום
+    </button>
+
+    <button class="main-btn favorites-btn">
+      ❤️ מועדפים
+    </button>
+
+  </div>
+
+  <div class="grid">
+
+    <button onclick="showCategory('פיצה')">
+      🍕 פיצה
+    </button>
+
+    <button onclick="showCategory('קפה')">
+      ☕ קפה
+    </button>
+
+    <button onclick="showCategory('אוכל')">
+      🍔 אוכל
+    </button>
+
+    <button onclick="showCategory('בר')">
+      🍻 בר
+    </button>
+
+    <button onclick="showCategory('פארק')">
+      🌳 פארק
+    </button>
+
+    <button onclick="showCategory('ים')">
+      🌊 ים
+    </button>
+
+  </div>
+
+  <div class="section">
+
+    <div class="section-title">
+      🔥 חם עכשיו
+    </div>
+
+    <div class="trending-row">
+
+      <button class="trend-card">
+        🍸 בר גג
+        <span>הכי חם הלילה</span>
+      </button>
+
+      <button class="trend-card">
+        🌊 חוף שקט
+        <span>מושלם לשקיעה</span>
+      </button>
+
+      <button class="trend-card">
+        ☕ לנדוור
+        <span>טוב לשיחה</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="result"></div>
+
+</div>
 
 <script>
-window.onload = () => {
 
-  const cherry =
-  document.querySelector(".splash-logo");
+const cherry =
+document.querySelector(".splash-logo");
 
-  cherry.onclick = () => {
+cherry.onclick = () => {
 
-    const splash =
-    document.getElementById("splash");
+  const splash =
+  document.getElementById("splash");
 
-    splash.style.opacity = "0";
+  splash.style.opacity = "0";
 
-    setTimeout(() => {
+  setTimeout(() => {
 
-      splash.style.display = "none";
+    splash.remove();
 
-    },400);
-  };
+  },400);
 };
+
+const places = {
+
+  "פיצה":[
+    "🍕 פיצה האט",
+    "🍕 דומינוס",
+    "🍕 פיצה בוטיק"
+  ],
+
+  "קפה":[
+    "☕ לנדוור",
+    "☕ ארומה",
+    "☕ קפה שקט"
+  ],
+
+  "אוכל":[
+    "🍔 BBB",
+    "🍣 סושי בר",
+    "🥙 שווארמה"
+  ],
+
+  "בר":[
+    "🍸 בר גג",
+    "🍺 פאב שכונתי",
+    "🍷 בר יין"
+  ],
+
+  "פארק":[
+    "🌳 פארק גדול",
+    "🌲 גן שקט",
+    "🌿 טיילת"
+  ],
+
+  "ים":[
+    "🌊 חוף שקט",
+    "🏖️ חוף שקיעה",
+    "🌅 טיילת ים"
+  ]
+};
+
+function showCategory(category){
+
+  const list = places[category];
+
+  const random =
+  list[Math.floor(Math.random()*list.length)];
+
+  document.getElementById("result").innerHTML = `
+
+  <div class="card">
+
+    <h2>${random}</h2>
+
+    <p>
+      מקום מומלץ בשבילך 🍒
+    </p>
+
+    <button class="action-btn">
+      📍 פתח במפות
+    </button>
+
+  </div>
+  `;
+}
+
+function randomPlace(){
+
+  const categories =
+  Object.keys(places);
+
+  const randomCategory =
+  categories[Math.floor(Math.random()*categories.length)];
+
+  showCategory(randomCategory);
+}
+
+function smartPick(){
+
+  const hour =
+  new Date().getHours();
+
+  if(hour >= 20){
+
+    showCategory("בר");
+  }
+
+  else if(hour >= 16){
+
+    showCategory("אוכל");
+  }
+
+  else{
+
+    showCategory("קפה");
+  }
+}
+
 </script>
+
+</body>
+</html>
