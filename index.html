@@ -34,9 +34,15 @@ button{border:0;border-radius:18px;padding:15px;font-size:16px;cursor:pointer}
 .delete{width:100%;background:#444;color:white;margin-top:10px}
 .save{width:100%;margin-top:14px;background:linear-gradient(135deg,#ff4d6d,#ff758f);color:white;font-weight:800;box-shadow:0 10px 24px rgba(255,77,109,.35)}
 .open{color:#0f9d58;font-weight:800}.closed{color:#e53935;font-weight:800}
-#dice{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:120px;z-index:9999;animation:spin 1s linear infinite}
-#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);z-index:9998}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg) scale(1.2)}}
+
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);z-index:9998}
+#rouletteBox{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;flex-direction:column;color:white}
+.pointer{font-size:42px;margin-bottom:-8px;z-index:2}
+.wheel{width:260px;height:260px;border-radius:50%;background:conic-gradient(#6d28d9 0 60deg,#f97316 60deg 120deg,#92400e 120deg 180deg,#dc2626 180deg 240deg,#16a34a 240deg 300deg,#0284c7 300deg 360deg);display:flex;align-items:center;justify-content:center;font-size:54px;box-shadow:0 20px 50px rgba(0,0,0,.4);border:8px solid white}
+.wheel.spin{animation:rouletteSpin 1.8s cubic-bezier(.2,.9,.2,1)}
+@keyframes rouletteSpin{from{transform:rotate(0)}to{transform:rotate(1600deg)}}
+.rouletteText{margin-top:18px;font-size:20px;font-weight:900}
+
 #splash{position:fixed;inset:0;background:linear-gradient(180deg,#fff,#ffeef3);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.4s}
 #splash .big-cherry{font-size:150px;cursor:pointer}
 .splash-title{font-size:46px;font-weight:900;margin-top:22px}
@@ -54,13 +60,19 @@ button{border:0;border-radius:18px;padding:15px;font-size:16px;cursor:pointer}
 
 <div id="overlay"></div>
 
+<div id="rouletteBox">
+  <div class="pointer">▼</div>
+  <div id="wheel" class="wheel">🍒</div>
+  <div class="rouletteText">מסובב רולטה...</div>
+</div>
+
 <div id="app">
   <div class="big-cherry">🍒</div>
   <h1 class="title">MeetUp</h1>
   <p class="subtitle">תבחר מקום טוב בלי לחשוב יותר מדי</p>
 
   <div class="actions">
-    <button class="main-btn random" onclick="randomPlace()">🎲 רנדומלי</button>
+    <button class="main-btn random" onclick="randomPlace()">🎰 רולטה</button>
     <button class="main-btn loc" onclick="enableLocation()">📍 מיקום</button>
     <button class="main-btn favorites-btn" onclick="showFavorites()">❤️ מועדפים</button>
     <button class="main-btn dark-btn" onclick="toggleDark()">🌙 מצב לילה</button>
@@ -79,7 +91,6 @@ button{border:0;border-radius:18px;padding:15px;font-size:16px;cursor:pointer}
     <button onclick="showCategory('ים')">🌊 ים</button>
   </div>
 
-  <div id="dice">🎲</div>
   <div id="result"></div>
 </div>
 
@@ -117,35 +128,12 @@ function makePlaces(names,category,price,desc,tags,open,close){
 }
 
 const places={
-"בר":makePlaces(
-["בר גג","פאב שכונתי","בר קוקטיילים","בר יין","בר מוזיקה","בר זול","לאונג׳","בר ספורט","בר קטן","בר חוף","בר סודי","בר דייט","בר הופעות","בר קיץ","בר צעירים"],
-"בר","₪40–₪160","מקום טוב ליציאה, שתייה ואווירה.",["בר","לילה"],18,i=>i%3===0?3:2
-),
-
-"פיצה":makePlaces(
-["פיצה האט","דומינוס","פיצה בוטיק","פיצה שכונתית","פיצה לילה","פיצה איטלקית","פיצה משפחתית","פיצה טבעונית","פיצה קריספי","פיצה דייט","פיצה רומאית","פיצה חריפה","פיצה גבינות","פיצה צעירים","פיצה XL"],
-"פיצה","₪40–₪120","פיצה טעימה לערב קליל.",["פיצה","קליל"],11,i=>i%4===0?2:23
-),
-
-"קפה":makePlaces(
-["לנדוור","ארומה","קפה שקט","קפה בוטיק","קפה קינוחים","קפה מאוחר","בית קפה קטן","קפה עם נוף","קפה עבודה","קפה שכונתי","קפה צעירים","קפה ספרים","קפה לילה","קפה מרפסת","קפה דייט"],
-"קפה","₪20–₪90","מקום נעים לקפה ושיחה.",["קפה","שיחה"],8,i=>i%3===0?24:22
-),
-
-"אוכל":makePlaces(
-["BBB","סושי בר","שווארמה","איטלקי","אסייתי","המבורגר בוטיק","טאקו","מסעדה משפחתית","ראמן","דיינר","גריל בר","סטייק האוס","המבורגר לילה","סושי דייט","מטבח שף"],
-"אוכל","₪35–₪150","אוכל טוב ליציאה.",["אוכל","טעים"],12,i=>i%4===0?1:24
-),
-
-"פארק":makePlaces(
-["פארק גדול","גן שקט","טיילת ירוקה","פינת ישיבה","פארק עם נוף","גן משפחתי","פארק ספורט","שביל הליכה","פארק לילה","גן קטן","פארק שקיעה","גן פתוח","פארק דייט","טיילת ערב","גן מרכזי"],
-"פארק","חינם","מקום רגוע לשבת ולדבר.",["פארק","שקט"],0,24
-),
-
-"ים":makePlaces(
-["חוף שקט","טיילת ים","חוף שקיעה","קפה ליד הים","בר חוף","חוף חברים","חוף רגוע","ספסל מול הים","חוף לילה","מרינה","חוף גלישה","חוף דייט","טיילת שקיעה","חוף צעירים","ים פתוח"],
-"ים","חינם","ים, אווירה ושיחה טובה.",["ים","שקיעה"],0,24
-)
+"בר":makePlaces(["בר גג","פאב שכונתי","בר קוקטיילים","בר יין","בר מוזיקה","בר זול","לאונג׳","בר ספורט","בר קטן","בר חוף","בר סודי","בר דייט","בר הופעות","בר קיץ","בר צעירים"],"בר","₪40–₪160","מקום טוב ליציאה, שתייה ואווירה.",["בר","לילה"],18,i=>i%3===0?3:2),
+"פיצה":makePlaces(["פיצה האט","דומינוס","פיצה בוטיק","פיצה שכונתית","פיצה לילה","פיצה איטלקית","פיצה משפחתית","פיצה טבעונית","פיצה קריספי","פיצה דייט","פיצה רומאית","פיצה חריפה","פיצה גבינות","פיצה צעירים","פיצה XL"],"פיצה","₪40–₪120","פיצה טעימה לערב קליל.",["פיצה","קליל"],11,i=>i%4===0?2:23),
+"קפה":makePlaces(["לנדוור","ארומה","קפה שקט","קפה בוטיק","קפה קינוחים","קפה מאוחר","בית קפה קטן","קפה עם נוף","קפה עבודה","קפה שכונתי","קפה צעירים","קפה ספרים","קפה לילה","קפה מרפסת","קפה דייט"],"קפה","₪20–₪90","מקום נעים לקפה ושיחה.",["קפה","שיחה"],8,i=>i%3===0?24:22),
+"אוכל":makePlaces(["BBB","סושי בר","שווארמה","איטלקי","אסייתי","המבורגר בוטיק","טאקו","מסעדה משפחתית","ראמן","דיינר","גריל בר","סטייק האוס","המבורגר לילה","סושי דייט","מטבח שף"],"אוכל","₪35–₪150","אוכל טוב ליציאה.",["אוכל","טעים"],12,i=>i%4===0?1:24),
+"פארק":makePlaces(["פארק גדול","גן שקט","טיילת ירוקה","פינת ישיבה","פארק עם נוף","גן משפחתי","פארק ספורט","שביל הליכה","פארק לילה","גן קטן","פארק שקיעה","גן פתוח","פארק דייט","טיילת ערב","גן מרכזי"],"פארק","חינם","מקום רגוע לשבת ולדבר.",["פארק","שקט"],0,24),
+"ים":makePlaces(["חוף שקט","טיילת ים","חוף שקיעה","קפה ליד הים","בר חוף","חוף חברים","חוף רגוע","ספסל מול הים","חוף לילה","מרינה","חוף גלישה","חוף דייט","טיילת שקיעה","חוף צעירים","ים פתוח"],"ים","חינם","ים, אווירה ושיחה טובה.",["ים","שקיעה"],0,24)
 };
 
 function isOpen(p){
@@ -274,22 +262,28 @@ function searchPlaces(){
 }
 
 function randomPlace(){
-  let d=document.getElementById("dice");
-  let o=document.getElementById("overlay");
+  let wheel=document.getElementById("wheel");
+  let box=document.getElementById("rouletteBox");
+  let overlay=document.getElementById("overlay");
 
-  o.style.display="block";
-  d.style.display="block";
+  overlay.style.display="block";
+  box.style.display="flex";
+
+  wheel.classList.remove("spin");
+  void wheel.offsetWidth;
+  wheel.classList.add("spin");
 
   setTimeout(()=>{
-    o.style.display="none";
-    d.style.display="none";
+    overlay.style.display="none";
+    box.style.display="none";
+    wheel.classList.remove("spin");
 
     let cats=Object.keys(places);
     currentCategory=cats[Math.floor(Math.random()*cats.length)];
     currentIndex=Math.floor(Math.random()*places[currentCategory].length);
     searchMode=false;
     renderPlace();
-  },1500);
+  },1800);
 }
 
 function enableLocation(){
