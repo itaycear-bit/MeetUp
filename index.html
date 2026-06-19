@@ -6,28 +6,43 @@
 <title>StyleAir</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:
-    radial-gradient(circle at top,#ffffff,#f3eadf 45%,#fffaf5);
+  background:#f7f2ec;
   color:#191919;
 }
 
 #app{
   max-width:430px;
   margin:auto;
-  padding:28px 18px 80px;
+  padding:22px 18px 70px;
 }
 
 .hero{
+  min-height:360px;
+  border-radius:0 0 38px 38px;
+  background:
+    radial-gradient(circle at top left,#fff 0,#f3e2d2 45%,#d9c2ad 100%);
+  padding:34px 20px;
   text-align:center;
-  padding:30px 10px;
+  box-shadow:0 18px 45px rgba(0,0,0,.08);
 }
 
 .logo{
-  font-size:90px;
-  animation:float 2.5s infinite;
+  width:92px;
+  height:92px;
+  margin:auto;
+  border-radius:30px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:52px;
+  box-shadow:0 18px 35px rgba(0,0,0,.12);
+  animation:float 2.6s infinite;
 }
 
 @keyframes float{
@@ -35,34 +50,45 @@ body{
 }
 
 h1{
-  font-size:50px;
-  margin:8px 0;
+  font-size:52px;
+  margin:18px 0 8px;
 }
 
 .subtitle{
-  color:#6d6258;
+  color:#66584d;
   font-size:17px;
   line-height:1.6;
 }
 
+.hero button{
+  margin-top:22px;
+}
+
 .card{
-  background:rgba(255,255,255,.82);
-  backdrop-filter:blur(12px);
-  border-radius:32px;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(14px);
+  border-radius:30px;
   padding:20px;
   margin-top:20px;
-  box-shadow:0 18px 40px rgba(0,0,0,.09);
+  box-shadow:0 16px 36px rgba(0,0,0,.08);
+}
+
+label{
+  display:block;
+  text-align:right;
+  font-weight:900;
+  margin-top:14px;
+  margin-bottom:7px;
 }
 
 input,select{
   width:100%;
-  box-sizing:border-box;
   border:0;
-  background:#f3eee7;
+  background:#f1e8df;
   padding:16px;
   border-radius:18px;
   font-size:16px;
-  margin-top:12px;
+  outline:none;
 }
 
 button{
@@ -70,55 +96,83 @@ button{
   border:0;
   border-radius:20px;
   padding:16px;
-  margin-top:14px;
+  margin-top:16px;
   font-size:17px;
   font-weight:900;
   color:white;
-  background:linear-gradient(135deg,#111,#4a4038);
+  background:linear-gradient(135deg,#151515,#5b493d);
   cursor:pointer;
+  box-shadow:0 12px 25px rgba(0,0,0,.16);
 }
 
-.styles{
+.style-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:15px;
+  margin-top:14px;
 }
 
-.style-btn{
-  background:white;
-  color:#111;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+.style-card{
+  background:#fff;
+  border-radius:22px;
+  padding:16px 10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.07);
+  cursor:pointer;
+  transition:.2s;
+  text-align:center;
+  font-weight:900;
 }
 
-.result{
+.style-card:hover{
+  transform:translateY(-3px);
+}
+
+.style-card .emoji{
+  font-size:34px;
+  display:block;
+  margin-bottom:8px;
+}
+
+#result{
   display:none;
 }
 
 .outfit{
-  background:#f8f3ed;
-  border-radius:26px;
-  padding:16px;
-  margin-top:15px;
-  text-align:right;
+  background:#faf6f1;
+  border-radius:28px;
+  padding:17px;
+  margin-top:16px;
   border:1px solid rgba(0,0,0,.04);
 }
 
-.outfit-top{
+.outfit-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
-.outfit-icon{
-  font-size:42px;
+.outfit h3{
+  margin:0;
+  font-size:22px;
+}
+
+.big-icon{
+  font-size:44px;
+  background:white;
+  border-radius:18px;
+  width:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
 }
 
 .items{
   display:grid;
   gap:10px;
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .item{
@@ -132,7 +186,7 @@ button{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .tag{
@@ -146,47 +200,61 @@ button{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+  margin-top:12px;
 }
 
-.shop{
-  display:block;
-  background:#111;
-  color:white;
+.actions button,
+.actions a{
+  margin:0;
   text-decoration:none;
   text-align:center;
-  padding:14px;
   border-radius:18px;
-  margin-top:12px;
+  padding:14px;
   font-weight:900;
 }
 
 .save{
-  background:#7b5d45;
+  background:#8b6f5a;
 }
 
-.saved-box{
+.shop{
+  background:#111;
+  color:white;
+}
+
+.saved{
   display:none;
+}
+
+.empty{
+  color:#777;
+  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="hero">
+  <div class="logo">👕✨</div>
+  <h1>StyleAir</h1>
+  <p class="subtitle">
+    תבנה לוק שמתאים לך לפי סגנון, מידה, תקציב והשראה מטיקטוק.
+  </p>
+  <button onclick="document.getElementById('builder').scrollIntoView({behavior:'smooth'})">
+    התחל לבנות לוק
+  </button>
+</div>
+
 <div id="app">
 
-  <section class="hero">
-    <div class="logo">👕✨</div>
-    <h1>StyleAir</h1>
-    <p class="subtitle">
-      בונה לך לוק רגוע ונקי לפי הסגנון, המידה, התקציב וההשראה שלך.
-    </p>
-  </section>
+  <div class="card" id="builder">
+    <h2>✨ בונה הלוקים</h2>
 
-  <div class="card">
-    <h2>✨ בנה לי לוק</h2>
+    <label>השראה מטיקטוק</label>
+    <input id="tiktok" placeholder="הדבק קישור או תיאור של הלוק">
 
-    <input id="tiktok" placeholder="🔗 הדבק קישור מטיקטוק / השראה">
-
+    <label>סגנון</label>
     <select id="style">
       <option value="Streetwear">Streetwear</option>
       <option value="Old School">Old School</option>
@@ -195,39 +263,41 @@ button{
       <option value="Dark">Dark / Night</option>
     </select>
 
+    <label>מידה</label>
     <select id="size">
-      <option value="S">מידה S</option>
-      <option value="M">מידה M</option>
-      <option value="L">מידה L</option>
-      <option value="XL">מידה XL</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
     </select>
 
+    <label>תקציב</label>
     <select id="budget">
-      <option value="זול">תקציב זול</option>
-      <option value="בינוני">תקציב בינוני</option>
-      <option value="גבוה">תקציב גבוה</option>
+      <option value="זול">זול</option>
+      <option value="בינוני">בינוני</option>
+      <option value="גבוה">גבוה</option>
     </select>
 
     <button onclick="buildLook()">בנה לי 3 לוקים</button>
   </div>
 
   <div class="card">
-    <h2>סגנונות מהירים</h2>
-    <div class="styles">
-      <button class="style-btn" onclick="quickStyle('Streetwear')">👟 Street</button>
-      <button class="style-btn" onclick="quickStyle('Old School')">🧥 Old School</button>
-      <button class="style-btn" onclick="quickStyle('Casual')">👕 Casual</button>
-      <button class="style-btn" onclick="quickStyle('Elegant')">🕶️ Elegant</button>
+    <h2>בחר סגנון מהר</h2>
+    <div class="style-grid">
+      <div class="style-card" onclick="quickStyle('Streetwear')"><span class="emoji">👟</span>Street</div>
+      <div class="style-card" onclick="quickStyle('Old School')"><span class="emoji">🧥</span>Old School</div>
+      <div class="style-card" onclick="quickStyle('Casual')"><span class="emoji">👕</span>Casual</div>
+      <div class="style-card" onclick="quickStyle('Elegant')"><span class="emoji">🕶️</span>Elegant</div>
     </div>
   </div>
 
-  <div id="result" class="card result">
+  <div id="result" class="card">
     <h2>הלוקים שלך</h2>
     <div id="outfits"></div>
   </div>
 
-  <div id="savedBox" class="card saved-box">
-    <h2>❤️ לוקים ששמרת</h2>
+  <div id="savedBox" class="card saved">
+    <h2>❤️ לוקים שמורים</h2>
     <div id="savedLooks"></div>
   </div>
 
@@ -236,61 +306,57 @@ button{
 <script>
 let saved = JSON.parse(localStorage.getItem("savedLooks")) || [];
 
+const looks = {
+  Streetwear:{
+    icon:"👟",
+    name:"Streetwear",
+    sets:[
+      ["חולצת אוברסייז", "ג׳ינס רחב", "סניקרס לבנות", "שרשרת עדינה"],
+      ["הודי רחב", "דגמ״ח שחור", "נעלי ספורט גבוהות", "תיק צד"],
+      ["טי־שירט גרפית", "מכנס רחב", "סניקרס צבעוניות", "כובע"]
+    ]
+  },
+  "Old School":{
+    icon:"🧥",
+    name:"Old School",
+    sets:[
+      ["ג׳קט וינטג׳", "חולצה חלקה", "ג׳ינס ישר", "נעלי עור"],
+      ["חולצת פולו", "ג׳ינס בהיר", "סניקרס רטרו", "שעון ישן"],
+      ["מעיל ג׳ינס", "טי־שירט לבנה", "מכנס ישר", "נעליים קלאסיות"]
+    ]
+  },
+  Casual:{
+    icon:"👕",
+    name:"Casual",
+    sets:[
+      ["טי־שירט איכותית", "מכנס נוח", "סניקרס נקיות", "שעון פשוט"],
+      ["חולצת פשתן", "מכנס קצר נקי", "נעליים לבנות", "צמיד עדין"],
+      ["סווטשירט דק", "ג׳ינס כחול", "נעלי קז׳ואל", "בושם עדין"]
+    ]
+  },
+  Elegant:{
+    icon:"🕶️",
+    name:"Elegant",
+    sets:[
+      ["חולצה מכופתרת", "מכנס מחויט", "נעליים נקיות", "בושם טוב"],
+      ["סריג דק", "מכנס שחור", "נעלי עור", "שעון מתכתי"],
+      ["בלייזר קל", "טי־שירט חלקה", "מכנס אלגנט", "משקפי שמש"]
+    ]
+  },
+  Dark:{
+    icon:"🌙",
+    name:"Dark Night",
+    sets:[
+      ["חולצה שחורה", "ג׳ינס שחור", "נעליים כהות", "אקססורי כסף"],
+      ["הודי שחור", "מכנס קרגו כהה", "סניקרס שחורות", "שרשרת"],
+      ["מעיל עור", "חולצה כהה", "ג׳ינס שחור", "טבעת כסף"]
+    ]
+  }
+};
+
 function quickStyle(style){
   document.getElementById("style").value = style;
   buildLook();
-}
-
-function dataByStyle(style){
-  const data = {
-    "Streetwear": {
-      icon:"👟",
-      title:"Streetwear",
-      looks:[
-        ["חולצת אוברסייז", "ג׳ינס רחב", "סניקרס לבנות", "כובע / שרשרת"],
-        ["הודי רחב", "דגמ״ח", "נעלי ספורט גבוהות", "תיק צד"],
-        ["טי־שירט גרפית", "מכנס רחב כהה", "סניקרס צבעוניות", "טבעת כסף"]
-      ]
-    },
-    "Old School": {
-      icon:"🧥",
-      title:"Old School",
-      looks:[
-        ["ג׳קט וינטג׳", "חולצה חלקה", "ג׳ינס ישר", "נעליים קלאסיות"],
-        ["חולצת פולו", "ג׳ינס בהיר", "סניקרס רטרו", "שעון ישן"],
-        ["מעיל ג׳ינס", "טי־שירט לבנה", "מכנס ישר", "נעלי עור"]
-      ]
-    },
-    "Casual": {
-      icon:"👕",
-      title:"Casual",
-      looks:[
-        ["טי־שירט איכותית", "מכנס נוח", "סניקרס נקיות", "שעון פשוט"],
-        ["חולצת פשתן", "מכנס קצר נקי", "נעליים לבנות", "צמיד עדין"],
-        ["סווטשירט דק", "ג׳ינס כחול", "נעלי קז׳ואל", "בושם עדין"]
-      ]
-    },
-    "Elegant": {
-      icon:"🕶️",
-      title:"Elegant",
-      looks:[
-        ["חולצה מכופתרת", "מכנס מחויט", "נעליים נקיות", "בושם טוב"],
-        ["סריג דק", "מכנס שחור", "נעלי עור", "שעון מתכתי"],
-        ["בלייזר קל", "טי־שירט חלקה", "מכנס אלגנט", "משקפי שמש"]
-      ]
-    },
-    "Dark": {
-      icon:"🌙",
-      title:"Dark Night",
-      looks:[
-        ["חולצה שחורה", "ג׳ינס שחור", "נעליים כהות", "אקססורי כסף"],
-        ["הודי שחור", "מכנס קרגו כהה", "סניקרס שחורות", "שרשרת"],
-        ["מעיל עור", "חולצה כהה", "ג׳ינס סקיני", "טבעת כסף"]
-      ]
-    }
-  };
-
-  return data[style];
 }
 
 function buildLook(){
@@ -299,38 +365,39 @@ function buildLook(){
   const budget = document.getElementById("budget").value;
   const tiktok = document.getElementById("tiktok").value;
 
-  const data = dataByStyle(style);
+  const data = looks[style];
 
   document.getElementById("result").style.display = "block";
 
-  document.getElementById("outfits").innerHTML = data.looks.map((items,index)=>`
-    <div class="outfit">
-      <div class="outfit-top">
-        <div>
-          <h3>${data.icon} ${data.title} Fit ${index+1}</h3>
-          <p>${tiktok ? "מבוסס גם על ההשראה שהדבקת 🔗" : "לוק מוצע לפי הבחירות שלך."}</p>
+  document.getElementById("outfits").innerHTML =
+    data.sets.map((set,index)=>`
+      <div class="outfit">
+        <div class="outfit-head">
+          <div>
+            <h3>${data.name} Fit ${index+1}</h3>
+            <p>${tiktok ? "מבוסס גם על ההשראה שהכנסת 🔗" : "לוק שנבנה לפי הבחירות שלך."}</p>
+          </div>
+          <div class="big-icon">${data.icon}</div>
         </div>
-        <div class="outfit-icon">${data.icon}</div>
-      </div>
 
-      <div class="items">
-        ${items.map(item => `<div class="item">🛍️ ${item}</div>`).join("")}
-      </div>
+        <div class="items">
+          ${set.map(item=>`<div class="item">🛍️ ${item}</div>`).join("")}
+        </div>
 
-      <div class="tags">
-        <span class="tag">מידה: ${size}</span>
-        <span class="tag">תקציב: ${budget}</span>
-        <span class="tag">סגנון: ${style}</span>
-      </div>
+        <div class="tags">
+          <span class="tag">מידה ${size}</span>
+          <span class="tag">תקציב ${budget}</span>
+          <span class="tag">${style}</span>
+        </div>
 
-      <div class="actions">
-        <button class="save" onclick="saveLook('${data.title} Fit ${index+1}')">❤️ שמור</button>
-        <a class="shop" href="https://www.google.com/search?q=${encodeURIComponent(style + ' outfit clothes ' + size)}" target="_blank">🛒 חפש</a>
+        <div class="actions">
+          <button class="save" onclick="saveLook('${data.name} Fit ${index+1}')">❤️ שמור</button>
+          <a class="shop" target="_blank" href="https://www.google.com/search?q=${encodeURIComponent(style + ' outfit clothes ' + size)}">חפש בגדים</a>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `).join("");
 
-  renderSaved();
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
 }
 
 function saveLook(name){
@@ -339,15 +406,19 @@ function saveLook(name){
     localStorage.setItem("savedLooks", JSON.stringify(saved));
   }
   renderSaved();
-  alert("הלוק נשמר ❤️");
 }
 
 function renderSaved(){
-  if(saved.length === 0) return;
+  const box = document.getElementById("savedBox");
+  const list = document.getElementById("savedLooks");
 
-  document.getElementById("savedBox").style.display = "block";
-  document.getElementById("savedLooks").innerHTML =
-    saved.map(s => `<div class="item">❤️ ${s}</div>`).join("");
+  if(saved.length === 0){
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "block";
+  list.innerHTML = saved.map(s=>`<div class="item">❤️ ${s}</div>`).join("");
 }
 
 renderSaved();
