@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -11,77 +11,47 @@
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#0f0f0f;
-  color:#111;
+  background:#f6efe7;
+  color:#151515;
 }
 
 .app{
   max-width:430px;
   margin:auto;
   min-height:100vh;
-  background:#f7f1e8;
   padding-bottom:40px;
 }
 
 .hero{
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.7)),
-    radial-gradient(circle at top,#d8c1a8,#7b604d);
-  color:white;
-  padding:34px 20px 28px;
+  padding:34px 22px 28px;
+  background:linear-gradient(160deg,#fff,#e8d7c4);
   border-radius:0 0 42px 42px;
-}
-
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.08);
 }
 
 .logo{
-  width:64px;
-  height:64px;
-  border-radius:22px;
-  background:white;
-  color:#111;
+  width:78px;
+  height:78px;
+  border-radius:28px;
+  background:#111;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:34px;
-  box-shadow:0 14px 30px rgba(0,0,0,.25);
-}
-
-.badge{
-  background:rgba(255,255,255,.18);
-  padding:9px 14px;
-  border-radius:999px;
-  font-size:13px;
-  backdrop-filter:blur(10px);
+  font-size:40px;
+  box-shadow:0 16px 30px rgba(0,0,0,.18);
 }
 
 h1{
   font-size:52px;
-  margin:30px 0 8px;
-  line-height:1;
+  margin:22px 0 8px;
 }
 
 .hero p{
-  color:#eee;
+  color:#6d5c50;
   font-size:17px;
   line-height:1.5;
   margin:0;
-}
-
-.startBtn{
-  margin-top:22px;
-  width:100%;
-  border:0;
-  border-radius:24px;
-  padding:17px;
-  background:white;
-  color:#111;
-  font-size:17px;
-  font-weight:900;
 }
 
 .section{
@@ -93,33 +63,22 @@ h1{
   border-radius:30px;
   padding:18px;
   margin-top:18px;
-  box-shadow:0 16px 34px rgba(0,0,0,.08);
+  box-shadow:0 14px 34px rgba(0,0,0,.08);
 }
 
-.card h2{
-  margin:0 0 12px;
-}
-
-.ai-card{
-  background:#111;
-  color:white;
+label{
+  display:block;
+  font-weight:900;
+  margin:14px 0 7px;
 }
 
 input,select{
   width:100%;
   border:0;
-  background:#f0ebe4;
-  border-radius:18px;
+  background:#f1e8de;
   padding:16px;
-  margin-top:11px;
+  border-radius:18px;
   font-size:16px;
-  outline:none;
-}
-
-.ai-card input,
-.ai-card select{
-  background:#242424;
-  color:white;
 }
 
 button{
@@ -134,11 +93,6 @@ button{
 }
 
 .primary{
-  background:linear-gradient(135deg,#caa17a,#6b4f3d);
-  color:white;
-}
-
-.darkBtn{
   background:#111;
   color:white;
 }
@@ -151,84 +105,114 @@ button{
 }
 
 .style{
-  min-width:125px;
-  height:130px;
-  border-radius:26px;
+  min-width:126px;
   background:#fff;
+  border-radius:24px;
   padding:16px;
-  box-shadow:0 12px 26px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  box-shadow:0 10px 24px rgba(0,0,0,.07);
   cursor:pointer;
 }
 
-.style .emoji{
+.style span{
   font-size:38px;
+  display:block;
+  margin-bottom:10px;
 }
 
 .style b{
-  font-size:15px;
+  display:block;
+}
+
+.muted{
+  color:#777;
+  font-size:14px;
 }
 
 .result{
   display:none;
 }
 
-.look{
-  background:#fbf7f1;
+.look-card{
+  background:#141414;
+  color:white;
+  border-radius:34px;
+  padding:18px;
+  margin-top:16px;
+  overflow:hidden;
+  box-shadow:0 18px 38px rgba(0,0,0,.18);
+}
+
+.look-visual{
+  height:220px;
   border-radius:28px;
-  padding:16px;
-  margin-top:14px;
-  border:1px solid rgba(0,0,0,.05);
-}
-
-.lookHead{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-
-.lookIcon{
-  width:68px;
-  height:68px;
-  border-radius:22px;
-  background:white;
+  background:linear-gradient(150deg,#3a3028,#d8b38e);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:40px;
-  box-shadow:0 10px 22px rgba(0,0,0,.08);
+  font-size:92px;
+  margin-bottom:18px;
+}
+
+.look-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.look-title h2{
+  margin:0;
+  font-size:27px;
+}
+
+.price{
+  background:white;
+  color:#111;
+  padding:9px 13px;
+  border-radius:999px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .items{
   display:grid;
   gap:10px;
-  margin-top:14px;
+  margin-top:16px;
 }
 
 .item{
-  background:white;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:18px;
-  padding:14px;
+  padding:13px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
 }
 
-.tagRow{
+.shops{
   display:flex;
-  flex-wrap:wrap;
   gap:8px;
-  margin-top:14px;
+  flex-wrap:wrap;
+  margin-top:16px;
 }
 
-.tag{
-  background:white;
+.shop-tag{
+  background:rgba(255,255,255,.12);
   border-radius:999px;
   padding:8px 12px;
   font-size:13px;
+}
+
+.arrows{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+
+.arrows button{
+  background:#f1e8de;
+  color:#111;
 }
 
 .actions{
@@ -238,28 +222,24 @@ button{
 }
 
 .save{
-  background:#ead7c2;
-  color:#111;
+  background:#a47d61;
+  color:white;
 }
 
-.shop{
+.buy{
   display:block;
   text-decoration:none;
   text-align:center;
-  background:#111;
-  color:white;
-  border-radius:18px;
-  padding:14px;
+  background:white;
+  color:#111;
+  border-radius:20px;
+  padding:16px;
+  margin-top:14px;
   font-weight:900;
 }
 
-.savedBox{
+.saved{
   display:none;
-}
-
-.muted{
-  color:#777;
-  font-size:14px;
 }
 </style>
 </head>
@@ -269,153 +249,164 @@ button{
 <div class="app">
 
   <div class="hero">
-    <div class="top">
-      <div class="logo">👕</div>
-      <div class="badge">AI Stylist</div>
-    </div>
-
+    <div class="logo">👕</div>
     <h1>StyleAir</h1>
     <p>
-      לא יודע מה ללבוש?  
-      תבחר סגנון, מידה ותקציב — ותקבל לוקים מוכנים.
+      בונה לך לוק לפי סגנון, מידה, תקציב והשראה מטיקטוק.
+      נקי, פשוט, ויפה לעין.
     </p>
-
-    <button class="startBtn" onclick="goBuilder()">בנה לי לוק ✨</button>
   </div>
 
   <div class="section">
 
     <div class="card">
-      <h2>בחר וייב</h2>
+      <h2>בחר סגנון</h2>
 
       <div class="styles">
         <div class="style" onclick="pickStyle('Streetwear')">
-          <span class="emoji">👟</span>
+          <span>👟</span>
           <b>Streetwear</b>
-          <span class="muted">רחוב ונוח</span>
-        </div>
-
-        <div class="style" onclick="pickStyle('Old School')">
-          <span class="emoji">🧥</span>
-          <b>Old School</b>
-          <span class="muted">וינטג׳ נקי</span>
-        </div>
-
-        <div class="style" onclick="pickStyle('Casual')">
-          <span class="emoji">👕</span>
-          <b>Casual</b>
-          <span class="muted">יומיומי</span>
+          <small class="muted">רחוב</small>
         </div>
 
         <div class="style" onclick="pickStyle('Elegant')">
-          <span class="emoji">🕶️</span>
+          <span>🕶️</span>
           <b>Elegant</b>
-          <span class="muted">מסודר</span>
+          <small class="muted">מסודר</small>
         </div>
 
         <div class="style" onclick="pickStyle('Dark')">
-          <span class="emoji">🌙</span>
+          <span>🌙</span>
           <b>Dark</b>
-          <span class="muted">לילה</span>
+          <small class="muted">לילה</small>
+        </div>
+
+        <div class="style" onclick="pickStyle('Casual')">
+          <span>👕</span>
+          <b>Casual</b>
+          <small class="muted">יומיומי</small>
+        </div>
+
+        <div class="style" onclick="pickStyle('Old School')">
+          <span>🧥</span>
+          <b>Old School</b>
+          <small class="muted">וינטג׳</small>
         </div>
       </div>
     </div>
 
-    <div class="card ai-card" id="builder">
-      <h2>הסטייליסט שלך</h2>
+    <div class="card">
+      <h2>הפרטים שלך</h2>
 
-      <input id="inspo" placeholder="🔗 קישור מטיקטוק או תיאור לוק">
+      <label>השראה מטיקטוק</label>
+      <input id="inspo" placeholder="הדבק קישור או תיאור">
 
+      <label>סגנון</label>
       <select id="style">
         <option value="Streetwear">Streetwear</option>
-        <option value="Old School">Old School</option>
-        <option value="Casual">Casual</option>
         <option value="Elegant">Elegant</option>
         <option value="Dark">Dark / Night</option>
+        <option value="Casual">Casual</option>
+        <option value="Old School">Old School</option>
       </select>
 
+      <label>מידה</label>
       <select id="size">
-        <option value="S">מידה S</option>
-        <option value="M">מידה M</option>
-        <option value="L">מידה L</option>
-        <option value="XL">מידה XL</option>
+        <option>S</option>
+        <option selected>M</option>
+        <option>L</option>
+        <option>XL</option>
       </select>
 
+      <label>תקציב</label>
       <select id="budget">
-        <option value="זול">תקציב זול</option>
-        <option value="בינוני">תקציב בינוני</option>
-        <option value="גבוה">תקציב גבוה</option>
+        <option value="low">זול</option>
+        <option value="mid" selected>בינוני</option>
+        <option value="high">גבוה</option>
       </select>
 
-      <button class="primary" onclick="buildLooks()">צור 3 לוקים</button>
+      <button class="primary" onclick="buildLooks()">בנה לי לוקים</button>
     </div>
 
-    <div id="result" class="card result">
-      <h2>הלוקים שלך</h2>
-      <div id="looks"></div>
+    <div id="result" class="result">
+      <div id="lookBox"></div>
     </div>
 
-    <div id="savedBox" class="card savedBox">
+    <div id="savedBox" class="card saved">
       <h2>❤️ שמורים</h2>
-      <div id="saved"></div>
+      <div id="savedList"></div>
     </div>
 
   </div>
 </div>
 
 <script>
-let savedLooks = JSON.parse(localStorage.getItem("styleair_saved")) || [];
+let current = 0;
+let currentLooks = [];
+let saved = JSON.parse(localStorage.getItem("styleair_saved")) || [];
 
 const data = {
   Streetwear:{
     icon:"👟",
     title:"Streetwear",
+    visual:"👟",
+    shops:["Zara","H&M","Nike","Terminal X"],
     looks:[
-      ["חולצת אוברסייז", "ג׳ינס רחב", "סניקרס לבנות", "שרשרת כסף"],
-      ["הודי רחב", "דגמ״ח", "נעלי ספורט גבוהות", "תיק צד"],
-      ["טי־שירט גרפית", "מכנס רחב", "סניקרס צבעוניות", "כובע"]
-    ]
-  },
-  "Old School":{
-    icon:"🧥",
-    title:"Old School",
-    looks:[
-      ["ג׳קט וינטג׳", "טי־שירט לבנה", "ג׳ינס ישר", "נעלי עור"],
-      ["חולצת פולו", "ג׳ינס בהיר", "סניקרס רטרו", "שעון ישן"],
-      ["מעיל ג׳ינס", "חולצה חלקה", "מכנס ישר", "נעליים קלאסיות"]
-    ]
-  },
-  Casual:{
-    icon:"👕",
-    title:"Casual",
-    looks:[
-      ["טי־שירט איכותית", "מכנס נוח", "סניקרס נקיות", "שעון פשוט"],
-      ["חולצת פשתן", "מכנס קצר נקי", "נעליים לבנות", "צמיד עדין"],
-      ["סווטשירט דק", "ג׳ינס כחול", "נעלי קז׳ואל", "בושם עדין"]
+      ["חולצת אוברסייז","ג׳ינס רחב","סניקרס לבנות","שרשרת כסף"],
+      ["הודי רחב","דגמ״ח שחור","נעלי ספורט גבוהות","תיק צד"],
+      ["טי־שירט גרפית","מכנס רחב","סניקרס צבעוניות","כובע"]
     ]
   },
   Elegant:{
     icon:"🕶️",
     title:"Elegant",
+    visual:"🕶️",
+    shops:["Zara","Castro","Mango","Terminal X"],
     looks:[
-      ["חולצה מכופתרת", "מכנס מחויט", "נעליים נקיות", "בושם טוב"],
-      ["סריג דק", "מכנס שחור", "נעלי עור", "שעון מתכתי"],
-      ["בלייזר קל", "טי־שירט חלקה", "מכנס אלגנט", "משקפי שמש"]
+      ["חולצה מכופתרת","מכנס מחויט","נעליים נקיות","בושם טוב"],
+      ["סריג דק","מכנס שחור","נעלי עור","שעון מתכתי"],
+      ["בלייזר קל","טי־שירט חלקה","מכנס אלגנט","משקפי שמש"]
     ]
   },
   Dark:{
     icon:"🌙",
     title:"Dark Night",
+    visual:"🌙",
+    shops:["Pull&Bear","Zara","Bershka","ASOS"],
     looks:[
-      ["חולצה שחורה", "ג׳ינס שחור", "נעליים כהות", "אקססורי כסף"],
-      ["הודי שחור", "קרגו כהה", "סניקרס שחורות", "שרשרת"],
-      ["מעיל עור", "חולצה כהה", "ג׳ינס שחור", "טבעת כסף"]
+      ["חולצה שחורה","ג׳ינס שחור","נעליים כהות","אקססורי כסף"],
+      ["הודי שחור","קרגו כהה","סניקרס שחורות","שרשרת"],
+      ["מעיל עור","חולצה כהה","ג׳ינס שחור","טבעת כסף"]
+    ]
+  },
+  Casual:{
+    icon:"👕",
+    title:"Casual",
+    visual:"👕",
+    shops:["H&M","Fox","Castro","Terminal X"],
+    looks:[
+      ["טי־שירט איכותית","מכנס נוח","סניקרס נקיות","שעון פשוט"],
+      ["חולצת פשתן","מכנס קצר נקי","נעליים לבנות","צמיד עדין"],
+      ["סווטשירט דק","ג׳ינס כחול","נעלי קז׳ואל","בושם עדין"]
+    ]
+  },
+  "Old School":{
+    icon:"🧥",
+    title:"Old School",
+    visual:"🧥",
+    shops:["Zara","Levi's","Pull&Bear","ASOS"],
+    looks:[
+      ["ג׳קט וינטג׳","טי־שירט לבנה","ג׳ינס ישר","נעלי עור"],
+      ["חולצת פולו","ג׳ינס בהיר","סניקרס רטרו","שעון ישן"],
+      ["מעיל ג׳ינס","חולצה חלקה","מכנס ישר","נעליים קלאסיות"]
     ]
   }
 };
 
-function goBuilder(){
-  document.getElementById("builder").scrollIntoView({behavior:"smooth"});
+function priceByBudget(budget){
+  if(budget === "low") return "₪149–₪299";
+  if(budget === "mid") return "₪299–₪499";
+  return "₪499–₪899";
 }
 
 function pickStyle(style){
@@ -428,22 +419,45 @@ function buildLooks(){
   const size = document.getElementById("size").value;
   const budget = document.getElementById("budget").value;
   const inspo = document.getElementById("inspo").value;
+
   const d = data[style];
 
-  document.getElementById("result").style.display = "block";
+  currentLooks = d.looks.map((items,i)=>({
+    name:`${d.title} Fit ${i+1}`,
+    icon:d.icon,
+    visual:d.visual,
+    items,
+    shops:d.shops,
+    size,
+    budget,
+    price:priceByBudget(budget),
+    inspo
+  }));
 
-  document.getElementById("looks").innerHTML = d.looks.map((items,i)=>`
-    <div class="look">
-      <div class="lookHead">
-        <div>
-          <h3>${d.title} Fit ${i+1}</h3>
-          <p class="muted">${inspo ? "כולל השראה שהכנסת 🔗" : "לוק לפי הבחירות שלך"}</p>
-        </div>
-        <div class="lookIcon">${d.icon}</div>
+  current = 0;
+  renderLook();
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function renderLook(){
+  const look = currentLooks[current];
+
+  document.getElementById("lookBox").innerHTML = `
+    <div class="look-card">
+      <div class="look-visual">${look.visual}</div>
+
+      <div class="look-title">
+        <h2>${look.name}</h2>
+        <div class="price">${look.price}</div>
       </div>
 
+      <p class="muted">
+        ${look.inspo ? "מבוסס גם על ההשראה שהכנסת 🔗" : "לוק שנבנה לפי הבחירות שלך"}
+      </p>
+
       <div class="items">
-        ${items.map(x=>`
+        ${look.items.map(x=>`
           <div class="item">
             <span>🛍️ ${x}</span>
             <span>›</span>
@@ -451,36 +465,50 @@ function buildLooks(){
         `).join("")}
       </div>
 
-      <div class="tagRow">
-        <span class="tag">מידה ${size}</span>
-        <span class="tag">תקציב ${budget}</span>
-        <span class="tag">${style}</span>
+      <div class="shops">
+        ${look.shops.map(s=>`<span class="shop-tag">${s}</span>`).join("")}
+      </div>
+
+      <div class="arrows">
+        <button onclick="prevLook()">➡️ הקודם</button>
+        <button onclick="nextLook()">⬅️ הבא</button>
       </div>
 
       <div class="actions">
-        <button class="save" onclick="saveLook('${d.title} Fit ${i+1}')">❤️ שמור</button>
-        <a class="shop" target="_blank" href="https://www.google.com/search?q=${encodeURIComponent(style+' outfit clothes '+size)}">חפש בגדים</a>
+        <button class="save" onclick="saveLook()">❤️ שמור</button>
+        <a class="buy" target="_blank" href="https://www.google.com/search?q=${encodeURIComponent(look.name + ' clothes outfit ' + look.size)}">חפש בגדים</a>
       </div>
     </div>
-  `).join("");
-
-  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+  `;
 }
 
-function saveLook(name){
-  if(!savedLooks.includes(name)){
-    savedLooks.push(name);
-    localStorage.setItem("styleair_saved", JSON.stringify(savedLooks));
+function nextLook(){
+  current++;
+  if(current >= currentLooks.length) current = 0;
+  renderLook();
+}
+
+function prevLook(){
+  current--;
+  if(current < 0) current = currentLooks.length - 1;
+  renderLook();
+}
+
+function saveLook(){
+  const look = currentLooks[current];
+  if(!saved.includes(look.name)){
+    saved.push(look.name);
+    localStorage.setItem("styleair_saved",JSON.stringify(saved));
   }
   renderSaved();
 }
 
 function renderSaved(){
-  if(savedLooks.length === 0) return;
+  if(saved.length === 0) return;
 
   document.getElementById("savedBox").style.display = "block";
-  document.getElementById("saved").innerHTML =
-    savedLooks.map(x=>`<div class="item">❤️ ${x}</div>`).join("");
+  document.getElementById("savedList").innerHTML =
+    saved.map(x=>`<div class="card">❤️ ${x}</div>`).join("");
 }
 
 renderSaved();
