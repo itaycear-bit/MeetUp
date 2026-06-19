@@ -3,352 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🍒 MeetUp</title>
+<title>StyleAir</title>
 
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#fff,#ffeef3,#f2f2f2);color:#111;transition:.3s}
-.dark{background:#111;color:white}
-.dark .card,.dark .grid button,.dark .search{background:#1d1d1d;color:white}
-.dark .card p{color:#ddd}
-#app{max-width:430px;margin:auto;padding:24px 18px 60px;text-align:center}
-.big-cherry{font-size:120px;filter:drop-shadow(0 18px 18px rgba(0,0,0,.18));animation:float 2s infinite}
-@keyframes float{50%{transform:translateY(-10px)}}
-.title{font-size:48px;font-weight:900;margin:0}
-.subtitle{color:#666;margin:8px 0 22px}
-.actions,.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
-button{border:0;border-radius:18px;padding:15px;font-size:16px;cursor:pointer}
-.main-btn{color:white;font-weight:700}
-.random{background:#111}.loc{background:#0f9d58}.favorites-btn{background:#ff4d6d}.dark-btn{background:#333}
-.grid button{background:white;box-shadow:0 8px 22px rgba(0,0,0,.1)}
-.search{width:100%;box-sizing:border-box;border:0;border-radius:18px;padding:16px;font-size:16px;box-shadow:0 8px 22px rgba(0,0,0,.1)}
-.card{background:white;border-radius:28px;padding:22px;margin-top:24px;box-shadow:0 14px 36px rgba(0,0,0,.15);animation:pop .3s}
-@keyframes pop{from{opacity:0;transform:translateY(15px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-.card h2{font-size:28px;margin:0 0 10px}.card p{color:#444}
-.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}
-.tag{background:#eee;border-radius:999px;padding:7px 12px;font-size:13px;color:#111}
-.mood-badge{display:inline-block;padding:8px 14px;border-radius:999px;color:white;font-size:13px;font-weight:800;margin-bottom:12px}
-.theme-בר{background:#6d28d9}.theme-פיצה{background:#f97316}.theme-קפה{background:#92400e}.theme-אוכל{background:#dc2626}.theme-פארק{background:#16a34a}.theme-ים{background:#0284c7}
-.arrows{display:flex;gap:10px;margin-top:14px}.arrows button{flex:1;background:#eee}
-.action{width:100%;background:#111;color:white;margin-top:10px}
-.whatsapp{width:100%;background:#25D366;color:white;margin-top:10px}
-.delete{width:100%;background:#444;color:white;margin-top:10px}
-.save{width:100%;margin-top:14px;background:linear-gradient(135deg,#ff4d6d,#ff758f);color:white;font-weight:800;box-shadow:0 10px 24px rgba(255,77,109,.35)}
-.open{color:#0f9d58;font-weight:800}.closed{color:#e53935;font-weight:800}
-
-#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);z-index:9998}
-#rouletteBox{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;flex-direction:column;color:white}
-.pointer{font-size:42px;margin-bottom:-8px;z-index:2}
-.wheel{width:260px;height:260px;border-radius:50%;background:conic-gradient(#6d28d9 0 60deg,#f97316 60deg 120deg,#92400e 120deg 180deg,#dc2626 180deg 240deg,#16a34a 240deg 300deg,#0284c7 300deg 360deg);display:flex;align-items:center;justify-content:center;font-size:54px;box-shadow:0 20px 50px rgba(0,0,0,.4);border:8px solid white}
-.wheel.spin{animation:rouletteSpin 1.8s cubic-bezier(.2,.9,.2,1)}
-@keyframes rouletteSpin{from{transform:rotate(0)}to{transform:rotate(1600deg)}}
-.rouletteText{margin-top:18px;font-size:20px;font-weight:900}
-
-#splash{position:fixed;inset:0;background:linear-gradient(180deg,#fff,#ffeef3);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.4s}
-#splash .big-cherry{font-size:150px;cursor:pointer}
-.splash-title{font-size:46px;font-weight:900;margin-top:22px}
-.splash-sub{color:#777;margin-top:10px}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#fffaf3,#f2eadf,#ffffff);
+  color:#1f1f1f;
+}
+#app{
+  max-width:430px;
+  margin:auto;
+  padding:28px 18px 70px;
+  text-align:center;
+}
+.logo{
+  font-size:95px;
+  margin-top:25px;
+  animation:float 2.5s infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-10px)}
+}
+h1{
+  font-size:48px;
+  margin:8px 0;
+}
+.subtitle{
+  color:#6d6258;
+  font-size:17px;
+  line-height:1.5;
+}
+.card{
+  background:white;
+  border-radius:30px;
+  padding:20px;
+  margin-top:22px;
+  box-shadow:0 14px 35px rgba(0,0,0,.09);
+}
+input,select{
+  width:100%;
+  box-sizing:border-box;
+  border:0;
+  background:#f3eee7;
+  padding:16px;
+  border-radius:18px;
+  font-size:16px;
+  margin-top:12px;
+}
+button{
+  width:100%;
+  border:0;
+  border-radius:20px;
+  padding:16px;
+  margin-top:14px;
+  font-size:17px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,#111,#4a4038);
+  cursor:pointer;
+}
+.styles{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:15px;
+}
+.style-btn{
+  background:white;
+  color:#111;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.result{
+  display:none;
+}
+.outfit{
+  background:#f7f3ee;
+  border-radius:24px;
+  padding:16px;
+  margin-top:14px;
+  text-align:right;
+}
+.items{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.item{
+  background:white;
+  border-radius:18px;
+  padding:13px;
+}
+.tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.tag{
+  background:white;
+  border-radius:999px;
+  padding:7px 12px;
+  font-size:13px;
+}
+.shop{
+  display:block;
+  background:#111;
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  padding:14px;
+  border-radius:18px;
+  margin-top:12px;
+  font-weight:900;
+}
 </style>
 </head>
 
 <body>
 
-<div id="splash">
-  <div class="big-cherry" onclick="openApp()">🍒</div>
-  <div class="splash-title">MeetUp</div>
-  <div class="splash-sub">לחץ על הדובדבן כדי להתחיל</div>
-</div>
-
-<div id="overlay"></div>
-
-<div id="rouletteBox">
-  <div class="pointer">▼</div>
-  <div id="wheel" class="wheel">🍒</div>
-  <div class="rouletteText">מסובב רולטה...</div>
-</div>
-
 <div id="app">
-  <div class="big-cherry">🍒</div>
-  <h1 class="title">MeetUp</h1>
-  <p class="subtitle">תבחר מקום טוב בלי לחשוב יותר מדי</p>
 
-  <div class="actions">
-    <button class="main-btn random" onclick="randomPlace()">🎰 רולטה</button>
-    <button class="main-btn loc" onclick="enableLocation()">📍 מיקום</button>
-    <button class="main-btn favorites-btn" onclick="showFavorites()">❤️ מועדפים</button>
-    <button class="main-btn dark-btn" onclick="toggleDark()">🌙 מצב לילה</button>
+  <div class="logo">👕✨</div>
+
+  <h1>StyleAir</h1>
+
+  <p class="subtitle">
+    לא יודע מה ללבוש?<br>
+    בנה לוק לפי הסגנון, המידה, התקציב וההשראה שלך.
+  </p>
+
+  <div class="card">
+    <h2>בנה לי לוק</h2>
+
+    <input id="tiktok" placeholder="🔗 הדבק קישור מטיקטוק / השראה">
+
+    <select id="style">
+      <option value="Streetwear">Streetwear</option>
+      <option value="Old School">Old School</option>
+      <option value="Casual">Casual</option>
+      <option value="Elegant">Elegant</option>
+      <option value="Dark">Dark / Night</option>
+    </select>
+
+    <select id="size">
+      <option value="S">מידה S</option>
+      <option value="M">מידה M</option>
+      <option value="L">מידה L</option>
+      <option value="XL">מידה XL</option>
+    </select>
+
+    <select id="budget">
+      <option value="זול">תקציב זול</option>
+      <option value="בינוני">תקציב בינוני</option>
+      <option value="גבוה">תקציב גבוה</option>
+    </select>
+
+    <button onclick="buildLook()">✨ בנה לי לוק</button>
   </div>
 
-  <div id="locationStatus">המיקום עדיין לא הופעל</div><br>
+  <div class="card">
+    <h2>סגנונות מהירים</h2>
 
-  <input class="search" id="searchInput" placeholder="🔎 חפש בר / פיצה / ים / קפה" oninput="searchPlaces()">
-
-  <div class="grid">
-    <button onclick="showCategory('פיצה')">🍕 פיצה</button>
-    <button onclick="showCategory('קפה')">☕ קפה</button>
-    <button onclick="showCategory('אוכל')">🍔 אוכל</button>
-    <button onclick="showCategory('בר')">🍻 בר</button>
-    <button onclick="showCategory('פארק')">🌳 פארק</button>
-    <button onclick="showCategory('ים')">🌊 ים</button>
+    <div class="styles">
+      <button class="style-btn" onclick="quickStyle('Streetwear')">👟 Street</button>
+      <button class="style-btn" onclick="quickStyle('Old School')">🧥 Old School</button>
+      <button class="style-btn" onclick="quickStyle('Casual')">👕 Casual</button>
+      <button class="style-btn" onclick="quickStyle('Elegant')">🕶️ Elegant</button>
+    </div>
   </div>
 
-  <div id="result"></div>
+  <div id="result" class="card result">
+    <h2>הלוק שלך</h2>
+    <div id="outfits"></div>
+  </div>
+
 </div>
 
 <script>
-function openApp(){
-  const s=document.getElementById("splash");
-  s.style.opacity="0";
-  setTimeout(()=>s.remove(),400);
+function quickStyle(style){
+  document.getElementById("style").value = style;
+  buildLook();
 }
 
-function toggleDark(){
-  document.body.classList.toggle("dark");
-  localStorage.setItem("darkMode",document.body.classList.contains("dark"));
-}
+function buildLook(){
+  const style = document.getElementById("style").value;
+  const size = document.getElementById("size").value;
+  const budget = document.getElementById("budget").value;
+  const tiktok = document.getElementById("tiktok").value;
 
-if(localStorage.getItem("darkMode")==="true"){
-  document.body.classList.add("dark");
-}
+  let title = "";
+  let items = [];
 
-let currentCategory="",currentIndex=0,searchMode=false,searchResults=[];
-let userLat=null,userLon=null;
-let favorites=JSON.parse(localStorage.getItem("favorites"))||[];
-
-function makePlaces(names,category,price,desc,tags,open,close){
-  return names.map((n,i)=>({
-    name:n,
-    category:category,
-    price:price,
-    rating:(4+(i%9)/10).toFixed(1)+"⭐",
-    desc:desc,
-    tags:tags,
-    open:open,
-    close:typeof close==="function"?close(i):close
-  }));
-}
-
-const places={
-"בר":makePlaces(["בר גג","פאב שכונתי","בר קוקטיילים","בר יין","בר מוזיקה","בר זול","לאונג׳","בר ספורט","בר קטן","בר חוף","בר סודי","בר דייט","בר הופעות","בר קיץ","בר צעירים"],"בר","₪40–₪160","מקום טוב ליציאה, שתייה ואווירה.",["בר","לילה"],18,i=>i%3===0?3:2),
-"פיצה":makePlaces(["פיצה האט","דומינוס","פיצה בוטיק","פיצה שכונתית","פיצה לילה","פיצה איטלקית","פיצה משפחתית","פיצה טבעונית","פיצה קריספי","פיצה דייט","פיצה רומאית","פיצה חריפה","פיצה גבינות","פיצה צעירים","פיצה XL"],"פיצה","₪40–₪120","פיצה טעימה לערב קליל.",["פיצה","קליל"],11,i=>i%4===0?2:23),
-"קפה":makePlaces(["לנדוור","ארומה","קפה שקט","קפה בוטיק","קפה קינוחים","קפה מאוחר","בית קפה קטן","קפה עם נוף","קפה עבודה","קפה שכונתי","קפה צעירים","קפה ספרים","קפה לילה","קפה מרפסת","קפה דייט"],"קפה","₪20–₪90","מקום נעים לקפה ושיחה.",["קפה","שיחה"],8,i=>i%3===0?24:22),
-"אוכל":makePlaces(["BBB","סושי בר","שווארמה","איטלקי","אסייתי","המבורגר בוטיק","טאקו","מסעדה משפחתית","ראמן","דיינר","גריל בר","סטייק האוס","המבורגר לילה","סושי דייט","מטבח שף"],"אוכל","₪35–₪150","אוכל טוב ליציאה.",["אוכל","טעים"],12,i=>i%4===0?1:24),
-"פארק":makePlaces(["פארק גדול","גן שקט","טיילת ירוקה","פינת ישיבה","פארק עם נוף","גן משפחתי","פארק ספורט","שביל הליכה","פארק לילה","גן קטן","פארק שקיעה","גן פתוח","פארק דייט","טיילת ערב","גן מרכזי"],"פארק","חינם","מקום רגוע לשבת ולדבר.",["פארק","שקט"],0,24),
-"ים":makePlaces(["חוף שקט","טיילת ים","חוף שקיעה","קפה ליד הים","בר חוף","חוף חברים","חוף רגוע","ספסל מול הים","חוף לילה","מרינה","חוף גלישה","חוף דייט","טיילת שקיעה","חוף צעירים","ים פתוח"],"ים","חינם","ים, אווירה ושיחה טובה.",["ים","שקיעה"],0,24)
-};
-
-function isOpen(p){
-  let h=new Date().getHours();
-  if(p.open===0&&p.close===24)return true;
-  if(p.close===24)return h>=p.open;
-  if(p.close<p.open)return h>=p.open||h<p.close;
-  return h>=p.open&&h<p.close;
-}
-
-function hoursText(p){
-  if(p.open===0&&p.close===24)return "פתוח 24/7";
-  return `פתוח מ-${String(p.open).padStart(2,"0")}:00 עד ${String(p.close).padStart(2,"0")}:00`;
-}
-
-function moodText(c){
-  if(c==="בר")return "מושלם ללילה 🌙";
-  if(c==="ים")return "אווירה רגועה ושקיעה 🌊";
-  if(c==="פארק")return "שקט ונעים לדבר 🌳";
-  if(c==="קפה")return "טוב לשיחה רגועה ☕";
-  if(c==="פיצה")return "קליל וכיף עם חברים 🍕";
-  if(c==="אוכל")return "רעב? זה הכיוון 🍔";
-  return "";
-}
-
-function allPlaces(){
-  let a=[];
-  for(let c in places){
-    places[c].forEach((p,i)=>a.push({...p,category:c,index:i}));
-  }
-  return a;
-}
-
-function getList(){
-  return searchMode?searchResults:places[currentCategory];
-}
-
-function getPlace(){
-  let l=getList();
-  return l&&l[currentIndex];
-}
-
-function renderPlace(){
-  let p=getPlace();
-
-  if(!p){
-    document.getElementById("result").innerHTML=`<div class="card"><h2>בחר קטגוריה 🍒</h2></div>`;
-    return;
+  if(style === "Streetwear"){
+    title = "👟 Streetwear Fit";
+    items = ["חולצת אוברסייז", "ג׳ינס רחב", "סניקרס לבנות", "כובע / שרשרת"];
+  } else if(style === "Old School"){
+    title = "🧥 Old School Fit";
+    items = ["ג׳קט וינטג׳", "חולצה חלקה", "ג׳ינס ישר", "נעליים קלאסיות"];
+  } else if(style === "Casual"){
+    title = "👕 Casual Fit";
+    items = ["טי־שירט איכותית", "מכנס נוח", "סניקרס נקיות", "שעון פשוט"];
+  } else if(style === "Elegant"){
+    title = "🕶️ Elegant Fit";
+    items = ["חולצה מכופתרת", "מכנס מחויט", "נעליים נקיות", "בושם / משקפיים"];
+  } else{
+    title = "🌙 Dark Night Fit";
+    items = ["חולצה שחורה", "ג׳ינס שחור", "נעליים כהות", "אקססורי כסף"];
   }
 
-  let category=p.category||currentCategory;
-  let open=isOpen(p)?`<span class="open">🟢 פתוח עכשיו</span>`:`<span class="closed">🔴 סגור עכשיו</span>`;
-  let map=userLat?`https://www.google.com/maps/search/${encodeURIComponent(p.name)}/@${userLat},${userLon},15z`:`https://www.google.com/maps/search/${encodeURIComponent(p.name)}`;
-  let wa="https://wa.me/?text="+encodeURIComponent("בוא ניפגש פה 🍒\n"+p.name+"\n"+p.desc+"\n"+map);
+  document.getElementById("result").style.display = "block";
 
-  document.getElementById("result").innerHTML=`
-  <div class="card">
-    <div class="mood-badge theme-${category}">${moodText(category)}</div>
-    <h2>🍒 ${p.name}</h2>
-    <p>${p.desc}</p>
-    <p>💰 ${p.price}</p>
-    <p>⭐ ${p.rating}</p>
-    <p>${open}<br><br>🕒 ${hoursText(p)}</p>
+  document.getElementById("outfits").innerHTML = `
+    <div class="outfit">
+      <h3>${title}</h3>
 
-    <div class="tags">
-      ${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+      <div class="items">
+        ${items.map(item => `<div class="item">🛍️ ${item}</div>`).join("")}
+      </div>
+
+      <div class="tags">
+        <span class="tag">מידה: ${size}</span>
+        <span class="tag">תקציב: ${budget}</span>
+        <span class="tag">סגנון: ${style}</span>
+      </div>
+
+      <p>
+        ${tiktok ? "הקישור מטיקטוק נשמר כהשראה 🔗" : "אפשר להדביק קישור מטיקטוק כדי לבנות לוק דומה."}
+      </p>
+
+      <a class="shop" href="https://www.google.com/search?q=${encodeURIComponent(style + ' outfit clothes ' + size)}" target="_blank">
+        🛒 חפש בגדים דומים
+      </a>
     </div>
-
-    <button class="save" onclick="saveFavorite()">❤️ שמור מקום</button>
-
-    <div class="arrows">
-      <button onclick="prevPlace()">➡️ הקודם</button>
-      <button onclick="nextPlace()">⬅️ הבא</button>
-    </div>
-
-    <button class="action" onclick="window.open('${map}')">📍 פתח במפות</button>
-    <button class="whatsapp" onclick="window.open('${wa}')">📲 שלח בוואטסאפ</button>
-  </div>`;
-}
-
-function showCategory(c){
-  searchMode=false;
-  currentCategory=c;
-  currentIndex=0;
-  renderPlace();
-}
-
-function nextPlace(){
-  let l=getList();
-  if(!l||!l.length)return;
-  currentIndex=(currentIndex+1)%l.length;
-  renderPlace();
-}
-
-function prevPlace(){
-  let l=getList();
-  if(!l||!l.length)return;
-  currentIndex--;
-  if(currentIndex<0)currentIndex=l.length-1;
-  renderPlace();
-}
-
-function searchPlaces(){
-  let q=document.getElementById("searchInput").value.trim().toLowerCase();
-
-  if(!q){
-    searchMode=false;
-    document.getElementById("result").innerHTML="";
-    return;
-  }
-
-  searchResults=allPlaces().filter(p=>
-    (p.category+" "+p.name+" "+p.desc+" "+p.tags.join(" "))
-    .toLowerCase()
-    .includes(q)
-  );
-
-  if(!searchResults.length){
-    document.getElementById("result").innerHTML=`<div class="card"><h2>לא מצאתי כלום 😅</h2></div>`;
-    return;
-  }
-
-  searchMode=true;
-  currentIndex=0;
-  renderPlace();
-}
-
-function randomPlace(){
-  let wheel=document.getElementById("wheel");
-  let box=document.getElementById("rouletteBox");
-  let overlay=document.getElementById("overlay");
-
-  overlay.style.display="block";
-  box.style.display="flex";
-
-  wheel.classList.remove("spin");
-  void wheel.offsetWidth;
-  wheel.classList.add("spin");
-
-  setTimeout(()=>{
-    overlay.style.display="none";
-    box.style.display="none";
-    wheel.classList.remove("spin");
-
-    let cats=Object.keys(places);
-    currentCategory=cats[Math.floor(Math.random()*cats.length)];
-    currentIndex=Math.floor(Math.random()*places[currentCategory].length);
-    searchMode=false;
-    renderPlace();
-  },1800);
-}
-
-function enableLocation(){
-  let s=document.getElementById("locationStatus");
-
-  if(!navigator.geolocation){
-    s.innerText="❌ אין תמיכה במיקום";
-    return;
-  }
-
-  s.innerText="📍 מבקש מיקום...";
-
-  navigator.geolocation.getCurrentPosition(
-    pos=>{
-      userLat=pos.coords.latitude;
-      userLon=pos.coords.longitude;
-      s.innerText="✅ המיקום הופעל";
-    },
-    err=>{
-      s.innerText="❌ צריך HTTPS או אישור מיקום";
-    }
-  );
-}
-
-function saveFavorite(){
-  let p=getPlace();
-  if(!p)return;
-
-  if(favorites.find(f=>f.name===p.name)){
-    alert("כבר שמור ❤️");
-    return;
-  }
-
-  favorites.push(p);
-  localStorage.setItem("favorites",JSON.stringify(favorites));
-  alert("נשמר ❤️");
-}
-
-function showFavorites(){
-  if(!favorites.length){
-    document.getElementById("result").innerHTML=`<div class="card"><h2>אין מועדפים עדיין ❤️</h2></div>`;
-    return;
-  }
-
-  document.getElementById("result").innerHTML=favorites.map((p,i)=>{
-    let map=userLat?`https://www.google.com/maps/search/${encodeURIComponent(p.name)}/@${userLat},${userLon},15z`:`https://www.google.com/maps/search/${encodeURIComponent(p.name)}`;
-    let wa="https://wa.me/?text="+encodeURIComponent("בוא ניפגש פה 🍒\n"+p.name+"\n"+p.desc+"\n"+map);
-
-    return `
-    <div class="card">
-      <h2>❤️ ${p.name}</h2>
-      <p>${p.desc}</p>
-      <p>⭐ ${p.rating}</p>
-      <p>💰 ${p.price}</p>
-      <button class="action" onclick="window.open('${map}')">📍 פתח במפות</button>
-      <button class="whatsapp" onclick="window.open('${wa}')">📲 שלח בוואטסאפ</button>
-      <button class="delete" onclick="removeFavorite(${i})">🗑️ מחק</button>
-    </div>`;
-  }).join("");
-}
-
-function removeFavorite(i){
-  favorites.splice(i,1);
-  localStorage.setItem("favorites",JSON.stringify(favorites));
-  showFavorites();
+  `;
 }
 </script>
 
